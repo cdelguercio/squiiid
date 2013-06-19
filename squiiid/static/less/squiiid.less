@@ -1,0 +1,111 @@
+// Styles for Sparkwave.io
+// LESS by Alex Paxton (sparkwave.io)
+
+// Include Toolkit
+@import "toolkit.less";
+@import "squiiidstyle.less";
+@import "jqueryui.less";
+
+// Reset
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+	-o-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+p, h1, h2, h3, h4, ul, li, span, input {
+	font-weight: 300;
+}
+div {
+	float:left;
+	display: block;
+}
+
+// Core
+body, html {
+	background-color:@white;
+	.helv;
+	color:@grey6;
+}
+.squiiid,
+.layer {
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+}
+.squiiid {position:absolute;}
+.layer {position: fixed;overflow:auto;}
+.layer-slide {
+	width:100%;
+	height:100%;
+	float:left;
+	text-align: center;
+}
+
+// Home Page
+#intro {z-index: 4;}
+#login {z-index: 8;display: none;}
+#requestinvite {z-index: 8;display: none;}
+#inviteconfirm {z-index: 8;display: none;}
+
+.squid-button {
+	width:60px;
+	height:60px;
+	background-color: #fff;
+}
+
+#slide-1 {background-color: #ff0054;}
+#slide-2 {background-color: #0054ff;}
+#slide-3 {background-color: #2299cc;}
+#slide-4 {background-color: #3300aa;}
+#slide-5 {background-color: #918290;}
+#slide-6 {background-color: #f998a1;}
+#slide-7 {background-color: #ff0054;}
+#slide-login {background-color: #fff;}
+#slide-invite {background-color: #222;}
+#slide-invite-confirm {background-color: #222;}
+
+// Login / Logout
+.button-login {
+	width:50px;
+	height:50px;
+	position: fixed;
+	top:50px;
+	right:50px;
+	background-color: @black;
+	z-index:999;
+}
+.invitehidden {
+	display: none;
+}
+
+/* Media Queries 
+
+@media only screen 
+and (max-width : 1000px)  {
+	@import "screen-a.less";
+}
+
+@media only screen 
+and (max-width : 845px)  {
+	@import "screen-b.less";
+}
+
+@media only screen 
+and (max-width : 660px)  {
+	@import "screen-c.less";
+}
+
+@media only screen 
+and (max-width : 430px)  {
+	@import "screen-d.less";
+}
+
+@media only screen 
+and (min-width : 1200px) {
+}
+
+*/
