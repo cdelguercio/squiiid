@@ -1,0 +1,351 @@
+@charset "UTF-8";
+/* Sitewide Variables */
+/* CSS by Alex Paxton (sparkwave.io) */
+
+/* UI Colors */
+@white:		#fff;
+@greyF8:	#f8f8f8;
+@greyF2:	#f2f2f2;
+@greyE:		#eee;
+@greyD:		#ddd;
+@greyC:		#ccc;
+@greyB:		#bbb;
+@greyA:		#aaa;
+@grey9:		#999;
+@grey8:		#888;
+@grey7:		#777;
+@grey5:		#555;
+@grey6:		#666;
+@grey4:		#444;
+@grey3:		#333;
+@grey2:		#222;
+@grey1:		#111;
+@black:		#000;
+
+@facebookBlue:	#3A5897;
+@twitterBlue:	#00ACED;
+
+/* Button Colors */
+@btnHighlight:	rgba(255,255,255,0.3);
+
+@greenA:	#9de56e;
+@greenB:	#77cc46;
+@greenC:	#62b73b;
+@greenD:	#4d9b2d;
+
+@redA:		#fc6b44;
+@redB:		#ea4815;
+@redC:		#ce1919;
+@redD:		#a31d1d;
+
+@blueA:		#39b8ff;
+@blueB:		#0096FA;
+@blueC:		#1477db;
+@blueD:		#0b5daf;
+
+/* Other Colors */
+@errorBG:	#fff3f2;
+
+/* Metrics */
+@wrapper:		960px;
+@radius:		5px;
+@unit:			10px;
+
+/* CSS3 Transitions */
+@transitionTime:	0.5s;
+.trans (@transProperty) {
+	transition: @transProperty @transitionTime ease;
+	-moz-transition: @transProperty @transitionTime ease;
+	-o-transition: @transProperty @transitionTime ease;
+	-webkit-transition: @transProperty @transitionTime ease;
+}
+.transTwo (@transProperty, @secondTransProperty) {
+	transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease;
+	-moz-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease;
+	-o-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease;
+	-webkit-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease;
+}
+.transThree (@transProperty, @secondTransProperty, @thirdTransProperty) {
+	transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease, @thirdTransProperty @transitionTime ease;
+	-moz-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease, @thirdTransProperty @transitionTime ease;
+	-o-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease, @thirdTransProperty @transitionTime ease;
+	-webkit-transition: @transProperty @transitionTime ease, @secondTransProperty @transitionTime ease, @thirdTransProperty @transitionTime ease;
+}
+
+/* Blocks */
+.oneHalf {width:50%;}
+.fourth {width:25%;}
+.threeFourths {width:75%;}
+.oneThird {width:33.33333%;}
+.twoThirds {width:66.66666%;}
+.fifth {width:20%;}
+.twoFifths {width:40%;}
+.threeFifths {width:60%;}
+.fourFifths {width:80%;}
+
+/* Universal Styles */
+.boxSizing {
+	box-sizing:border-box;
+	-o-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+.contentSizing {
+	box-sizing:content-box;
+	-o-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box;
+}
+.roundCustom (@tl,@tr,@br,@bl) {
+	border-radius:@tl @tr @br @bl;
+	-moz-border-radius:@tl @tr @br @bl;
+	-o-border-radius:@tl @tr @br @bl;
+	-webkit-border-radius:@tl @tr @br @bl;
+}
+.roundAll {
+	border-radius:@radius;
+	-moz-border-radius:@radius;
+	-o-border-radius:@radius;
+	-webkit-border-radius:@radius;
+}
+.round50 {
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-o-border-radius:50%;
+	-webkit-border-radius:50%;
+}
+.roundNone {
+	border-radius:0px;
+	-moz-border-radius:0px;
+	-o-border-radius:0px;
+	-webkit-border-radius:0px;
+}
+.roundTop {
+	border-radius:@radius @radius 0px 0px;
+	-moz-border-radius:@radius @radius 0px 0px;
+	-o-border-radius:@radius @radius 0px 0px;
+	-webkit-border-radius:@radius @radius 0px 0px;
+}
+.roundBottom {
+	border-radius: 0px 0px @radius @radius;
+	-moz-border-radius: 0px 0px @radius @radius;
+	-o-border-radius: 0px 0px @radius @radius;
+	-webkit-border-radius: 0px 0px @radius @radius;
+}
+.roundLeft {
+	border-radius: @radius 0px 0px @radius;
+	-moz-border-radius: @radius 0px 0px @radius;
+	-o-border-radius: @radius 0px 0px @radius;
+	-webkit-border-radius: @radius 0px 0px @radius;
+}
+.roundRight {
+	border-radius: 0px @radius @radius 0px;
+	-moz-border-radius: 0px @radius @radius 0px;
+	-o-border-radius: 0px @radius @radius 0px;
+	-webkit-border-radius: 0px @radius @radius 0px;
+}
+.roundNoTopLeft {
+	border-radius: 0px @radius @radius @radius;
+	-moz-border-radius: 0px @radius @radius @radius;
+	-o-border-radius: 0px @radius @radius @radius;
+	-webkit-border-radius: 0px @radius @radius @radius;
+}
+.dropShadow {
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+	-o-box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 1px 2px 4px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+.insetShadow {
+	box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1);
+	-o-box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1);
+	-moz-box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1);
+	-webkit-box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1);
+}
+.textShadowWhite {
+	text-shadow:0px 1px 0px @white;
+	-moz-text-shadow:0px 1px 0px @white;
+	-o-text-shadow:0px 1px 0px @white;
+	-webkit-text-shadow:0px 1px 0px @white;
+}
+.textHighlight {
+	text-shadow:0px 1px 0px rgba(255,255,255,0.4);
+	-moz-text-shadow:0px 1px 0px rgba(255,255,255,0.4);
+	-o-text-shadow:0px 1px 0px rgba(255,255,255,0.4);
+	-webkit-text-shadow:0px 1px 0px rgba(255,255,255,0.4);
+}
+.textShadowGrey {
+	text-shadow:0px -1px 0px rgba(0,0,0,0.3);
+	-moz-text-shadow:0px -1px 0px rgba(0,0,0,0.3);
+	-o-text-shadow:0px -1px 0px rgba(0,0,0,0.3);
+	-webkit-text-shadow:0px -1px 0px rgba(0,0,0,0.3);
+}
+.vGradient (@firstColor, @secondColor) {
+	background: -moz-linear-gradient(top, @firstColor 0%, @secondColor 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@firstColor), color-stop(100%,@secondColor));
+	background: -webkit-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: -o-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: -ms-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: linear-gradient(to bottom, @firstColor 0%,@secondColor 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@firstColor', endColorstr='@secondColor',GradientType=0 );
+}
+.hGradient (@firstColor, @secondColor) {
+	background-image: linear-gradient(right , @secondColor 0%, @firstColor 100%);
+	background-image: -o-linear-gradient(right , @secondColor 0%, @firstColor 100%);
+	background-image: -moz-linear-gradient(right , @secondColor 0%, @firstColor 100%);
+	background-image: -webkit-linear-gradient(right , @secondColor 0%, @firstColor 100%);
+	background-image: -ms-linear-gradient(right , @secondColor 0%, @firstColor 100%);
+
+	background-image: -webkit-gradient(
+		linear,
+		right top,
+		left top,
+		color-stop(0, @secondColor),
+		color-stop(1, @firstColor)
+	);
+}
+
+
+/* Buttons */
+.btnStyleFlat (@firstColor, @secondColor) {
+	-moz-box-shadow:0px -1px 1px rgba(0,0,0,0.15);
+	-webkit-box-shadow:0px -1px 1px rgba(0,0,0,0.15);
+	box-shadow:0px -1px 1px rgba(0,0,0,0.1);
+	-o-box-shadow:0px -1px 1px rgba(0,0,0,0.15);
+	border-bottom:1px solid @secondColor;
+	background-color: @firstColor;
+	.roundAll;
+	text-align:center;
+	text-decoration: none;
+	display: block;
+	.boxSizing;
+	height:@unit*4;
+	font-size:14px;
+	padding:@unit;
+	cursor: pointer;
+}
+.btnStyle (@firstColor, @secondColor, @thirdColor, @fourthColor) {
+	background: -moz-linear-gradient(top, @firstColor 0%, @secondColor 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@firstColor), color-stop(100%,@secondColor));
+	background: -webkit-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: -o-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: -ms-linear-gradient(top, @firstColor 0%,@secondColor 100%);
+	background: linear-gradient(to bottom, @firstColor 0%,@secondColor 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@firstColor', endColorstr='@secondColor',GradientType=0 );
+	-moz-box-shadow: inset 0px 1px 1px @btnHighlight,0px -1px 1px rgba(0,0,0,0.15);
+	-webkit-box-shadow: inset 0px 1px 1px @btnHighlight,0px -1px 1px rgba(0,0,0,0.15);
+	box-shadow: inset 0px 1px 1px @btnHighlight,0px -1px 1px rgba(0,0,0,0.1);
+	-o-box-shadow: inset 0px 1px 1px @btnHighlight,0px -1px 1px rgba(0,0,0,0.15);
+	border:1px solid @thirdColor;
+	border-bottom:1px solid @fourthColor;
+	.roundAll;
+	text-align:center;
+	text-decoration: none;
+	display: block;
+	.boxSizing;
+	height:@unit*4;
+	font-size:14px;
+	padding:@unit;
+	cursor: pointer;
+}
+.btnGrey {
+	.btnStyle (@greyF8, @greyD, @greyB, @grey9);
+	text-shadow:0px 1px 0px @greyF8;
+	-moz-text-shadow:0px 1px 0px @greyF8;
+	-o-text-shadow:0px 1px 0px @greyF8;
+	-webkit-text-shadow:0px 1px 0px @greyF8;
+	color:@grey5;
+	.textShadowWhite;
+}
+.btnGreyHover {
+	.btnStyle (@greyD, @greyF8, @greyB, @grey9);
+	text-shadow:0px -1px 0px @greyF8;
+	-moz-text-shadow:0px -1px 0px @greyF8;
+	-o-text-shadow:0px -1px 0px @greyF8;
+	-webkit-text-shadow:0px -1px 0px @greyF8;
+	color:@grey4;
+	cursor:pointer;
+}
+.btnGreen {
+	.btnStyle (@greenA, @greenB, @greenC, @greenD);
+	text-shadow:0px 1px 0px @greenD;
+	-moz-text-shadow:0px 1px 0px @greenD;
+	-o-text-shadow:0px 1px 0px @greenD;
+	-webkit-text-shadow:0px 1px 0px @greenD;
+	color:@white;
+	.textShadowGrey;
+}
+.btnGreenHover {
+	.btnStyle (@greenB, @greenA, @greenC, @greenD);
+	text-shadow:0px -1px 0px @greenD;
+	-moz-text-shadow:0px -1px 0px @greenD;
+	-o-text-shadow:0px -1px 0px @greenD;
+	-webkit-text-shadow:0px -1px 0px @greenD;
+	color:@white;
+	cursor:pointer;
+}
+.btnRed {
+	.btnStyle (@redA, @redB, @redC, @redD);
+	text-shadow:0px 1px 0px @redD;
+	-moz-text-shadow:0px 1px 0px @redD;
+	-o-text-shadow:0px 1px 0px @redD;
+	-webkit-text-shadow:0px 1px 0px @redD;
+	color:@white;
+	.textShadowGrey;
+}
+.btnRedHover {
+	.btnStyle (@redB, @redA, @redC, @redD);
+	text-shadow:0px -1px 0px @redD;
+	-moz-text-shadow:0px -1px 0px @redD;
+	-o-text-shadow:0px -1px 0px @redD;
+	-webkit-text-shadow:0px -1px 0px @redD;
+	color:@white;
+	cursor:pointer;
+}
+.btnBlue {
+	.btnStyle (@blueA, @blueB, @blueC, @blueD);
+	text-shadow:0px 1px 0px @blueD;
+	-moz-text-shadow:0px 1px 0px @blueD;
+	-o-text-shadow:0px 1px 0px @blueD;
+	-webkit-text-shadow:0px 1px 0px @blueD;
+	color:@white;
+	.textShadowGrey;
+}
+.btnBlueHover {
+	.btnStyle (@blueB, @blueA, @blueC, @blueD);
+	text-shadow:0px -1px 0px @blueD;
+	-moz-text-shadow:0px -1px 0px @blueD;
+	-o-text-shadow:0px -1px 0px @blueD;
+	-webkit-text-shadow:0px -1px 0px @blueD;
+	color:@white;
+	cursor:pointer;
+}
+
+/* Resets */
+* {margin:0px;padding:0px;}
+div,
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+button {.boxSizing;}
+
+/* By Default all buttons are .btnGrey */
+button, input[type="submit"], a[rel="button"] {.btnGrey;}
+button:hover, input[type="submit"]:hover, a[rel="button"]:hover {.btnGreyHover;}
+
+/* Typography */
+p,h1,h2 {display: block;line-height:1.3;margin:0px;padding:0px;.boxSizing;float:left;width:100%;}
+p {font-size:12px;}
+h1 {font-size:20px;}
+h2 {font-size:16px;}
+
+/* Form Elements */
+input[type="text"],
+input[type="password"],
+textarea {
+	border:1px solid @greyD;
+	.roundAll;
+	padding:(@unit/3)*2;
+	color:@grey6;
+	margin:0px;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<meta name="description" content="Dashboard">
+<meta name="keywords" content="">
+<meta name="author" content="Squiiid">
+<head>
+	<title>Dashboard | Squiiid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- CSS -->
+	<link href='/static/css/squiiid.css' rel='stylesheet' type='text/css'>
+	<!-- Icons -->
+	<link rel="icon" href="/static/assets/images/favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 326dpi)" href="/static/assets/images/apple-touch-icon-114.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 163dpi)" href="/static/assets/images/apple-touch-icon-57.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 132dpi)" href="/static/assets/images/apple-touch-icon-72.png">
+</head>
+<body id="body">
+	<!-- Dashboard Elements -->
+	<div class="dashboard">
+		<!-- Logo -->
+		<div class="dash-logo" id="squiiid-logo"></div>
+		<!-- Navigation -->
+		<nav>
+			<div class="nav-item" id="nav-upload"></div>
+			<div class="nav-item" id="nav-settings"></div>
+			<div class="nav-item" id="nav-search"></div>
+			<div class="nav-item" id="nav-logout"></div>
+		</nav>
+		<!-- Layer 1: Uploader -->
+		<div class="layer" id="uploader">
+			<form method="POST" enctype="multipart/form-data" action="/upload/">
+				{% csrf_token %}
+				<div class="uploader">
+					<div class="dropzone" id="dropzone">Click to upload</div>
+					<div class="upload-details">
+						<!-- Tags -->
+						<div class="upload-section" id="section-tags" rel="open">
+							<div class="upload-section-icon" id="upload-tags"></div>
+							<div class="upload-content">
+							<input name="title" placeholder="Title or brief description..." />
+							<input name="tags" placeholder="separate tags by commas..." />
+							</div>
+						</div>
+						<!-- Contributors -->
+						<div class="upload-section" id="section-contributors" rel="closed">
+							<div class="upload-section-icon" id="upload-contributors"></div>
+							<div class="upload-content">
+							<input name="contributor_type_1" placeholder="type" />
+							<input name="contributor_name_1" placeholder="name" />
+							</div>
+						</div>
+						<!-- Geo -->
+						<div class="upload-section" id="section-geo" rel="closed">
+							<div class="upload-section-icon" id="upload-geo"></div>
+							<div class="upload-content">
+								<input name="street_address_1" placeholder="street_address_1" />
+								<input name="street_address_2" placeholder="street_address_2" />
+								<input name="city" placeholder="city" />
+								<input name="state" placeholder="state" />
+								<input name="zip_code" placeholder="zip_code" />
+								<input name="place" placeholder="place (arts district, etc.)" />
+							</div>
+						</div>
+						<!-- Camera -->
+						<div class="upload-section" id="section-camera" rel="closed">
+							<div class="upload-section-icon" id="upload-camera"></div>
+							<div class="upload-content">
+								<input name="tool" placeholder="tool" />
+								<input name="iso" placeholder="iso" />
+								<input name="aperture" placeholder="aperture" />
+								<input name="exposure" placeholder="exposure" />
+								<input name="focal_length" placeholder="focal_length" />
+								<input name="private" type="checkbox" />
+							</div>
+						</div>
+						<!-- Products -->
+						<div class="upload-section" id="section-products" rel="closed">
+							<div class="upload-section-icon" id="upload-products"></div>
+							<div class="upload-content">
+								<input name="brand_1" placeholder="brand" />
+								<input name="product_1" placeholder="product" />
+								<input name="product_url_1" placeholder="url" />
+							</div>
+						</div>
+					</div>	
+				</div>
+				<input type="submit">Submit</input>
+			</form>
+		</div>
+		<!-- Layer 2: Photo Sharing -->
+		<div class="layer" id="photosharing">
+			<div class="photo-share">
+				<a class="share-tumblr" href="#">tumblr</a>
+				<a class="share-wp" href="#">wordpress</a>
+				<a class="share-blogger" href="#">blogger</a>
+				<a class="share-embed" href="#">&#60;&#47;&#62;</a>
+				<img id="photo-share-x" src="/static/assets/images/icon-x-red.svg" />
+			</div>
+		</div>
+		<!-- Layer 3: Search -->
+		<div class="layer" id="search">
+			<div class="search-box">
+			</div>
+		</div>
+		<!-- Layer 4: Settings -->
+		<div class="layer" id="settings">
+			<div class="settings-box">
+			</div>
+		</div>
+		<!-- Overlay -->
+		<div id="omgwhiteeverywhere"></div>
+		<!-- My Photos -->
+		<div class="my-photos" id="my-photos"></div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<!-- <script src="/static/js/dropzone.js"></script> -->
+	<script src="/static/js/core.js"></script>
+</body>
+</html>
