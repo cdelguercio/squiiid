@@ -178,8 +178,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-LOGIN_REDIRECT_URL = '/'
-USERENA_SIGNIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+USERENA_SIGNIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/signout/'
 ANONYMOUS_USER_ID = 1
