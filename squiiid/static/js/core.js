@@ -302,7 +302,6 @@ var myphotos = [
 //--------------------------------------------------------
 
 // Uploader: User clicks on the icon for a section
-	
 	// Uploader: Tags section
 	$("body").delegate("#upload-tags", "click", function(){
 		if ($("#section-tags").attr("rel") == "closed") {switchsection("section-tags");}
@@ -328,6 +327,17 @@ var myphotos = [
 		if ($("#section-products").attr("rel") == "closed") {switchsection("section-products");}
 		else {}
 	});
+// Checkbox toggle in settings
+	$("body").delegate("#settings-checkbox", "click", function(){
+		if ($("#settings-checkbox").attr("rel") == "0") {
+			$("#settings-checkbox").attr("rel","1");
+			$("settings-checkbox-hidden").attr("value","1");
+		}
+		else {
+			$("#settings-checkbox").attr("rel","0");
+			$("settings-checkbox-hidden").attr("value","0");
+		}
+	});
 // Fade out handlers
 	// The X button on the photo-sharing menu
 	$("body").delegate("#photo-share-x", "click", function(){
@@ -337,7 +347,10 @@ var myphotos = [
 	$("body").delegate("#squiiid-logo", "click", function(){
 		getfaded();
 	});
-	
+	// The "save" popsicle in settings
+	$("body").delegate("#settings-save", "click", function(){
+		getfaded();
+	});
 // Fade in handlers
 	// 1. Photo Sharing
 	$("body").delegate(".photo-share-link", "click", function(){

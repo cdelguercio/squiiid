@@ -1,0 +1,65 @@
+<div class="settings-layers">
+	<!-- Error for when username is taken -->
+	<div class="settings-layer" id="settings-error-username">
+		<div class="settings-layer-content">
+			<p>Dang.<br/>That username is already taken or in use, please try again</p>
+			<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+		</div>
+	</div>
+	<!-- Error for when not all required fields are filled out -->
+	<div class="settings-layer" id="settings-error-missingfields">
+		<div class="settings-layer-content">
+			<p>Whoa.<br/>Please fill in all info.</p>
+			<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+		<div class="settings-layer-content">
+	</div>
+	<!-- Error for when info is invalid -->
+	<div class="settings-layer" id="settings-error-invalid">
+		<div class="settings-layer-content">
+			<p>Whoa.<br/>Maybe a typo. Some of your info is invalid.</p>
+			<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+		</div>
+	</div>
+	<!-- First time user layer -->
+	<div class="settings-layer" id="settings-hint">
+		<div class="settings-layer-content">
+			<p>HINT:<br/>This is a good spot to reserve your INSTAGRAM handle.</p>
+			<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+		</div>
+	</div>
+	<!-- Terms of Use Agreement layer -->
+	<div class="settings-layer" id="settings-tou">
+		<div class="settings-layer-content">
+			<p>YOU AGREE:<br/>You own the rights / have permission<br/>to use photos you upload. Bla bla. Our <span id="tou-link">TOU</span></p>
+			<img class="settings-x" src="/static/assets/images/icon-x-purple.svg" />
+		</div>
+	</div>
+</div><!-- /settings-layers -->
+
+<div class="settings-box" id="settings-box">
+	<form>
+		<p class="settings-label">first //</p>
+		<p><input type="text" placeholder="first name" value="Jonathan"/></p>
+		<p class="settings-label">last //</p>
+		<p><input type="text" placeholder="last name" value="Igner" /></p>
+		<p class="settings-label">email //</p>
+		<p><input type="text" placeholder="email address" value="j@squiiid.com" /></p>
+		<p class="settings-label">*username //</p>
+		<p><input type="text" placeholder="username" value="iggy"/></p>
+		<p class="settings-label">blog or website //</p>
+		<p><input type="text" placeholder="blog or website" /></p>
+
+		<p class="settings-label-light">password //</p>
+		<p><input type="text" placeholder="password" /><input type="text" placeholder="confirm" /></p>
+		<p class="settings-label-light">*agree //</p>
+		<p>
+			<div class="settings-checkholder">
+				<div id="settings-checkbox" rel="0"></div>
+			</div>
+		</p>
+		<input type="hidden" id="settings-checkbox-hidden" value="0" />
+		<div id="settings-save">
+			<img class="settings-save" src="/static/assets/images/icon-popsicle.svg" />
+		</div>
+	</form>
+</div><!-- /settings-box -->

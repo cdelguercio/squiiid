@@ -310,6 +310,34 @@ nav {
 	}
 }
 /*------------------------------------------*/
+/*				0. First Time User			*/
+/*------------------------------------------*/
+.firsttimeuser {
+	width:440px;
+	height:90px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin:-45px 0px 0px -220px;
+	p {
+		width:100%;
+		text-align: center;
+		.cour;
+		font-weight:400;
+		font-size:18px;
+		letter-spacing: -0.1em;
+	}
+}
+#firsttime-x {
+	width:20%;
+	height:auto;
+	float:left;
+	margin:30px 40% 0px 40%;
+	cursor: pointer;
+	.trans(opacity);
+}
+#firsttime-x:hover {opacity: 0.6;}
+/*------------------------------------------*/
 /*				1. Photo Sharing			*/
 /*------------------------------------------*/
 #photosharing {
@@ -358,6 +386,71 @@ nav {
 	opacity: 0;
 	display: none;
 }
+.settings-box {
+	width:500px;
+	height:358px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin:-179px 0px 0px -250px;
+	p {
+		width:50%;
+		height:40px;
+		float:left;
+		.cour;
+		letter-spacing: -0.1em;
+		input {
+			border:0px;
+			height:36px;
+			background-color: @white;
+			border-bottom:1px solid #f6f6f6;
+			.cour;
+			font-weight: 400;
+			font-size:14px;
+			.roundNone;
+			float:left;
+		}
+		.settings-full {width:100%;}
+		.settings-half {width:49%;margin-right:2%;}
+		.settings-half:last-child {margin-right: 0px;}
+	}
+}
+.settings-label,
+.settings-label-light {
+	text-align: right;
+	font-size:18px;
+	color:@sq-grey;
+	padding-right:10px;
+	.trans(color);
+}
+.settings-label-light {
+	color:@sq-grey2;
+}
+.settings-save {
+	width:18%;
+	height:auto;
+	margin:30px 41% 0px 41%;
+	cursor: pointer;
+	.trans(opacity);
+}
+.settings-save:hover {
+	opacity: 0.6;
+}
+.settings-checkbox {
+	width:36px;
+	height:36px;
+	float:left;
+	background-color: @white;
+	cursor: pointer;
+	.trans(background-color);
+}
+.settings-checkbox[rel="1"] {
+	background-color: @sq-red;
+	background-image: url(/static/assets/images/settings-check.svg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%
+}
+
 /*------------------------------------------*/
 /*				3. Search					*/
 /*------------------------------------------*/
@@ -395,6 +488,7 @@ nav {
 	.boxSizing;
 	padding-top:220px;
 	cursor: pointer;
+	border:1px dashed @sq-grey2;
 }
 .upload-details {
 	width:@uploaderwidth;
@@ -405,7 +499,7 @@ nav {
 @sectionwidth: 54px;
 @sectionopenwidth: 480px;
 .upload-section {
-	height:180px;
+	height:256px;
 	float:left;
 	border-right:1px solid #e6e6e6;
 	.trans(width);
@@ -438,24 +532,75 @@ nav {
 	width:100%;
 	height:auto;
 	overflow:hidden;
+	.boxSizing;
+	padding-right: 10px;
+	padding-left: 10px;
 	.trans(opacity);
+	label {
+		font-size:14px;
+		.cour;
+		font-weight: 400;
+		float:left;
+		margin-top:10px;
+		margin-left:10px;
+	}
 	input {
-		height:32px;
-		margin-bottom:2px;
-		padding:0px 8px 0px 8px;
+		float:left;
+		height:40px;
+		padding:0px 9px 0px 9px;
+		border:0px;
+		.roundNone;
+		font-size:14px;
 		.cour;
 		.boxSizing;
-		background-color: #DDD;
+		background-color: @white;
 		color:@black;
+		font-weight: 400;
+		margin-bottom:2px;
 	}
 }
+.upload-section:first-child .upload-content {padding-left:0px;}
 .upload-details div[rel="open"] .upload-content {opacity:1;}
 .upload-details div[rel="closed"] .upload-content {opacity:0;}
 
 .upload-content-divider {
-	width:48%;
+	width:42%;
 	height:2px;
 	background-color: @black;
+	margin-bottom:4px;
+}
+.upload-full {
+	width:100%;
+}
+.upload-half {
+	width:49.5%;
+	margin-right:0.5%;
+}
+.upload-half:nth-child(2n+1) {
+	margin-right:0px;
+}
+.upload-third {
+	width:33%;
+	margin-right:0.5%;
+}
+.upload-third:nth-child(3n+1) {
+	margin-right:0px;
+}
+.upload-checkbox {
+	margin-left:8px;
+}
+.upload-button {
+	border:0px;
+	.roundNone;
+	background-color: transparent;
+	.cour;
+	cursor: pointer;
+	color:@sq-red;
+	font-size:18px;
+	font-weight: 400;
+	margin-bottom: 20px;
+	text-align: right;
+	float:right;
 }
 
 /* Media Queries 
