@@ -40,22 +40,33 @@
 						<div class="upload-section" id="section-tags" rel="open">
 							<div class="upload-section-icon" id="upload-tags"></div>
 							<div class="upload-content">
-							<input name="title" placeholder="Title or brief description..." />
-							<input name="tags" placeholder="separate tags by commas..." />
+								<div class="upload-content-divider"></div>
+								<input name="title" placeholder="Title or brief description..." />
+								<input name="tags" placeholder="separate tags by commas..." />
 							</div>
 						</div>
 						<!-- Contributors -->
 						<div class="upload-section" id="section-contributors" rel="closed">
 							<div class="upload-section-icon" id="upload-contributors"></div>
 							<div class="upload-content">
-							<input name="contributor_type_1" placeholder="type" />
-							<input name="contributor_name_1" placeholder="name" />
+								<div class="upload-content-divider"></div>
+								<input name="contributor_type_1" placeholder="type" />
+								<input name="contributor_name_1" placeholder="name" />
+								<input name="contributor_type_2" placeholder="type" />
+								<input name="contributor_name_2" placeholder="name" />
+								<input name="contributor_type_3" placeholder="type" />
+								<input name="contributor_name_3" placeholder="name" />
+								<input name="contributor_type_4" placeholder="type" />
+								<input name="contributor_name_4" placeholder="name" />
+								<input name="contributor_type_5" placeholder="type" />
+								<input name="contributor_name_5" placeholder="name" />
 							</div>
 						</div>
 						<!-- Geo -->
 						<div class="upload-section" id="section-geo" rel="closed">
 							<div class="upload-section-icon" id="upload-geo"></div>
 							<div class="upload-content">
+								<div class="upload-content-divider"></div>
 								<input name="street_address_1" placeholder="street_address_1" />
 								<input name="street_address_2" placeholder="street_address_2" />
 								<input name="city" placeholder="city" />
@@ -68,6 +79,7 @@
 						<div class="upload-section" id="section-camera" rel="closed">
 							<div class="upload-section-icon" id="upload-camera"></div>
 							<div class="upload-content">
+								<div class="upload-content-divider"></div>
 								<input name="tool" placeholder="tool" />
 								<input name="iso" placeholder="iso" />
 								<input name="aperture" placeholder="aperture" />
@@ -80,6 +92,7 @@
 						<div class="upload-section" id="section-products" rel="closed">
 							<div class="upload-section-icon" id="upload-products"></div>
 							<div class="upload-content">
+								<div class="upload-content-divider"></div>
 								<input name="brand_1" placeholder="brand" />
 								<input name="product_1" placeholder="product" />
 								<input name="product_url_1" placeholder="url" />
@@ -107,7 +120,57 @@
 		</div>
 		<!-- Layer 4: Settings -->
 		<div class="layer" id="settings">
-			<div class="settings-box">
+			<div class="settings-layers">
+				<!-- Error for when username is taken -->
+				<div class="settings-layer" id="settings-error-username">
+					<div class="settings-layer-content">
+						<p>Dang.<br/>That username is already taken or in use, please try again</p>
+						<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+					</div>
+				</div>
+				<!-- Error for when not all required fields are filled out -->
+				<div class="settings-layer" id="settings-error-missingfields">
+					<div class="settings-layer-content">
+						<p>Whoa.<br/>Please fill in all info.</p>
+						<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+					<div class="settings-layer-content">
+				</div>
+				<!-- Error for when info is invalid -->
+				<div class="settings-layer" id="settings-error-invalid">
+					<div class="settings-layer-content">
+						<p>Whoa.<br/>Maybe a typo. Some of your info is invalid.</p>
+						<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+					</div>
+				</div>
+				<!-- First time user layer -->
+				<div class="settings-layer" id="settings-hint">
+					<div class="settings-layer-content">
+						<p>HINT:<br/>This is a good spot to reserve your INSTAGRAM handle.</p>
+						<img class="settings-x" src="/static/assets/images/icon-x-black.svg" />
+					</div>
+				</div>
+				<!-- Terms of Use Agreement layer -->
+				<div class="settings-layer" id="settings-tou">
+					<div class="settings-layer-content">
+						<p>YOU AGREE:<br/>You own the rights / have permission<br/>to use photos you upload. Bla bla. Our <span id="tou-link">TOU</span></p>
+						<img class="settings-x" src="/static/assets/images/icon-x-purple.svg" />
+					</div>
+				</div>
+			</div>
+			<div class="settings-box" id="settings-box">
+				<!-- Start settings form element -->
+				<form>
+				<p class="settings-label">first //</p><p><input type="text" placeholder="first name" value="Jonathan"/></p>
+				<p class="settings-label">last //</p><p><input type="text" placeholder="last name" value="Igner" /></p>
+				<p class="settings-label">email //</p><p><input type="text" placeholder="email address" value="j@squiiid.com" /></p>
+				<p class="settings-label">*username //</p><p><input type="text" placeholder="username" value="iggy"/></p>
+				<p class="settings-label">blog or website //</p><p><input type="text" placeholder="blog or website" /></p>
+
+				<p class="settings-label-light">password //</p><p><input type="text" placeholder="password" /><input type="text" placeholder="confirm" /></p>
+				<p class="settings-label-light">*agree //</p><p><div class="settings-checkholder"><div id="settings-checkbox"></div rel="0"></div></p>
+				<input type="hidden" id="settings-checkbox-hidden" value="0" />
+				<div id="settings-save"><img class="settings-save" src="/static/assets/images/icon-popsicle.svg" /></div>
+				</form>
 			</div>
 		</div>
 		<!-- Overlay -->
