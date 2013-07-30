@@ -43,6 +43,7 @@ urlpatterns = patterns('',
     url(r'^dashboard/$', 'squiiid.views.dashboard', name='dashboard'),
     url(r'^get_exif/$', 'squiiid.views.get_exif', name='get_exif'),
     url(r'^upload/$', 'squiiid.views.upload', name='upload'),
+    url(r'^upload_image/$', 'squiiid.views.upload_image', name='upload_image'),
     url(r'^upload_complete/$', 'squiiid.views.upload_complete', name='upload_complete'),
     url(r'^image/(?P<image_id>\d+)/$', 'squiiid.views.image', name='image'),
 
