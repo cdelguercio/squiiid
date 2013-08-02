@@ -228,7 +228,7 @@ var myphotos = [
 
 // Function for loading in "My Photos"
 	function loadMyPhotos() {
-		$.each(myphotos, function (i, photo) {
+		/*$.each(myphotos, function (i, photo) {
 			$photo = $("<img />").addClass("a-photo").attr("src",photo.url);
 
 			$photohovertext = $("<p />").addClass("photo-hover-text").html("<b>"+photo.likes+" Likes</b> <i>x</i> <b>"+photo.clicks+" Clicks</b> <i>x</i> <b>"+photo.hovers+" Hovers</b> <i>x</i> <b>"+photo.reblogs+" Reblogs</b><br/><a href='#' class='photo-share-link'>Share</a> <i>/</i> <a href='#' class='photo-edit-link'>Edit</a>");
@@ -247,7 +247,7 @@ var myphotos = [
 			$photoholder = $("<div />").addClass("photo-holder").append($photobox);
 
 			$("#my-photos").append($photoholder);
-		});
+		});*/
 	}
 
 // Function for sizing overlays on "My Photos"

@@ -46,11 +46,11 @@
 		-->
 		<!-- Layer 1: Uploader -->
 		<div class="layer" id="uploader">
-			<form method="POST" enctype="multipart/form-data" action="/upload/">
-				{% csrf_token %}
-				<div class="uploader">
+			
+			<div class="uploader">
+				<form id="dropzone" class="dropzone" method="POST" enctype="multipart/form-data" action="/upload/">
+					{% csrf_token %}
 					<input type="submit" value="iii'm done" class="upload-button"/>
-					<div class="dropzone" id="dropzone">Click to upload</div>
 					<div class="upload-details">
 						<!-- Tags -->
 						<div class="upload-section" id="section-tags" rel="open">
@@ -120,9 +120,9 @@
 								<input class="upload-third" name="product_url_3" placeholder="url" title="Please reference URL where product can be purchased"/>
 							</div>
 						</div>
-					</div>	
-				</div>
-			</form>
+					</div>
+				</form>
+			</div>
 		</div>
 		<!-- Layer 2: Photo Sharing -->
 		<div class="layer" id="photosharing">
@@ -142,28 +142,26 @@
 		<!-- Layer 4: Settings -->
 		<div class="layer" id="settings">
 			<div class="settings-box" id="settings-box">
-				<form>
+				<form method="POST" action="/dashboard/settings/">
 					<p class="settings-label">first //</p>
-					<p><input type="text" class="settings-full" placeholder="first name" value="Jonathan"/></p>
+					<p><input name="first_name" type="text" class="settings-full" placeholder="first name" value="{{request.user.first_name}}"/></p>
 					<p class="settings-label">last //</p>
-					<p><input type="text" class="settings-full" placeholder="last name" value="Igner" /></p>
+					<p><input name="last_name" type="text" class="settings-full" placeholder="last name" value="{{request.user.last_name}}" /></p>
 					<p class="settings-label">email //</p>
-					<p><input type="text" class="settings-full" placeholder="email address" value="j@squiiid.com" /></p>
+					<p><input type="text" class="settings-full" placeholder="email address" value="{{request.user.email}}" disabled="disabled" /></p>
+					<!--
 					<p class="settings-label">*username //</p>
 					<p><input type="text" class="settings-full" placeholder="username" value="iggy"/></p>
+					-->
 					<p class="settings-label">blog or website //</p>
-					<p><input type="text" class="settings-full" placeholder="blog or website" /></p>
+					<p><input name="website" type="text" class="settings-full" placeholder="blog or website" value="{{request.user.get_profile.website}}" /></p>
 
 					<p class="settings-label-light">password //</p>
 					<p>
-						<input type="password" class="settings-half" placeholder="password" />
-						<input type="password" class="settings-half" placeholder="confirm" />
+						<input type="password" class="settings-half" placeholder="password" disabled="disabled" />
+						<!--<input type="password" class="settings-half" placeholder="confirm" />-->
 					</p>
-					<p class="settings-label-light">agree //</p>
-					<div class="settings-checkbox" id="settings-checkbox" rel="0">
-						<input type="hidden" id="settings-checkbox-hidden" value="0" />
-					</div>
-					<img id="settings-save" class="settings-save" src="/static/assets/images/icon-popsicle-red.svg" />
+					<button><img id="settings-save" class="settings-save" src="/static/assets/images/icon-popsicle-red.svg" /></button>
 				</form>
 			</div><!-- /settings-box -->
 
@@ -171,11 +169,37 @@
 		<!-- Overlay -->
 		<div id="omgwhiteeverywhere"></div>
 		<!-- My Photos -->
-		<div class="my-photos" id="my-photos"></div>
+		<div class="my-photos" id="my-photos">
+			{% for image in images %}
+			<div class="photo-holder">
+				<div class="photo-box">
+					<div class="photo-hover-box" id="photo-hover-0" rel="1.5" value="Portrait" style="height: 1499px; margin-bottom: -1499px;">
+						<p class="photo-hover-text">
+						<b>{{image.likes}} Likes</b> <i>x</i> <b>{{image.clicks}} Clicks</b> <i>x</i> <b>{{image.hovers}} Hovers</b> <i>x</i> <b>{{image.reblogs}} Reblogs</b><br><a href="#" class="photo-share-link">Share</a> <i>/</i> <a href="#" class="photo-edit-link">Edit</a>
+						</p>
+					</div>
+					<img class="a-photo" src="/media/{{image.image}}" />
+				</div>
+			</div>
+			{% endfor %}
+		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-	<!-- <script src="/static/js/dropzone.js"></script> -->
+	<script src="/static/js/dropzone.js"></script>
+	<script type="text/javascript">
+		//Dropzone.autoDiscover = false;
+		//var myDropzone = new Dropzone("form.dropzone");
+		//Dropzone.options.myAwesomeDropzone = {
+		//	paramName: "image", // The name that will be used to transfer the file
+		//	maxFilesize: 2 // MB
+		//};
+		//Dropzone.options.dropzone = {
+		//	init: function() {
+		//		this.on("addedfile", function(file) { alert("Added file."); });
+		//	}
+		//};
+	</script>
 	<script src="/static/js/core.js"></script>
 </body>
 </html>

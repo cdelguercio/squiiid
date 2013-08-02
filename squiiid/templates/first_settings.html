@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta name="description" content="Dashboard">
+<meta name="keywords" content="">
+<meta name="author" content="Squiiid">
+<head>
+	<title>Dashboard | Squiiid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- CSS -->
+	<link href='/static/css/squiiid.css' rel='stylesheet' type='text/css'>
+	<!-- Icons -->
+	<link rel="icon" href="/static/assets/images/favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 326dpi)" href="/static/assets/images/apple-touch-icon-114.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 163dpi)" href="/static/assets/images/apple-touch-icon-57.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 132dpi)" href="/static/assets/images/apple-touch-icon-72.png">
+</head>
+<body id="body">
+	<!-- Dashboard Elements -->
+	<div class="dashboard">
+		<!-- Layer 4: Settings -->
+		<div class="layer" id="settings">
+			<div class="settings-box" id="settings-box">
+				<form method="POST" action="/first_settings/">
+					<p class="settings-label">first //</p>
+					<p><input name="first_name" type="text" class="settings-full" placeholder="first name" value="{{request.user.first_name}}"/></p>
+					<p class="settings-label">last //</p>
+					<p><input name="last_name" type="text" class="settings-full" placeholder="last name" value="{{request.user.last_name}}" /></p>
+					<p class="settings-label">email //</p>
+					<p><input type="text" class="settings-full" placeholder="email address" value="{{request.user.email}}" /></p>
+					<!--
+					<p class="settings-label">*username //</p>
+					<p><input type="text" class="settings-full" placeholder="username" value="iggy"/></p>
+					-->
+					<p class="settings-label">blog or website //</p>
+					<p><input name="website" type="text" class="settings-full" placeholder="blog or website" value="{{request.user.get_profile.website}}" /></p>
+
+					<p class="settings-label-light">password //</p>
+					<p>
+						<input type="password" class="settings-half" placeholder="password" disabled="disabled" />
+						<!--<input type="password" class="settings-half" placeholder="confirm" />-->
+					</p>
+					<p class="settings-label-light">agree //</p>
+					<div class="settings-checkbox" id="settings-checkbox" rel="0">
+						<input type="hidden" id="settings-checkbox-hidden" value="0" />
+					</div>
+					<button><img id="settings-save" class="settings-save" src="/static/assets/images/icon-popsicle-red.svg" /></button>
+				</form>
+			</div><!-- /settings-box -->
+
+		</div><!-- / Layer 4: Settings -->
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script src="/static/js/core.js"></script>
+</body>
+</html>

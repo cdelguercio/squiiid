@@ -3,9 +3,8 @@ from django.conf.urls import patterns, include, url
 from userena import views as userena_views
 from django.contrib.auth import views as auth_views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'squiiid.views.index', name='index'),
@@ -41,19 +40,20 @@ urlpatterns = patterns('',
 ### squiiid
 
     url(r'^dashboard/$', 'squiiid.views.dashboard', name='dashboard'),
+    url(r'^dashboard/settings/$', 'squiiid.views.dashboard_settings', name='dashboard_settings'),
     url(r'^get_exif/$', 'squiiid.views.get_exif', name='get_exif'),
-    url(r'^upload/$', 'squiiid.views.upload', name='upload'),
+    url(r'^upload/$', 'squiiid.views.dashboard_upload', name='dashboard_upload'),
     url(r'^upload_image/$', 'squiiid.views.upload_image', name='upload_image'),
     url(r'^upload_complete/$', 'squiiid.views.upload_complete', name='upload_complete'),
     url(r'^image/(?P<image_id>\d+)/$', 'squiiid.views.image', name='image'),
+    url(r'^first_intro/$', 'squiiid.views.first_intro', name='first_intro'),
+    url(r'^first_upload/$', 'squiiid.views.first_upload', name='first_upload'),
+    url(r'^first_settings/$', 'squiiid.views.first_settings', name='first_settings'),
 
-    # Examples:
-    # url(r'^$', 'squiiid_com.views.home', name='home'),
-    # url(r'^squiiid_com/', include('squiiid_com.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+     url(r'^admin/', include(admin.site.urls)),
 )

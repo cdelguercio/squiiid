@@ -11,8 +11,7 @@ class Profile(UserenaBaseProfile):
                                 unique=True,
                                 verbose_name=_('user'),
                                 related_name='profile')
-    #favourite_snack = models.CharField(_('favourite snack'),
-    #                                   max_length=5)
+    website = models.CharField(max_length=1000, null=True, blank=True)
                                        
     def __unicode__(self):
         return unicode('')
@@ -20,6 +19,10 @@ class Profile(UserenaBaseProfile):
 class SquiiidImage(models.Model):
     profile = models.ForeignKey(Profile)
     image = models.FileField(upload_to='images')
+    likes = models.IntegerField(default=0)
+    clicks = models.IntegerField(default=0)
+    hovers = models.IntegerField(default=0)
+    reblogs = models.IntegerField(default=0)
     title = models.CharField(max_length=300, null=True, blank=True)
     tags = models.CharField(max_length=1000, null=True, blank=True)
     contributor_type_1 = models.CharField(max_length=100, null=True, blank=True)
