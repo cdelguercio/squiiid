@@ -266,7 +266,14 @@ nav{width:110px;height:110px;position:fixed;top:40px;right:40px;z-index:666}
 #search{opacity:0;display:none}
 #uploader{display:none;opacity:0}
 .uploader{z-index:1001;position:absolute;top:160px;left:50%;width:700px;height:auto;margin-left:-350px}
-.dropzone{width:700px;height:450px;margin-bottom:30px;float:left;display:block;background-color:#fff;font-family:'Courier New',Courier,sans-serif;text-decoration:underline;text-align:center;box-sizing:border-box;-o-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding-top:220px;cursor:pointer;border:1px dashed #989897}
+.dropzone div{float:left}
+.dz-default span{width:700px;height:450px;margin-bottom:30px;float:left;display:block;background-color:#fff;font-family:'Courier New',Courier,sans-serif;text-decoration:underline;text-align:center;box-sizing:border-box;-o-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding-top:220px;cursor:pointer;border:1px dashed #989897}
+.dz-preview,.dz-details{width:100%;min-height:50px}
+.dz-details img{width:100%;height:auto;float:left;margin-top:-38px}
+.dz-filename,.dz-size{width:48%;height:38px;padding:10px 9px 0 9px;border:0;border-radius:0;-moz-border-radius:0;-o-border-radius:0;-webkit-border-radius:0;font-size:14px;font-family:'Courier New',Courier,sans-serif;box-sizing:border-box;-o-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;background-color:rgba(255,255,255,0.88);color:#000;font-weight:400;margin-bottom:0;top:20px;position:relative;z-index:1001;opacity:.2;transition:opacity .5s ease;-moz-transition:opacity .5s ease;-o-transition:opacity .5s ease;-webkit-transition:opacity .5s ease}
+.dz-details:hover .dz-filename,.dz-details:hover .dz-size{opacity:1}
+.dz-filename{margin-left:2%}
+.dz-size{margin-right:2%;text-align:right}
 .upload-details{width:700px;float:left;height:auto;border-bottom:100px solid transparent}
 .upload-section{height:256px;float:left;border-right:1px solid #e6e6e6;transition:width .5s ease;-moz-transition:width .5s ease;-o-transition:width .5s ease;-webkit-transition:width .5s ease}
 .upload-section:last-child{border-right:0}
