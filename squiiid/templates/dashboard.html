@@ -48,10 +48,11 @@
 		<div class="layer" id="uploader">
 			
 			<div class="uploader">
-				<form id="dropzone" class="dropzone" method="POST" enctype="multipart/form-data" action="/upload/">
+				<form method="POST" enctype="multipart/form-data" action="/upload/">
 					{% csrf_token %}
-					<div class="dz-default dz-message"><span>Drop files here to upload</span></div>
-					<input onclick="Dropzone.forElement('#dropzone').processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<div id="dropzone" class="dropzone"></div>
+
+					<input onclick="dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
 					<div class="upload-details">
 						<!-- Tags -->
 						<div class="upload-section" id="section-tags" rel="open">
@@ -189,31 +190,17 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 	<script src="/static/js/dropzone.js"></script>
 	<script type="text/javascript">
-		//var Dropzone = require("dropzone");
-		//var Dropzone = new Dropzone("form.dropzone");
-		//Dropzone.autoDiscover = false;
-		//Dropzone.options.myAwesomeDropzone = {
-		//	paramName: "image", // The name that will be used to transfer the file
-		//	maxFilesize: 2 // MB
-		//};
-				
-		function doUpload(dz) {
-			for(var i = 0; i < dz.files.length; i++) {
-				dz.filesQueue.push(dz.files[i]);
-			}
-			dz.processQueue();
-		}
-
-		jQuery(document).ready(function() 
-        {
-			Dropzone.options.dropzone = {
+		Dropzone.autoDiscover = false;
+		var dropzone = new Dropzone("div#dropzone", { url: '/upload/',
 				enqueueForUpload: true,
 				autoProcessQueue: false,
 				//uploadMultiple: true,
 				parallelUploads: 100,
 				init: function() {
+					this.on("complete", function(file) {
+						window.location.href = "/upload_complete/"
+					});
 					this.on("sending", function(file, xhr, formData) {
-						alert("sending");
 						formData.append("title", document.getElementById("title").value);
 						formData.append("tags", document.getElementById("tags").value);
 						formData.append("contributor_type_1", document.getElementById("contributor_type_1").value);
@@ -249,8 +236,7 @@
 						formData.append("product_url_3", document.getElementById("product_url_3").value);
 					});
 				}
-			};
-		});
+			});
 	</script>
 	<script src="/static/js/core.js"></script>
 </body>

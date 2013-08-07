@@ -475,7 +475,8 @@ nav {
 	height:auto;
 	margin-left:(@uploaderwidth / -2);
 }
-.dropzone {
+.dropzone div {float:left;}
+.dz-default span {
 	width:@uploaderwidth;
 	height:450px;
 	margin-bottom:30px;
@@ -490,6 +491,43 @@ nav {
 	cursor: pointer;
 	border:1px dashed @sq-grey2;
 }
+.dz-preview,
+.dz-details {
+	width:100%;
+	min-height:50px;
+}
+.dz-details {
+	img {
+		width:100%;
+		height:auto;
+		float:left;
+		margin-top:-38px;
+	}
+}
+.dz-filename,
+.dz-size {
+	width:48%;
+	height:38px;
+	padding:10px 9px 0px 9px;
+	border:0px;
+	.roundNone;
+	font-size:14px;
+	.cour;
+	.boxSizing;
+	background-color: rgba(255,255,255,0.88);
+	color:@black;
+	font-weight: 400;
+	margin-bottom:0px;
+	top:20px;
+	position: relative;
+	z-index: @z-toplayer;
+	opacity: 0.2;
+	.trans(opacity);
+}
+.dz-details:hover .dz-filename,
+.dz-details:hover .dz-size {opacity: 1;}
+.dz-filename {margin-left:2%;}
+.dz-size {margin-right:2%;text-align: right;}
 .upload-details {
 	width:@uploaderwidth;
 	float:left;
