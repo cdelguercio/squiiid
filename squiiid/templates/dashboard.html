@@ -163,7 +163,7 @@
 						<input type="password" class="settings-half" placeholder="password" disabled="disabled" />
 						<!--<input type="password" class="settings-half" placeholder="confirm" />-->
 					</p>
-					<button><img id="settings-save" class="settings-save" src="/static/assets/images/icon-popsicle-red.svg" /></button>
+					<button id="settings-save" class="settings-save"><img src="/static/assets/images/icon-popsicle-red.svg" /></button>
 				</form>
 			</div><!-- /settings-box -->
 
@@ -199,6 +199,11 @@
 				init: function() {
 					this.on("complete", function(file) {
 						window.location.href = "/upload_complete/"
+					});
+					this.on("addedfile", function(file) {
+					  $(".dz-default").animate({'opacity':'0','height':'0'}, 300, function() {
+					  	$(".dz-default").css("display","none");
+					  });
 					});
 					this.on("sending", function(file, xhr, formData) {
 						formData.append("title", document.getElementById("title").value);
