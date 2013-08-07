@@ -16,7 +16,9 @@ framework.
 import os
 import sys
 
-path = '/home/chris/workspace/squiiid/'
+BASE_ROOT = os.path.abspath( os.path.join(os.path.split(__file__)[0], '..') )
+
+path = BASE_ROOT
 if path not in sys.path:
     sys.path.append(path)
 #path = '/opt/squiiid/'
