@@ -50,9 +50,11 @@
 			<div class="uploader">
 				<form method="POST" enctype="multipart/form-data" action="/upload/">
 					{% csrf_token %}
-					<div id="dropzone" class="dropzone"></div>
-
 					<input onclick="dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<div class="upload-widget">
+						<div id="dropzone" class="dropzone"></div>
+						<div class="dropzone-previews" id="dropzone-previews"></div>	
+					</div>
 					<div class="upload-details">
 						<!-- Tags -->
 						<div class="upload-section" id="section-tags" rel="open">
@@ -194,6 +196,7 @@
 		var dropzone = new Dropzone("div#dropzone", { url: '/upload/',
 				enqueueForUpload: true,
 				autoProcessQueue: false,
+				thumbnailWidth: "700",
 				//uploadMultiple: true,
 				parallelUploads: 100,
 				init: function() {
