@@ -252,14 +252,16 @@ var myphotos = [
 
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
-		$(".photo-hover-box").each(function( index, box){
-			$imgheight = $(box).css("height");
-			$imgwidth = $(box).css("width");
-			$(box).sibling(".photo-hover-box").css({
+		$(".a-photo").each(function(index, box){
+			$imgheight = $(box).height();
+			$imgwidth = $(box).width();
+			$imgoffset = Number($imgheight)* -1;
+			$(box).siblings(".photo-hover-box").css({
 				'width': $imgwidth,
 				'height': $imgheight,
-				'margin-bottom': ($imgheight * -1)
+				'margin-bottom': $imgoffset,
 			});
+			$(box).attr("rel",$imgoffset);
 		});
 	}
 
