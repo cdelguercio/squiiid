@@ -214,6 +214,14 @@ def image(request, image_id):
         })
     return render_to_response('image.html', c)
 
+def image_details(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    c = RequestContext(request, {
+            'csrf': get_token(request),
+            'image': image,
+        })
+    return render_to_response('image_details.html', c)
+
 def edit(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     c = RequestContext(request, {
@@ -221,6 +229,14 @@ def edit(request, image_id):
             'image': image,
         })
     return render_to_response('edit.html', c)
+
+def delete(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    c = RequestContext(request, {
+            'csrf': get_token(request),
+            'image': image,
+        })
+    return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
 
 def invite(blog_urlrequest):
     email = request.POST['email']
