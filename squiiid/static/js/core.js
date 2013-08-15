@@ -253,24 +253,13 @@ var myphotos = [
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
 		$(".photo-hover-box").each(function( index, box){
-			$ratio = $(box).attr("rel");
-			$type = $(box).attr("value");
-			// If image is a portrait, multiply width by ratio to get new height
-			if ($type == "Portrait") {
-				$newheight = Math.round(parseInt($(box).css("width"), 10) * Number($ratio));
-				$(box).css({
-					'height': $newheight,
-					'margin-bottom': ($newheight * -1)
-				});
-			}
-			// If image is a landscape, divide width by ratio to get new height
-			else if ($type == "Landscape") {
-				$newheight = Math.round(parseInt($(box).css("width"), 10) / Number($ratio));
-				$(box).css({
-					'height': $newheight,
-					'margin-bottom': ($newheight * -1)
-				});
-			}
+			$imgheight = $(box).css("height");
+			$imgwidth = $(box).css("width");
+			$(box).sibling(".photo-hover-box").css({
+				'width': $imgwidth,
+				'height': $imgheight,
+				'margin-bottom': ($imgheight * -1)
+			});
 		});
 	}
 
