@@ -299,3 +299,7 @@ nav{width:110px;height:110px;position:fixed;top:40px;right:40px;z-index:666}
 .upload-third:nth-child(3n+1){margin-right:0}
 .upload-checkbox{margin-left:8px}
 .upload-button{border:0;border-radius:0;-moz-border-radius:0;-o-border-radius:0;-webkit-border-radius:0;background-color:transparent;font-family:'Courier New',Courier,sans-serif;cursor:pointer;color:#ec5444;font-size:18px;font-weight:400;margin-bottom:20px;text-align:right;float:right}
+.upload-image-edit{width:100%;float:left;margin-bottom:30px}.upload-image-edit img{width:100%;height:auto;float:left;border:0}
+.edit-bottom{width:100%;border-top:1px solid #e6e6e6;padding-top:30px;float:left}
+.edit-delete{border:0;border-radius:0;-moz-border-radius:0;-o-border-radius:0;-webkit-border-radius:0;background-color:transparent;font-family:'Courier New',Courier,sans-serif;float:left;transition:color .5s ease;-moz-transition:color .5s ease;-o-transition:color .5s ease;-webkit-transition:color .5s ease;cursor:pointer}
+.edit-delete:hover{color:#ec5444}
