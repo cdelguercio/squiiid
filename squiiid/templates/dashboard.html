@@ -219,6 +219,21 @@
 					return info;
 				},
 				init: function() {
+					this.on("dragstart", function(event) {
+						alert("dragstart")
+					});
+					this.on("dragenter", function(event) {
+						alert("dragenter")
+					});
+					this.on("dragleave", function(event) {
+						alert("dragleave")
+					});
+					this.on("dragover", function(event) {
+						alert("dragover")
+					});
+					this.on("dragend", function(event) {
+						alert("dragend")
+					});
 					this.on("complete", function(file) {
 						window.location.href = "/upload_complete/"
 					});
