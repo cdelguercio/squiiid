@@ -24,11 +24,11 @@
 		<div class="layer" id="uploader" style="display:block;opacity:1;">
 			
 			<div class="uploader">
-				<form method="POST" enctype="multipart/form-data" action="/upload/">
+				<form method="POST" enctype="multipart/form-data" action="">
 					{% csrf_token %}
-					<input onclick="dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<input type="submit" value="iii'm done" class="upload-button"/>
 					<div class="upload-image-edit">
-						<img src="http://www.interiorclip.com/interior-image/modern-minimalist-home-interior-design-ideas.jpg" border="0"/>
+						<img src="{{MEDIA_URL}}{{image.image}}" border="0"/>
 					</div>
 					<div class="upload-details">
 						<!-- Tags -->
@@ -36,8 +36,8 @@
 							<div class="upload-section-icon" id="upload-tags"></div>
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
-								<input id="title" class="upload-full" name="title" placeholder="Title or brief description..." />
-								<input id="tags" class="upload-full" name="tags" placeholder="separate tags by commas..." />
+								<input id="title" class="upload-full" name="title" placeholder="Title or brief description..." value="{{image.title}}" />
+								<input id="tags" class="upload-full" name="tags" placeholder="separate tags by commas..." value="{{image.tags}}" />
 							</div>
 						</div>
 						<!-- Contributors -->
@@ -45,16 +45,16 @@
 							<div class="upload-section-icon" id="upload-contributors"></div>
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
-								<input id="contributor_type_1" name="contributor_type_1" placeholder="type" class="upload-half" />
-								<input id="contributor_name_1" name="contributor_name_1" placeholder="name" class="upload-half" />
-								<input id="contributor_type_2" name="contributor_type_2" placeholder="type" class="upload-half" />
-								<input id="contributor_name_2" name="contributor_name_2" placeholder="name" class="upload-half" />
-								<input id="contributor_type_3" name="contributor_type_3" placeholder="type" class="upload-half" />
-								<input id="contributor_name_3" name="contributor_name_3" placeholder="name" class="upload-half" />
-								<input id="contributor_type_4" name="contributor_type_4" placeholder="type" class="upload-half" />
-								<input id="contributor_name_4" name="contributor_name_4" placeholder="name" class="upload-half" />
-								<input id="contributor_type_5" name="contributor_type_5" placeholder="type" class="upload-half" />
-								<input id="contributor_name_5" name="contributor_name_5" placeholder="name" class="upload-half" />
+								<input id="contributor_type_1" name="contributor_type_1" placeholder="type" class="upload-half" value="{{image.contributor_type_1}}" />
+								<input id="contributor_name_1" name="contributor_name_1" placeholder="name" class="upload-half" value="{{image.contributor_name_1}}" />
+								<input id="contributor_type_2" name="contributor_type_2" placeholder="type" class="upload-half" value="{{image.contributor_type_2}}" />
+								<input id="contributor_name_2" name="contributor_name_2" placeholder="name" class="upload-half" value="{{image.contributor_name_2}}" />
+								<input id="contributor_type_3" name="contributor_type_3" placeholder="type" class="upload-half" value="{{image.contributor_type_3}}" />
+								<input id="contributor_name_3" name="contributor_name_3" placeholder="name" class="upload-half" value="{{image.contributor_name_3}}" />
+								<input id="contributor_type_4" name="contributor_type_4" placeholder="type" class="upload-half" value="{{image.contributor_type_4}}" />
+								<input id="contributor_name_4" name="contributor_name_4" placeholder="name" class="upload-half" value="{{image.contributor_name_4}}" />
+								<input id="contributor_type_5" name="contributor_type_5" placeholder="type" class="upload-half" value="{{image.contributor_type_5}}" />
+								<input id="contributor_name_5" name="contributor_name_5" placeholder="name" class="upload-half" value="{{image.contributor_name_5}}" />
 							</div>
 						</div>
 						<!-- Geo -->
@@ -62,12 +62,12 @@
 							<div class="upload-section-icon" id="upload-geo"></div>
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
-								<input id="street_address_1" name="street_address_1" placeholder="street_address_1" class="upload-half" />
-								<input id="street_address_2" name="street_address_2" placeholder="street_address_2" class="upload-half" />
-								<input id="city" name="city" placeholder="city" class="upload-half" />
-								<input id="state" name="state" placeholder="state" class="upload-half" />
-								<input id="zip_code" name="zip_code" placeholder="zip_code" class="upload-half" />
-								<input id="place" name="place" placeholder="place (arts district, etc.)" class="upload-half" />
+								<input id="street_address_1" name="street_address_1" placeholder="street_address_1" class="upload-half" value="{{image.street_address_1}}" />
+								<input id="street_address_2" name="street_address_2" placeholder="street_address_2" class="upload-half" value="{{image.street_address_2}}" />
+								<input id="city" name="city" placeholder="city" class="upload-half" value="{{image.city}}" />
+								<input id="state" name="state" placeholder="state" class="upload-half" value="{{image.state}}" />
+								<input id="zip_code" name="zip_code" placeholder="zip_code" class="upload-half" value="{{image.zip_code}}" />
+								<input id="place" name="place" placeholder="place (arts district, etc.)" class="upload-half" value="{{image.place}}" />
 							</div>
 						</div>
 						<!-- Camera -->
@@ -75,12 +75,12 @@
 							<div class="upload-section-icon" id="upload-camera"></div>
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
-								<input id="tool" name="tool" placeholder="tool" class="upload-half" />
-								<input id="iso" name="iso" placeholder="iso" class="upload-half" />
-								<input id="aperture" name="aperture" placeholder="aperture" class="upload-half" />
-								<input id="exposure" name="exposure" placeholder="exposure" class="upload-half" />
-								<input id="focal_length" name="focal_length" placeholder="focal_length" class="upload-half" />
-								<input id="private" name="private" type="checkbox" class="upload-checkbox" /><label>private</label>
+								<input id="tool" name="tool" placeholder="tool" class="upload-half" value="{{image.tool}}" />
+								<input id="iso" name="iso" placeholder="iso" class="upload-half" value="{{image.iso}}" />
+								<input id="aperture" name="aperture" placeholder="aperture" class="upload-half" value="{{image.aperture}}" />
+								<input id="exposure" name="exposure" placeholder="exposure" class="upload-half" value="{{image.exposure}}" />
+								<input id="focal_length" name="focal_length" placeholder="focal_length" class="upload-half" value="{{image.focal_length}}" />
+								<input id="private" name="private" type="checkbox" class="upload-checkbox" {% if image.private %}checked{% endif %} /><label>private</label>
 							</div>
 						</div>
 						<!-- Products -->
@@ -88,96 +88,27 @@
 							<div class="upload-section-icon" id="upload-products"></div>
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
-								<input id="brand_1" class="upload-third" name="brand_1" placeholder="brand" />
-								<input id="product_1" class="upload-third" name="product_1" placeholder="product" />
-								<input id="product_url_1" class="upload-third" name="product_url_1" placeholder="url" title="Please reference URL where product can be purchased" />
-								<input id="brand_2" class="upload-third" name="brand_2" placeholder="brand" />
-								<input id="product_2" class="upload-third" name="product_2" placeholder="product" />
-								<input id="product_url_2" class="upload-third" name="product_url_2" placeholder="url" title="Please reference URL where product can be purchased" />
-								<input id="brand_3" class="upload-third" name="brand_3" placeholder="brand" />
-								<input id="product_3" class="upload-third" name="product_3" placeholder="product" />
-								<input id="product_url_3" class="upload-third" name="product_url_3" placeholder="url" title="Please reference URL where product can be purchased" />
+								<input id="brand_1" class="upload-third" name="brand_1" placeholder="brand" value="{{image.brand_1}}" />
+								<input id="product_1" class="upload-third" name="product_1" placeholder="product" value="{{image.product_1}}" />
+								<input id="product_url_1" class="upload-third" name="product_url_1" placeholder="url" title="Please reference URL where product can be purchased" value="{{image.product_url_1}}" />
+								<input id="brand_2" class="upload-third" name="brand_2" placeholder="brand" value="{{image.brand_2}}" />
+								<input id="product_2" class="upload-third" name="product_2" placeholder="product" value="{{image.product_2}}" />
+								<input id="product_url_2" class="upload-third" name="product_url_2" placeholder="url" title="Please reference URL where product can be purchased" value="{{image.product_url_2}}" />
+								<input id="brand_3" class="upload-third" name="brand_3" placeholder="brand" value="{{image.brand_3}}" />
+								<input id="product_3" class="upload-third" name="product_3" placeholder="product" value="{{image.product_3}}" />
+								<input id="product_url_3" class="upload-third" name="product_url_3" placeholder="url" title="Please reference URL where product can be purchased" value="{{image.product_url_3}}" />
 							</div>
 						</div>
 					</div>
 				</form>
 				<div class="edit-bottom">
-					<button class="edit-delete">Delete Photo?</button>
+					<button onclick="location.href='/delete/{{image.id}}/'" class="edit-delete">Delete Photo?</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-	<script src="/static/js/dropzone.js"></script>
-	<script type="text/javascript">
-		Dropzone.autoDiscover = false;
-		var dropzone = new Dropzone("div#dropzone", { url: '/upload/',
-				enqueueForUpload: true,
-				autoProcessQueue: false,
-				//uploadMultiple: true,
-				parallelUploads: 100,
-				resize: function(file) {
-					var info;
-
-					// drawImage(image, srcX, srcY, srcWidth, srcHeight, trgX, trgY, trgWidth, trgHeight) takes an image, clips it to
-					// the rectangle (srcX, srcY, srcWidth, srcHeight), scales it to dimensions (trgWidth, trgHeight), and draws it
-					// on the canvas at coordinates (trgX, trgY).
-					info = {
-						srcX:0,
-						srcY:0,
-						srcWidth: file.width,
-						srcHeight: file.height,
-						trgX:0,
-						trgY:0,
-						trgWidth: this.options.thumbnailWidth,
-						trgHeight: parseInt(this.options.thumbnailWidth * file.height / file.width)
-					}
-
-					return info;
-				},
-				init: function() {
-					this.on("complete", function(file) {
-						window.location.href = "/upload_complete/"
-					});
-					this.on("sending", function(file, xhr, formData) {
-						formData.append("title", document.getElementById("title").value);
-						formData.append("tags", document.getElementById("tags").value);
-						formData.append("contributor_type_1", document.getElementById("contributor_type_1").value);
-						formData.append("contributor_name_1", document.getElementById("contributor_name_1").value);
-						formData.append("contributor_type_2", document.getElementById("contributor_type_2").value);
-						formData.append("contributor_name_2", document.getElementById("contributor_name_2").value);
-						formData.append("contributor_type_3", document.getElementById("contributor_type_3").value);
-						formData.append("contributor_name_3", document.getElementById("contributor_name_3").value);
-						formData.append("contributor_type_4", document.getElementById("contributor_type_4").value);
-						formData.append("contributor_name_4", document.getElementById("contributor_name_4").value);
-						formData.append("contributor_type_5", document.getElementById("contributor_type_5").value);
-						formData.append("contributor_name_5", document.getElementById("contributor_name_5").value);
-						formData.append("street_address_1", document.getElementById("street_address_1").value);
-						formData.append("street_address_2", document.getElementById("street_address_2").value);
-						formData.append("city", document.getElementById("city").value);
-						formData.append("state", document.getElementById("state").value);
-						formData.append("zip_code", document.getElementById("zip_code").value);
-						formData.append("place", document.getElementById("place").value);
-						formData.append("tool", document.getElementById("tool").value);
-						formData.append("iso", document.getElementById("iso").value);
-						formData.append("aperture", document.getElementById("aperture").value);
-						formData.append("exposure", document.getElementById("exposure").value);
-						formData.append("focal_length", document.getElementById("focal_length").value);
-						formData.append("private", document.getElementById("private").value);
-						formData.append("brand_1", document.getElementById("brand_1").value);
-						formData.append("product_1", document.getElementById("product_1").value);
-						formData.append("product_url_1", document.getElementById("product_url_1").value);
-						formData.append("brand_2", document.getElementById("brand_2").value);
-						formData.append("product_2", document.getElementById("product_2").value);
-						formData.append("product_url_2", document.getElementById("product_url_2").value);
-						formData.append("brand_3", document.getElementById("brand_3").value);
-						formData.append("product_3", document.getElementById("product_3").value);
-						formData.append("product_url_3", document.getElementById("product_url_3").value);
-					});
-				}
-			});
-	</script>
 	<script src="/static/js/core.js"></script>
 </body>
 </html>

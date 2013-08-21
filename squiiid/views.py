@@ -223,19 +223,69 @@ def image_details(request, image_id):
     return render_to_response('image_details.html', c)
 
 def edit(request, image_id):
-    image = SquiiidImage.objects.get(pk=image_id)
-    c = RequestContext(request, {
-            'csrf': get_token(request),
-            'image': image,
-        })
-    return render_to_response('edit.html', c)
+    if request.user.is_authenticated():
+        image = SquiiidImage.objects.get(pk=image_id)
+        if request.user.get_profile() == image.profile:
+            if request.method == 'POST':
+                image.title = request.POST.get('title', 'Title')
+                image.tags = request.POST.get('tags', '')
+                image.contributor_type_1 = request.POST.get('contributor_type_1', '')
+                image.contributor_type_2 = request.POST.get('contributor_type_2', '')
+                image.contributor_type_3 = request.POST.get('contributor_type_3', '')
+                image.contributor_type_4 = request.POST.get('contributor_type_4', '')
+                image.contributor_type_5 = request.POST.get('contributor_type_5', '')
+                image.contributor_name_1 = request.POST.get('contributor_name_1', '')
+                image.contributor_name_2 = request.POST.get('contributor_name_2', '')
+                image.contributor_name_3 = request.POST.get('contributor_name_3', '')
+                image.contributor_name_4 = request.POST.get('contributor_name_4', '')
+                image.contributor_name_5 = request.POST.get('contributor_name_5', '')
+                image.street_address_1 = request.POST.get('street_address_1', '')
+                image.street_address_2 = request.POST.get('street_address_2', '')
+                image.city = request.POST.get('city', '')
+                image.state = request.POST.get('state', '')
+                image.zip_code = request.POST.get('zip_code', '')
+                image.place = request.POST.get('place', '')
+                image.tool = request.POST.get('tool', '')
+                image.iso = request.POST.get('iso', '')
+                image.aperture = request.POST.get('aperture', '')
+                image.exposure = request.POST.get('exposure', '')
+                image.focal_length = request.POST.get('focal_length', '')
+                image.private = request.POST.get('private', '')
+                image.brand_1 = request.POST.get('brand_1', '')
+                image.brand_2 = request.POST.get('brand_2', '')
+                image.brand_3 = request.POST.get('brand_3', '')
+                image.brand_4 = request.POST.get('brand_4', '')
+                image.brand_5 = request.POST.get('brand_5', '')
+                image.product_1 = request.POST.get('product_1', '')
+                image.product_2 = request.POST.get('product_2', '')
+                image.product_3 = request.POST.get('product_3', '')
+                image.product_4 = request.POST.get('product_4', '')
+                image.product_5 = request.POST.get('product_5', '')
+                image.product_url_1 = request.POST.get('product_url_1', '')
+                image.product_url_2 = request.POST.get('product_url_2', '')
+                image.product_url_3 = request.POST.get('product_url_3', '')
+                image.product_url_4 = request.POST.get('product_url_4', '')
+                image.product_url_5 = request.POST.get('product_url_5', '')
+                image.save()
+                
+                c = RequestContext(request, {
+                    'csrf': get_token(request),
+                    'image': image,
+                })
+                return render_to_response('edit_complete.html', c)
+            c = RequestContext(request, {
+                    'csrf': get_token(request),
+                    'image': image,
+                })
+            return render_to_response('edit.html', c)
+        return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
+    return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
 
 def delete(request, image_id):
-    image = SquiiidImage.objects.get(pk=image_id)
-    c = RequestContext(request, {
-            'csrf': get_token(request),
-            'image': image,
-        })
+    if request.user.is_authenticated():
+        image = SquiiidImage.objects.get(pk=image_id)
+        if request.user.get_profile() == image.profile:
+            image.delete()
     return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
 
 def invite(blog_urlrequest):
