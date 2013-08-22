@@ -5,7 +5,7 @@
 			-o-box-sizing:border-box;
 			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
-			max-width:600px;
+			width:100%;
 			float:left;
 			height:auto;
 			padding:0px;
@@ -18,24 +18,47 @@
 			border:0px;
 		}
 		.squiiid-ink {
-			width:100%;
-			height:100%;
-			background-color: rgba(255,255,255,0.8);
+			width:0px;
+			height:0px;
+			background-color: rgba(0,0,0,0.8);
 			float:left;
 			color:#FFF;
 			position: relative;
+			opacity:0;
+			transition:opacity 0.25s ease;
+			-o-transition:opacity 0.25s ease;
+			-webkit-transition:opacity 0.25s ease;
+			-moz-transition:opacity 0.25s ease;
+			text-align: center;
+			box-sizing:border-box;
+			-o-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			padding-top:27%;
 		}
+		.squiiid-ink p {
+			font-family: 'Courier New', Courier, sans-serif;
+			font-weight:800;
+			cursor: pointer;
+			font-size:12px;
+			margin:0px 0px 10px 0px;
+		}
+		.squiiid-ink p:hover {text-decoration: underline;}
+		.squiiid-object:hover .squiiid-ink {opacity: 1;}
 	</style>
-	<div class="squiiid-ink">
+	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}">
 		<p>liiike</p>
 		<p>reblog</p>
 	</div>
-	<img src="/media/{{image.image}}" class="squiiid-img" onload="getinky(this)"/>
+	<img src="/media/{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
 	<script>
-	function getinky(whichink) {
-		boosh = whichink.height;
-		console.log(boosh);
+	function getinky() {
+		document.getElementById("squiiid-ink-{{image.id}}").style.height = document.getElementById("squiiid-img-{{image.id}}").height;
+		document.getElementById("squiiid-ink-{{image.id}}").style.width = document.getElementById("squiiid-img-{{image.id}}").width;
+		document.getElementById("squiiid-ink-{{image.id}}").style.marginBottom = Number(document.getElementById("squiiid-img-{{image.id}}").width)*(-1);
 	}
+
+	window.onresize = getinky;
 		// $(document).ready(function(){
 		// 	imgheight = $(".squiiid-img").height();
 		// 	imgwidth = $(".squiiid-img").width();
