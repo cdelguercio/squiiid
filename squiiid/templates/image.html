@@ -1,11 +1,17 @@
 <div class="squiiid-object">
 	<style>
-		.squiiid-object {
+		.squiiid-object,
+		.squiiid-ink,
+		.squiiid-links,
+		.squiiid-reblog {
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
-			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+		}
+		.squiiid-object {
 			width:100%;
+			height:auto;
 			float:left;
 			height:auto;
 			padding:0px;
@@ -30,11 +36,7 @@
 			-webkit-transition:opacity 0.25s ease;
 			-moz-transition:opacity 0.25s ease;
 			text-align: center;
-			box-sizing:border-box;
-			-o-box-sizing:border-box;
-			-webkit-box-sizing:border-box;
-			-moz-box-sizing:border-box;
-			padding-top:27%;
+			overflow: hidden;
 		}
 		.squiiid-ink p {
 			font-family: 'Courier New', Courier, sans-serif;
@@ -45,10 +47,61 @@
 		}
 		.squiiid-ink p:hover {text-decoration: underline;}
 		.squiiid-object:hover .squiiid-ink {opacity: 1;}
+		.squiiid-links {
+			width:100%;
+			height:100%;
+			z-index:8;
+			padding-top:28%;
+			position: relative;
+		}
+		.squiiid-reblog {
+			position: relative;
+			top:-100%;
+			width:100%;
+			height:100%;
+			z-index:7;
+			opacity:0;
+			transition:opacity 0.25s ease;
+			-o-transition:opacity 0.25s ease;
+			-webkit-transition:opacity 0.25s ease;
+			-moz-transition:opacity 0.25s ease;
+		}
+		.squiiid-reblog label,
+		.squiiid-reblog textarea {
+			width:50%;
+			max-width:50%;
+			margin-left:25%;
+			margin-right:25%;
+			float:left;
+			display: block;
+		}
+		.squiiid-reblog label {
+			height:5%;
+			margin-top:10%;
+			margin-bottom:10%;
+			text-align: center;
+			font-family: 'Courier New', Courier, sans-serif;
+			color:#ec5444;
+			font-size:12px;
+			font-weight:300;
+		}
+		.squiiid-reblog textarea {
+			height:50%;
+			border:0px;
+			background-color: #000;
+			color:#FFF;
+			z-index:inherit;
+		}
 	</style>
 	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}">
-		<p>liiike</p>
-		<p>reblog</p>
+		<div class="squiiid-links" id="squiiid-links-{{image.id}}">
+			<p>liiike</p>
+			<p onclick="reblog()">reblog</p>
+		</div>
+		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
+			<label>Embed this code on your website or blog</label>
+			<textarea><object src="http://squiiid.com/image/69/" width="69" height="69" /></textarea>
+		</div>
 	</div>
 	<img src="/media/{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
 	<script>
@@ -59,15 +112,13 @@
 	}
 
 	window.onresize = getinky;
-		// $(document).ready(function(){
-		// 	imgheight = $(".squiiid-img").height();
-		// 	imgwidth = $(".squiiid-img").width();
-		// 	imgoffset = Number($imgheight)* -1;
-		// 	$(".squiiid-img").siblings(".squiiid-ink").css({
-		// 		'width': imgwidth,
-		// 		'height': imgheight,
-		// 		'margin-bottom': imgoffset,
-		// 	});
-		// });
+	function reblog() {
+		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:10;");
+		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '1';
+	}
+	function closereblog(){
+		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '0';
+		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:7;");
+	}
 	</script>
 </div>
