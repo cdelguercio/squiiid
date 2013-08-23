@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<meta name="description" content="Dashboard">
+<meta name="keywords" content="">
+<meta name="author" content="Squiiid">
+<head>
+	<title>Dashboard | Squiiid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="icon" href="/static/assets/images/favicon.ico" />
+	<!-- CSS -->
+	<style>
+		.squiiid-details {
+			width:100%;
+			height:100%;
+			position: fixed;
+			top:0px;
+			left:0px;
+			z-index:9999;
+			background-color: rgba(255,255,255,0.92);
+		}
+		.image,
+		.details {
+			width:50%;
+			height:66%;
+			float:left;
+			margin-top:17%;
+			text-align: center;
+		}
+		.portrait {
+			width:auto;
+			height:100%;
+			margin:0px auto 0px auto;
+		}
+		.landscape {
+			width:100%;
+			height:auto;
+			margin:auto 0px auto 0px;
+		}
+		.square {
+			width:80%;
+			height:auto;
+			margin:auto 10% auto 10%;
+		}
+	</style>
+</head>
+<body>
+	<div class="squiiid-details">
+		<div class="image">
+			<img src="/media/{{image.image}}" onready="sizemeupfool()" alt="{{image.title}} by {{image.author}}" border="0" id="squiiid-image-{{image.id}}"/>
+		</div>
+		<div class="details">
+			<div class="arrow-l" id="prev"></div>
+			<div class="arrow-r" id="next"></div>
+			<div class="carousel">
+				<div class="slide">Products</div>
+				<div class="slide">Contributors</div>
+				<div class="slide">Location / Title</div>
+				<div class="slide">EXIF</div>
+				<div class="slide">Ink by Squiiid</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function sizemeupfool() {
+			imgheight = document.getElementById("squiiid-image-{{image.id}}").naturalHeight;
+			imgwidth = document.getElementById("squiiid-image-{{image.id}}").naturalWidth;
+			if (imgheight > imgwidth) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-portrait");
+			}
+			else if (imgwidth > imgheight) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-landscape");
+			}
+			else if (imgwidth == imgheight) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-square");
+			}
+		}
+	</script>
+</body>
+</html>
