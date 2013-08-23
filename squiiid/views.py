@@ -93,6 +93,8 @@ def settings(request):
     
     request.user.save()
     request.user.get_profile().save()
+    
+    return HttpResponse('')
 
 def get_exif(request):
     pass
@@ -292,21 +294,29 @@ def like(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.likes = image.likes + 1
     image.save()
+    
+    return HttpResponse('')
 
 def click(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.clicks = image.clicks + 1
     image.save()
+    
+    return HttpResponse('')
 
 def hover(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.hovers = image.hovers + 1
     image.save()
+    
+    return HttpResponse('')
 
 def reblog(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.reblogs = image.reblogs + 1
     image.save()
+    
+    return HttpResponse('')
 
 def invite(blog_urlrequest):
     email = request.POST['email']
@@ -314,4 +324,5 @@ def invite(blog_urlrequest):
     
     invite = Invite(email=email,blog_url=blog_url)
     invite.save()
-    return ''
+
+    return HttpResponse('')
