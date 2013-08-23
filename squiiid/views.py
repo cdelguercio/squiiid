@@ -288,6 +288,30 @@ def delete(request, image_id):
             image.delete()
     return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
 
+def like(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    image.likes = image.likes + 1
+
+    return None
+
+def click(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    image.clicks = image.clicks + 1
+
+    return None
+
+def hover(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    image.hovers = image.hovers + 1
+
+    return None
+
+def reblog(request, image_id):
+    image = SquiiidImage.objects.get(pk=image_id)
+    image.reblogs = image.reblogs + 1
+
+    return None
+
 def invite(blog_urlrequest):
     email = request.POST['email']
     blog_url = request.POST['blog_url']
