@@ -291,18 +291,22 @@ def delete(request, image_id):
 def like(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.likes = image.likes + 1
+    image.save()
 
 def click(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.clicks = image.clicks + 1
+    image.save()
 
 def hover(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.hovers = image.hovers + 1
+    image.save()
 
 def reblog(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
     image.reblogs = image.reblogs + 1
+    image.save()
 
 def invite(blog_urlrequest):
     email = request.POST['email']
