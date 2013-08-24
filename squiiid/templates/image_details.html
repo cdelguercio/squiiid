@@ -20,6 +20,11 @@
 			left:0px;
 			z-index:9999;
 			background-color: rgba(255,255,255,0.92);
+			box-sizing:border-box;
+			-o-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			padding:50px;
 		}
 		.image,
 		.details {
@@ -29,17 +34,20 @@
 			margin-top:17%;
 			text-align: center;
 		}
-		.portrait {
+		.image img {
+			float:left;
+		}
+		.squiiid-portrait {
 			width:auto;
 			height:100%;
 			margin:0px auto 0px auto;
 		}
-		.landscape {
+		.squiiid-landscape {
 			width:100%;
 			height:auto;
 			margin:auto 0px auto 0px;
 		}
-		.square {
+		.squiiid-square {
 			width:80%;
 			height:auto;
 			margin:auto 10% auto 10%;
@@ -49,7 +57,7 @@
 <body>
 	<div class="squiiid-details">
 		<div class="image">
-			<img src="/media/{{image.image}}" onready="sizemeupfool()" alt="{{image.title}} by {{image.author}}" border="0" id="squiiid-image-{{image.id}}"/>
+			<img src="/media/{{image.image}}" onload="sizemeupfool()" alt="{{image.title}} by {{image.author}}" border="0" id="squiiid-image-{{image.id}}"/>
 		</div>
 		<div class="details">
 			<div class="arrow-l" id="prev"></div>

@@ -329,6 +329,14 @@ var myphotos = [
 			$("settings-checkbox-hidden").attr("value","0");
 		}
 	});
+// Copy to clipboard
+	function dontcopythatfloppy(imageid) {
+	    if (window.clipboardData && clipboardData.setData) {
+	    	clipcontent = "<object src='http://squiiid.com/image/"+imageid+"/' width='69' height='69' />"
+	        clipboardData.setData('text', "<object src='http://squiiid.com/image/"+imageid+"/' width='69' height='69' />");
+	        alert("success");
+	    }
+	}
 // Fade out handlers
 	// The X button on the photo-sharing menu
 	$("body").delegate("#photo-share-x", "click", function(){
