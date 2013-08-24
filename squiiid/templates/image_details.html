@@ -4,7 +4,7 @@
 <meta name="keywords" content="">
 <meta name="author" content="Squiiid">
 <head>
-	<title>Dashboard | Squiiid</title>
+	<title>{{image.title}} | Squiiid</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -63,10 +63,32 @@
 			<div class="arrow-l" id="prev"></div>
 			<div class="arrow-r" id="next"></div>
 			<div class="carousel">
-				<div class="slide">Products</div>
-				<div class="slide">Contributors</div>
-				<div class="slide">Location / Title</div>
-				<div class="slide">EXIF</div>
+				<!-- Slide for Contributors, if blank do not show -->
+				<div class="slide">
+					<!-- Make one of these for each entry -->
+					<p><b>Contributor Title</b><i>Contributor Name</i></p>
+				</div>
+				<!-- Slide for Products, if blank do not show -->
+				<div class="slide">
+					<!-- Make one of these for each entry -->
+					<p><a href="URL" target="_blank"><b>Brand Name</b><i>Product Name</i></a></p>
+				</div>
+				<!-- Slide for Title + Location, if blank do not show -->
+				<div class="slide">
+					<!-- Only show if has a title-->
+					<p>TITLE</p>
+					<!-- Only show each variable if it is not blank -->
+					<p>{{Address1}} {{Address2}} | {{City}} {{State}}, {{ZIP}}. {{Place}}</p>
+				</div>
+				<!-- Slide for EXIF, if blank do not show -->
+				<div class="slide">
+					<!-- make one of these for each set of exif data -->
+					<p><b>Camera:</b><i>{{Cameraname}}</i></p>
+					<p><b>ISO:</b><i>{{ISO}}</i></p>
+					<p><b>Aperture:</b><i>{{aperture}}</i></p>
+					<p><b>Shutter:</b><i>{{exposure}}</i></p>
+					<p><b>Focal Length:</b><i>{{FocalLength}}</i></p>
+				</div>
 				<div class="slide">Ink by Squiiid</div>
 			</div>
 		</div>
