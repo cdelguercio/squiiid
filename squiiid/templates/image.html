@@ -50,7 +50,7 @@
 		<p>liiike</p>
 		<p>reblog</p>
 	</div>
-	<img src="/media/{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
+	<img src="{{MEDIA_URL}}{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
 	<script>
 	function getinky() {
 		document.getElementById("squiiid-ink-{{image.id}}").style.height = document.getElementById("squiiid-img-{{image.id}}").height;
