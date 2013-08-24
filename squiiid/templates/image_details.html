@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta name="description" content="Dashboard">
+<meta name="keywords" content="">
+<meta name="author" content="Squiiid">
+<head>
+	<title>{{image.title}} | Squiiid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="icon" href="/static/assets/images/favicon.ico" />
+	<!-- CSS -->
+	<style>
+		.squiiid-details {
+			width:100%;
+			height:100%;
+			position: fixed;
+			top:0px;
+			left:0px;
+			z-index:9999;
+			background-color: rgba(255,255,255,0.92);
+			box-sizing:border-box;
+			-o-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			padding:50px;
+		}
+		.image,
+		.details {
+			width:50%;
+			height:66%;
+			float:left;
+			margin-top:17%;
+			text-align: center;
+		}
+		.image img {
+			float:left;
+		}
+		.squiiid-portrait {
+			width:auto;
+			height:100%;
+			margin:0px auto 0px auto;
+		}
+		.squiiid-landscape {
+			width:100%;
+			height:auto;
+			margin:auto 0px auto 0px;
+		}
+		.squiiid-square {
+			width:80%;
+			height:auto;
+			margin:auto 10% auto 10%;
+		}
+	</style>
+</head>
+<body>
+	<div class="squiiid-details">
+		<div class="image">
+			<img src="/media/{{image.image}}" onload="sizemeupfool()" alt="{{image.title}} by {{image.author}}" border="0" id="squiiid-image-{{image.id}}"/>
+		</div>
+		<div class="details">
+			<div class="arrow-l" id="prev"></div>
+			<div class="arrow-r" id="next"></div>
+			<div class="carousel">
+				<!-- Slide for Contributors, if blank do not show -->
+				<div class="slide">
+					<!-- Make one of these for each entry -->
+					<p><b>Contributor Title</b><i>Contributor Name</i></p>
+				</div>
+				<!-- Slide for Products, if blank do not show -->
+				<div class="slide">
+					<!-- Make one of these for each entry -->
+					<p><a href="URL" target="_blank"><b>Brand Name</b><i>Product Name</i></a></p>
+				</div>
+				<!-- Slide for Title + Location, if blank do not show -->
+				<div class="slide">
+					<!-- Only show if has a title-->
+					<p>TITLE</p>
+					<!-- Only show each variable if it is not blank -->
+					<p>{{Address1}} {{Address2}} | {{City}} {{State}}, {{ZIP}}. {{Place}}</p>
+				</div>
+				<!-- Slide for EXIF, if blank do not show -->
+				<div class="slide">
+					<!-- make one of these for each set of exif data -->
+					<p><b>Camera:</b><i>{{Cameraname}}</i></p>
+					<p><b>ISO:</b><i>{{ISO}}</i></p>
+					<p><b>Aperture:</b><i>{{aperture}}</i></p>
+					<p><b>Shutter:</b><i>{{exposure}}</i></p>
+					<p><b>Focal Length:</b><i>{{FocalLength}}</i></p>
+				</div>
+				<div class="slide">Ink by Squiiid</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function sizemeupfool() {
+			imgheight = document.getElementById("squiiid-image-{{image.id}}").naturalHeight;
+			imgwidth = document.getElementById("squiiid-image-{{image.id}}").naturalWidth;
+			if (imgheight > imgwidth) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-portrait");
+			}
+			else if (imgwidth > imgheight) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-landscape");
+			}
+			else if (imgwidth == imgheight) {
+				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-square");
+			}
+		}
+	</script>
+</body>
+</html>

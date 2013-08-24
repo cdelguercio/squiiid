@@ -1,11 +1,18 @@
 <div class="squiiid-object">
 	<style>
-		.squiiid-object {
+		.squiiid-object,
+		.squiiid-ink,
+		.squiiid-links,
+		.squiiid-reblog,
+		.squiiid-reblog textarea {
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
-			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+		}
+		.squiiid-object {
 			width:100%;
+			height:auto;
 			float:left;
 			height:auto;
 			padding:0px;
@@ -29,26 +36,98 @@
 			-o-transition:opacity 0.25s ease;
 			-webkit-transition:opacity 0.25s ease;
 			-moz-transition:opacity 0.25s ease;
-			text-align: center;
-			box-sizing:border-box;
-			-o-box-sizing:border-box;
-			-webkit-box-sizing:border-box;
-			-moz-box-sizing:border-box;
-			padding-top:27%;
+			overflow: hidden;
 		}
-		.squiiid-ink p {
+		.squiiid-object:hover .squiiid-ink {opacity: 1;}
+		.liiike-no {color:#fff;}
+		.liiike-yes {color:#ec5444;}
+		.liiike-no,
+		.liiike-yes {
+			transition:color 0.25s ease;
+			-o-transition:color 0.25s ease;
+			-webkit-transition:color 0.25s ease;
+			-moz-transition:color 0.25s ease;
+		}
+		.squiiid-links {
+			width:100%;
+			height:100%;
+			z-index:8;
+			padding-top:23%;
+			position: relative;
+		}
+		.squiiid-links p {
+			width:100px;
+			height:auto;
+			float:left;
+			text-align: center;
 			font-family: 'Courier New', Courier, sans-serif;
 			font-weight:800;
 			cursor: pointer;
 			font-size:12px;
-			margin:0px 0px 10px 0px;
+			position: relative;
+			left:50%;
+			margin:0px 0px 20px -50px;
+			clear:both;
 		}
-		.squiiid-ink p:hover {text-decoration: underline;}
-		.squiiid-object:hover .squiiid-ink {opacity: 1;}
+		.squiiid-links p:hover {text-decoration: underline;}
+		.squiiid-links p a:link,
+		.squiiid-links p a:active,
+		.squiiid-links p a:visited {text-decoration: none;}
+		.squiiid-links p a:link,
+		.squiiid-links p a:active,
+		.squiiid-links p a:visited,
+		.squiiid-links p a:hover {color:#FFF;}
+		.squiiid-reblog {
+			position: relative;
+			top:-100%;
+			width:100%;
+			height:100%;
+			z-index:7;
+			opacity:0;
+			transition:opacity 0.25s ease;
+			-o-transition:opacity 0.25s ease;
+			-webkit-transition:opacity 0.25s ease;
+			-moz-transition:opacity 0.25s ease;
+		}
+		.squiiid-reblog label,
+		.squiiid-reblog textarea {
+			width:50%;
+			max-width:50%;
+			margin-left:25%;
+			margin-right:25%;
+			float:left;
+			display: block;
+		}
+		.squiiid-reblog label {
+			height:5%;
+			margin-top:7%;
+			margin-bottom:10%;
+			text-align: center;
+			font-family: 'Courier New', Courier, sans-serif;
+			color:#ec5444;
+			font-size:12px;
+			font-weight:300;
+		}
+		.squiiid-reblog textarea {
+			height:36%;
+			max-height:36%;
+			border:0px;
+			background-color: #000;
+			color:#FFF;
+			z-index:inherit;
+			padding:15px;
+		}
 	</style>
 	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}">
-		<p>liiike</p>
-		<p>reblog</p>
+		<div class="squiiid-links" id="squiiid-links-{{image.id}}">
+			<p onclick="liiike()" class="liiike-no" id="squiiid-liiike-{{image.id}}">liiike</p>
+			<p onclick="reblog()">reblog</p>
+			<p><a href="http://squiiid.com/image/{{image.id}}/" target="_blank">image details</a></p>
+		</div>
+		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
+			<label>Embed this code on your website or blog</label>
+			<textarea onmouseover="javascript:this.focus();this.select();"><object src="http://squiiid.com/image/69/" width="69" height="69" /></textarea>
+		</div>
 	</div>
 	<img src="{{MEDIA_URL}}{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
 	<script>
@@ -59,15 +138,24 @@
 	}
 
 	window.onresize = getinky;
-		// $(document).ready(function(){
-		// 	imgheight = $(".squiiid-img").height();
-		// 	imgwidth = $(".squiiid-img").width();
-		// 	imgoffset = Number($imgheight)* -1;
-		// 	$(".squiiid-img").siblings(".squiiid-ink").css({
-		// 		'width': imgwidth,
-		// 		'height': imgheight,
-		// 		'margin-bottom': imgoffset,
-		// 	});
-		// });
+	function reblog() {
+		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:10;");
+		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '1';
+	}
+	function closereblog(){
+		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '0';
+		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:7;");
+	}
+	function liiike() {
+		liiikestate = document.getElementById("squiiid-liiike-{{image.id}}").getAttribute("class");
+		if (liiikestate == "liiike-no") {
+			document.getElementById("squiiid-liiike-{{image.id}}").innerHTML = "i liiike this";
+			document.getElementById("squiiid-liiike-{{image.id}}").setAttribute("class","liiike-yes");
+		}
+		else {
+			document.getElementById("squiiid-liiike-{{image.id}}").innerHTML = "liiike";
+			document.getElementById("squiiid-liiike-{{image.id}}").setAttribute("class","liiike-no");
+		}
+	}
 	</script>
 </div>
