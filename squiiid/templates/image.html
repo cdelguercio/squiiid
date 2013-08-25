@@ -126,7 +126,7 @@
 		</div>
 		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
 			<label>Embed this code on your website or blog</label>
-			<textarea onmouseover="javascript:this.focus();this.select();"><object src="http://squiiid.com/image/69/" width="69" height="69" /></textarea>
+			<textarea onmouseover="javascript:this.focus();this.select();"><object src="http://squiiid.com/image/{{image.id}}/" width="69" height="69" /></textarea>
 		</div>
 	</div>
 	<img src="{{MEDIA_URL}}{{image.image}}" id="squiiid-img-{{image.id}}" class="squiiid-img" onload="getinky()"/>
