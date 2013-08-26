@@ -118,11 +118,11 @@
 			padding:15px;
 		}
 	</style>
-	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}">
+	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}" onhover="hover_ajax();">
 		<div class="squiiid-links" id="squiiid-links-{{image.id}}">
 			<p onclick="liiike()" class="liiike-no" id="squiiid-liiike-{{image.id}}">liiike</p>
 			<p onclick="reblog()">reblog</p>
-			<p><a href="http://squiiid.com/image/{{image.id}}/" target="_blank">image details</a></p>
+			<p><a href="#" target="_blank" onclick="click_ajax();return false;">image details</a></p>
 		</div>
 		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
 			<label>Embed this code on your website or blog</label>
@@ -141,6 +141,7 @@
 	function reblog() {
 		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:10;");
 		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '1';
+		reblog_ajax();
 	}
 	function closereblog(){
 		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '0';
@@ -151,11 +152,128 @@
 		if (liiikestate == "liiike-no") {
 			document.getElementById("squiiid-liiike-{{image.id}}").innerHTML = "i liiike this";
 			document.getElementById("squiiid-liiike-{{image.id}}").setAttribute("class","liiike-yes");
+			liiike_ajax();
 		}
 		else {
 			document.getElementById("squiiid-liiike-{{image.id}}").innerHTML = "liiike";
 			document.getElementById("squiiid-liiike-{{image.id}}").setAttribute("class","liiike-no");
 		}
+	}
+	function liiike_ajax() {
+		var http;
+	
+		if( window.XMLHttpRequest )
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			http = new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			http = new ActiveXObject( 'Microsoft.XMLHTTP' );
+		}
+	
+		var url = '//squiiid.com/like/{{image.id}}/';
+		var params = '';
+		http.open( 'POST', url, true );
+
+		//Send the proper header information along with the request
+		http.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+
+		http.onreadystatechange = function()
+		{
+			if( http.readyState == 4 && http.status == 200 )
+			{
+				//confirm sent
+			}
+		}
+
+		http.send( params );
+	}
+	function click_ajax() {
+		var http;
+	
+		if( window.XMLHttpRequest )
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			http = new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			http = new ActiveXObject( 'Microsoft.XMLHTTP' );
+		}
+	
+		var url = '//squiiid.com/click/{{image.id}}/';
+		var params = '';
+		http.open( 'POST', url, true );
+
+		//Send the proper header information along with the request
+		http.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+
+		http.onreadystatechange = function()
+		{
+			if( http.readyState == 4 && http.status == 200 )
+			{
+				location.href='//squiiid.com/image/details/{{image.id}}/';
+			}
+		}
+
+		http.send( params );
+	}
+	function hover_ajax() {
+		var http;
+	
+		if( window.XMLHttpRequest )
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			http = new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			http = new ActiveXObject( 'Microsoft.XMLHTTP' );
+		}
+	
+		var url = '//squiiid.com/hover/{{image.id}}/';
+		var params = '';
+		http.open( 'POST', url, true );
+
+		//Send the proper header information along with the request
+		http.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+
+		http.onreadystatechange = function()
+		{
+			if( http.readyState == 4 && http.status == 200 )
+			{
+				//confirm sent
+			}
+		}
+
+		http.send( params );
+	}
+	function reblog_ajax() {
+		var http;
+	
+		if( window.XMLHttpRequest )
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			http = new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			http = new ActiveXObject( 'Microsoft.XMLHTTP' );
+		}
+	
+		var url = '//squiiid.com/reblog/{{image.id}}/';
+		var params = '';
+		http.open( 'POST', url, true );
+
+		//Send the proper header information along with the request
+		http.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+
+		http.onreadystatechange = function()
+		{
+			if( http.readyState == 4 && http.status == 200 )
+			{
+				//confirm sent
+			}
+		}
+
+		http.send( params );
 	}
 	</script>
 </div>

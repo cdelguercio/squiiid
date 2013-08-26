@@ -16,6 +16,7 @@
 
 var layerlogin = false;
 var layerinvite = false;
+var image_id = 0;
 
 function loginShow() {
 	// Fade out INVITE slide whether open or not
@@ -351,9 +352,10 @@ var myphotos = [
 	});
 // Fade in handlers
 	// 1. Photo Sharing
-	$("body").delegate(".photo-share-link", "click", function(){
+	//did onclick instead
+	/*$("body").delegate(".photo-share-link", "click", function(){
 		opensesame('sharing');
-	});
+	});*/
 	// 2. Settings
 	$("body").delegate("#nav-settings", "click", function(){
 		opensesame('settings');
