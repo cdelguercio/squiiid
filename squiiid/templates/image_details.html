@@ -13,59 +13,115 @@
 	<!-- CSS -->
 	<style>
 		.squiiid-details {
-			width:100%;
-			height:100%;
+			width:90%;
+			height:90%;
 			position: fixed;
-			top:0px;
-			left:0px;
+			top:5%;
+			left:5%;
 			z-index:9999;
 			background-color: rgba(255,255,255,0.92);
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
 			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
-			padding:50px;
 		}
 		.image,
-		.details {
-			width:50%;
+		.details,
+		.arrow-l,
+		.arrow-r {
 			height:66%;
-			float:left;
-			margin-top:17%;
-			text-align: center;
+			position: fixed;
+			top:17%;
 		}
-		.image img {
-			float:left;
+		.image {
+			width:44%;
+			left:6%;
+			background-image: url({{MEDIA_URL}}{{image.image}});
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			-o-background-size: contain;
+			-moz-background-size: contain;
+			-webkit-background-size: contain;
 		}
-		.squiiid-portrait {
-			width:auto;
+		.details {left:52%;width:40%;}
+		.arrow-l,
+		.arrow-r {
+			cursor: pointer;
+			opacity: 0.2;
+			transition:opacity 0.25s ease;
+			-o-transition:opacity 0.25s ease;
+			-moz-transition:opacity 0.25s ease;
+			-webkit-transition:opacity 0.25s ease;
+			width:2%;
+			background-position: center center;
+			background-size: 70% auto;
+			background-repeat: no-repeat;
+		}
+		.arrow-l:hover,
+		.arrow-r:hover {opacity: 1;}
+
+		.arrow-l {left:50%;background-image: url("/static/assets/images/details-arrow-l.svg");}
+		.arrow-r {left:92%;background-image: url("/static/assets/images/details-arrow-r.svg");}
+		.carousel {
+			width:100%;
 			height:100%;
-			margin:0px auto 0px auto;
+			float:left;
+			overflow: hidden;
 		}
-		.squiiid-landscape {
+		.slide {
+			width:100%;
+			height:100%;
+		}
+		.slide p {
+			display:block;
+			float:left;
 			width:100%;
 			height:auto;
-			margin:auto 0px auto 0px;
+			margin:5px 0px 5px 0px;
 		}
-		.squiiid-square {
-			width:80%;
+		.slide p b,
+		.slide p i {
+			width:50%;
 			height:auto;
-			margin:auto 10% auto 10%;
+			float:left;
+			display: block;
+			box-sizing:border-box;
+			-o-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+		}
+		.slide p b {
+			text-align: right;
+			padding-right:8px;
+			font-family: 'Courier New',Courier, Arial, Tahoma, sans-serif;
+			font-weight:100;
+			font-size:12px;
+			color:#9f9f9f;
+		}
+		.slide p i {
+			text-align: left;
+			padding-left:8px;
+			font-style: normal;
+			color:#404040;
+			font-size:12px;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			font-family: "Times New Roman", Times, Georgia, serif;
 		}
 	</style>
 </head>
 <body>
 	<div class="squiiid-details">
-		<div class="image">
-			<img src="{{MEDIA_URL}}{{image.image}}" onload="sizemeupfool()" alt="{{image.title}} by {{image.author}}" border="0" id="squiiid-image-{{image.id}}"/>
-		</div>
+		<div class="image"></div>
+		<div class="arrow-l" id="prev"></div>
+		<div class="arrow-r" id="next"></div>
 		<div class="details">
-			<div class="arrow-l" id="prev"></div>
-			<div class="arrow-r" id="next"></div>
 			<div class="carousel">
 				<!-- Slide for Contributors, if blank do not show -->
 				{% if image.contributor_name_1 != '' or  image.contributor_name_2 != '' or image.contributor_name_3 != '' or image.contributor_name_4 != '' or image.contributor_name_5 != '' %}
 				<div class="slide">
+					<div class="table">
 					<!-- Make one of these for each entry -->
 					{% if image.contributor_name_1 != '' %}
 					<p><b>{{image.contributor_type_1}}</b><i>{{image.contributor_name_1}}</i></p>
@@ -82,11 +138,13 @@
 					{% if image.contributor_name_5 != '' %}
 					<p><b>{{image.contributor_type_5}}</b><i>{{image.contributor_name_5}}</i></p>
 					{% endif %}
+					</div>
 				</div>
 				{% endif %}
 				<!-- Slide for Products, if blank do not show -->
 				{% if image.product_1 != '' or  image.product_2 != '' or image.product_3 != '' or image.product_4 != '' or image.product_5 != '' %}
 				<div class="slide">
+					<div class="table">
 					<!-- Make one of these for each entry -->
 					{% if image.product_1 != '' %}
 					<p><a href="{{image.product_url_1}}" target="_blank"><b>{{image.brand_1}}</b><i>{{image.product_1}}</i></a></p>
@@ -103,11 +161,13 @@
 					{% if image.product_5 != '' %}
 					<p><a href="{{image.product_url_5}}" target="_blank"><b>{{image.brand_5}}</b><i>{{image.product_5}}</i></a></p>
 					{% endif %}
+					</div>
 				</div>
 				{% endif %}
 				<!-- Slide for Title + Location, if blank do not show -->
 				{% if image.title != '' or  image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
 				<div class="slide">
+					<div class="table">
 					<!-- Only show if has a title-->
 					{% if image.title != '' %}
 					<p>{{image.title}}</p>
@@ -116,11 +176,13 @@
 					{% if image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
 					<p>{{image.street_address_1}} {{image.street_address_2}} | {{image.city}} {{image.state}}, {{image.zip_code}}. {{image.place}}</p>
 					{% endif %}
+					</div>
 				</div>
 				{% endif %}
 				<!-- Slide for EXIF, if blank do not show -->
 				{% if image.tool != '' or  image.iso != '' or image.aperture != '' or image.exposure != '' or image.focal_length != '' %}
 				<div class="slide">
+					<div class="table">
 					<!-- make one of these for each set of exif data -->
 					{% if image.tool != '' %}
 					<p><b>Camera:</b><i>{{image.tool}}</i></p>
@@ -137,6 +199,7 @@
 					{% if image.focal_length != '' %}
 					<p><b>Focal Length:</b><i>{{image.focal_length}}</i></p>
 					{% endif %}
+					</div>
 				</div>
 				{% endif %}
 				<div class="slide">Ink by Squiiid</div>
@@ -144,19 +207,7 @@
 		</div>
 	</div>
 	<script>
-		function sizemeupfool() {
-			imgheight = document.getElementById("squiiid-image-{{image.id}}").naturalHeight;
-			imgwidth = document.getElementById("squiiid-image-{{image.id}}").naturalWidth;
-			if (imgheight > imgwidth) {
-				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-portrait");
-			}
-			else if (imgwidth > imgheight) {
-				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-landscape");
-			}
-			else if (imgwidth == imgheight) {
-				document.getElementById("squiiid-image-{{image.id}}").setAttribute("class","squiiid-square");
-			}
-		}
+	
 	</script>
 </body>
 </html>
