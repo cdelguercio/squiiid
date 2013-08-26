@@ -113,101 +113,34 @@
 </head>
 <body>
 	<div class="squiiid-details">
-		<div class="image"></div>
 		<div class="arrow-l" id="prev"></div>
 		<div class="arrow-r" id="next"></div>
-		<div class="details">
-			<div class="carousel">
-				<!-- Slide for Contributors, if blank do not show -->
-				{% if image.contributor_name_1 != '' or  image.contributor_name_2 != '' or image.contributor_name_3 != '' or image.contributor_name_4 != '' or image.contributor_name_5 != '' %}
-				<div class="slide">
-					<div class="table">
-					<!-- Make one of these for each entry -->
-					{% if image.contributor_name_1 != '' %}
-					<p><b>{{image.contributor_type_1}}</b><i>{{image.contributor_name_1}}</i></p>
-					{% endif %}
-					{% if image.contributor_name_2 != '' %}
-					<p><b>{{image.contributor_type_2}}</b><i>{{image.contributor_name_2}}</i></p>
-					{% endif %}
-					{% if image.contributor_name_3 != '' %}
-					<p><b>{{image.contributor_type_3}}</b><i>{{image.contributor_name_3}}</i></p>
-					{% endif %}
-					{% if image.contributor_name_4 != '' %}
-					<p><b>{{image.contributor_type_4}}</b><i>{{image.contributor_name_4}}</i></p>
-					{% endif %}
-					{% if image.contributor_name_5 != '' %}
-					<p><b>{{image.contributor_type_5}}</b><i>{{image.contributor_name_5}}</i></p>
-					{% endif %}
-					</div>
-				</div>
-				{% endif %}
-				<!-- Slide for Products, if blank do not show -->
-				{% if image.product_1 != '' or  image.product_2 != '' or image.product_3 != '' or image.product_4 != '' or image.product_5 != '' %}
-				<div class="slide">
-					<div class="table">
-					<!-- Make one of these for each entry -->
-					{% if image.product_1 != '' %}
-					<p><a href="{{image.product_url_1}}" target="_blank"><b>{{image.brand_1}}</b><i>{{image.product_1}}</i></a></p>
-					{% endif %}
-					{% if image.product_2 != '' %}
-					<p><a href="{{image.product_url_2}}" target="_blank"><b>{{image.brand_2}}</b><i>{{image.product_2}}</i></a></p>
-					{% endif %}
-					{% if image.product_3 != '' %}
-					<p><a href="{{image.product_url_3}}" target="_blank"><b>{{image.brand_3}}</b><i>{{image.product_3}}</i></a></p>
-					{% endif %}
-					{% if image.product_4 != '' %}
-					<p><a href="{{image.product_url_4}}" target="_blank"><b>{{image.brand_4}}</b><i>{{image.product_4}}</i></a></p>
-					{% endif %}
-					{% if image.product_5 != '' %}
-					<p><a href="{{image.product_url_5}}" target="_blank"><b>{{image.brand_5}}</b><i>{{image.product_5}}</i></a></p>
-					{% endif %}
-					</div>
-				</div>
-				{% endif %}
-				<!-- Slide for Title + Location, if blank do not show -->
-				{% if image.title != '' or  image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
-				<div class="slide">
-					<div class="table">
-					<!-- Only show if has a title-->
-					{% if image.title != '' %}
-					<p>{{image.title}}</p>
-					{% endif %}
-					<!-- Only show each variable if it is not blank -->
-					{% if image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
-					<p>{{image.street_address_1}} {{image.street_address_2}} | {{image.city}} {{image.state}}, {{image.zip_code}}. {{image.place}}</p>
-					{% endif %}
-					</div>
-				</div>
-				{% endif %}
-				<!-- Slide for EXIF, if blank do not show -->
-				{% if image.tool != '' or  image.iso != '' or image.aperture != '' or image.exposure != '' or image.focal_length != '' %}
-				<div class="slide">
-					<div class="table">
-					<!-- make one of these for each set of exif data -->
-					{% if image.tool != '' %}
-					<p><b>Camera:</b><i>{{image.tool}}</i></p>
-					{% endif %}
-					{% if image.iso != '' %}
-					<p><b>ISO:</b><i>{{image.iso}}</i></p>
-					{% endif %}
-					{% if image.aperture != '' %}
-					<p><b>Aperture:</b><i>{{image.aperture}}</i></p>
-					{% endif %}
-					{% if image.exposure != '' %}
-					<p><b>Shutter:</b><i>{{image.exposure}}</i></p>
-					{% endif %}
-					{% if image.focal_length != '' %}
-					<p><b>Focal Length:</b><i>{{image.focal_length}}</i></p>
-					{% endif %}
-					</div>
-				</div>
-				{% endif %}
-				<div class="slide">Ink by Squiiid</div>
-			</div>
+		<img class="squiiid-img" src="" border="0" />
+		<div class="squiiid-ink">
+			<ul class="slides">
+				<li>
+					<img src="slide1.jpg" />
+				</li>
+				<li>
+					<img src="slide2.jpg" />
+				</li>
+				<li>
+					<img src="slide3.jpg" />
+				</li>
+				<li>
+					<img src="slide4.jpg" />
+				</li>
+		  </ul>
 		</div>
 	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="/static/js/jquery.flexslider-min.js"></script>
 	<script>
-	
+	$(window).load(function() {
+	  $('.squiiid-ink').flexslider({
+	    animation: "slide"
+	  });
+	});
 	</script>
 </body>
 </html>
