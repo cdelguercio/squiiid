@@ -27,7 +27,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = [".squiiid.com","localhost","127.0.0.1"]
+ALLOWED_HOSTS = [".squiiid.com","localhost","127.0.0.1","108.166.89.120"]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -186,7 +186,9 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 LOGIN_REDIRECT_URL = '/dashboard/'
 USERENA_SIGNIN_REDIRECT_URL = '/dashboard/'
-LOGIN_URL = '/accounts/signin/'
+LOGIN_URL = '/signin/'
 LOGOUT_URL = '/signout/'
 ANONYMOUS_USER_ID = 1
 USERENA_ACTIVATION_REQUIRED = False
+USERENA_WITHOUT_USERNAME = True
+USERENA_SIGNIN_AFTER_SIGNUP = True

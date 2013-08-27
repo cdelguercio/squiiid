@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from userena import views as userena_views
+from userena.forms import SignupFormOnlyEmail
 from django.contrib.auth import views as auth_views
 
 from django.contrib import admin
@@ -14,13 +15,20 @@ urlpatterns = patterns('',
 ### userena
 
     url(r'^accounts/', include('userena.urls')),
-    #url(r'^signout/$',
-    #    userena_views.signout,
-    #    {'template_name': 'index.html',
-    #     'next_page': '/'}),
-    #url(r'^login/$',
-    #    userena_views.signin,
-    #    {'template_name': 'login.html'}),
+    url(r'^signout/$',
+        userena_views.signout,
+        {'template_name': 'signout.html',
+         'next_page': '/'}),
+    url(r'^signin/$',
+        userena_views.signin,
+        {'template_name': 'signin.html'}),
+    url(r'^signup/$',
+        userena_views.signup,
+        {
+            'signup_form': SignupFormOnlyEmail,
+            'template_name': 'signup.html',
+            'success_url': '/dashboard/',
+        }),
 
     url(r'^password/reset$',
         auth_views.password_reset,

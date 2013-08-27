@@ -26,9 +26,8 @@
 			<div class="uploader">
 				<form method="POST" enctype="multipart/form-data" action="/upload/">
 					{% csrf_token %}
-					<div id="dropzone" class="dropzone"></div>
-
 					<input onclick="dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<div id="dropzone" class="dropzone"></div>
 					<div class="upload-details">
 						<!-- Tags -->
 						<div class="upload-section" id="section-tags" rel="open">
@@ -111,6 +110,7 @@
 		var dropzone = new Dropzone("div#dropzone", { url: '/upload/',
 				enqueueForUpload: true,
 				autoProcessQueue: false,
+				thumbnailWidth: "700",
 				//uploadMultiple: true,
 				parallelUploads: 100,
 				resize: function(file) {
@@ -133,8 +133,28 @@
 					return info;
 				},
 				init: function() {
+					this.on("dragstart", function(event) {
+						//alert("dragstart")
+					});
+					this.on("dragenter", function(event) {
+						//alert("dragenter")
+					});
+					this.on("dragleave", function(event) {
+						//alert("dragleave")
+					});
+					this.on("dragover", function(event) {
+						//alert("dragover")
+					});
+					this.on("dragend", function(event) {
+						//alert("dragend")
+					});
 					this.on("complete", function(file) {
 						window.location.href = "/upload_complete/"
+					});
+					this.on("addedfile", function(file) {
+					  $(".dz-default").animate({'opacity':'0','height':'0'}, 300, function() {
+					  	$(".dz-default").css("display","none");
+					  });
 					});
 					this.on("sending", function(file, xhr, formData) {
 						formData.append("title", document.getElementById("title").value);

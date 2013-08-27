@@ -27,7 +27,7 @@
 			<div class="nav-item" id="nav-upload"></div>
 			<div class="nav-item" id="nav-settings"></div>
 			<div class="nav-item" id="nav-search"></div>
-			<div class="nav-item" id="nav-logout"></div>
+			<div class="nav-item" id="nav-logout" onclick="location.href='/signout/';"></div>
 		</nav>
 		<!-- Layer 0: First Time User -->
 		<!--	This DIV is by default display:none and opacity:0;
@@ -162,7 +162,7 @@
 
 					<p class="settings-label-light">password //</p>
 					<p>
-						<input type="password" class="settings-half" placeholder="password" disabled="disabled" />
+						<input type="password" class="settings-half" placeholder="********" disabled="disabled" />
 						<!--<input type="password" class="settings-half" placeholder="confirm" />-->
 					</p>
 					<button id="settings-save" class="settings-save"><img src="/static/assets/images/icon-popsicle-red.svg" /></button>
