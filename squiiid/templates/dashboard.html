@@ -134,8 +134,13 @@
 				<a class="share-tumblr" href="#">tumblr</a>
 				<a class="share-wp" href="#">wordpress</a>
 				<a class="share-blogger" href="#">blogger</a>
-				<a class="share-embed" onclick="dontcopythatfloppy(image_id)" href="#">&#60;&#47;&#62;</a>
+				<a class="share-embed" id="share-embed">&#60;&#47;&#62;</a>
 				<img id="photo-share-x" src="/static/assets/images/icon-x-red.svg" />
+				<div class="share-embed-box" id="share-embed-box">
+					<p>Embed this code in your website or blog</p>
+					<textarea id="share-embed-code">Dynamically insert embed code here</textarea>
+					<img id="share-embed-x" src="/static/assets/images/icon-check-black.svg" />
+				</div>
 			</div>
 		</div>
 		<!-- Layer 3: Search -->
