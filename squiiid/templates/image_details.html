@@ -33,20 +33,25 @@
 			position: fixed;
 			top:17%;
 		}
-		.image {
-			width:44%;
-			left:6%;
-			background-image: url({{MEDIA_URL}}{{image.image}});
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: contain;
-			-o-background-size: contain;
-			-moz-background-size: contain;
-			-webkit-background-size: contain;
+		.squiiid-img,
+		.squiiid-ink {
+			position: absolute;
+			left:50%;
+		}
+		.squiiid-img {z-index:10;}
+		.squiiid-ink {z-index:666;overflow:hidden;}
+		.squiiid-landscape {
+			width:100%;
+			height:auto;
+		}
+		.squiiid-portrait {
+			height:100%;
+			width:auto;
 		}
 		.details {left:52%;width:40%;}
-		.arrow-l,
-		.arrow-r {
+		.flex-prev,
+		.flex-next {
+			display: block;
 			cursor: pointer;
 			opacity: 0.2;
 			transition:opacity 0.25s ease;
@@ -57,21 +62,28 @@
 			background-position: center center;
 			background-size: 70% auto;
 			background-repeat: no-repeat;
+			position: absolute;
+			top:50%;
+			margin-top:-35px;
+			height:70px;
+			width:20px;
+			font-size:0px;
 		}
-		.arrow-l:hover,
-		.arrow-r:hover {opacity: 1;}
+		.squiiid-ink:hover .flex-prev,
+		.squiiid-ink:hover .flex-next {opacity: 1;}
 
-		.arrow-l {left:50%;background-image: url("/static/assets/images/details-arrow-l.svg");}
-		.arrow-r {left:92%;background-image: url("/static/assets/images/details-arrow-r.svg");}
-		.carousel {
-			width:100%;
-			height:100%;
-			float:left;
-			overflow: hidden;
+		.flex-prev {left:5%;background-image: url("/static/assets/images/details-arrow-l.svg");}
+		.flex-next {right:5%;background-image: url("/static/assets/images/details-arrow-r.svg");}
+		.slides {
+			padding:0px;
+			margin:0px;
 		}
-		.slide {
+		.slides li {
 			width:100%;
 			height:100%;
+			color:#FFF;
+			margin:0px;
+			padding:0px;
 		}
 		.slide p {
 			display:block;
@@ -109,26 +121,29 @@
 			letter-spacing: 0.1em;
 			font-family: "Times New Roman", Times, Georgia, serif;
 		}
+		ol {display: none;}
+		.flex-viewport {
+			width:100%;
+			height:100%;
+		}
 	</style>
 </head>
 <body>
 	<div class="squiiid-details">
-		<div class="arrow-l" id="prev"></div>
-		<div class="arrow-r" id="next"></div>
-		<img class="squiiid-img" src="" border="0" />
-		<div class="squiiid-ink">
+		<img id="squiiid-img" class="squiiid-img" src="{{MEDIA_URL}}{{image.image}}" border="0" />
+		<div id="squiiid-ink" class="squiiid-ink">
 			<ul class="slides">
-				<li>
-					<img src="slide1.jpg" />
+				<li class="slide">
+					SLIDE 1
 				</li>
-				<li>
-					<img src="slide2.jpg" />
+				<li class="slide">
+					SLIDE 2
 				</li>
-				<li>
-					<img src="slide3.jpg" />
+				<li class="slide">
+					SLIDE 3
 				</li>
-				<li>
-					<img src="slide4.jpg" />
+				<li class="slide">
+					SLIDE 4
 				</li>
 		  </ul>
 		</div>
@@ -136,10 +151,39 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/static/js/jquery.flexslider-min.js"></script>
 	<script>
-	$(window).load(function() {
+	$(document).ready(function() {
 	  $('.squiiid-ink').flexslider({
 	    animation: "slide"
 	  });
+	  $('.squiiid-ink').flexslider("stop")
+	  if (document.getElementById("squiiid-img").naturalHeight > document.getElementById("squiiid-img").naturalWidth) {
+	  	$('.squiiid-img').addClass("squiiid-portrait");
+	  }
+	  else if (document.getElementById("squiiid-img").naturalWidth > document.getElementById("squiiid-img").naturalHeight) {
+	  	$('.squiiid-img').addClass("squiiid-landscape");
+	  }
+	  else if (document.getElementById("squiiid-img").naturalWidth == document.getElementById("squiiid-img").naturalHeight) {
+	  	$('.squiiid-img').addClass("squiiid-square");
+	  }
+	  resizeactions();
+	});
+	function resizeactions() {
+		// Offest on photo
+		offset = Number(document.getElementById("squiiid-img").width)/-2;
+		document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
+		document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
+		// Set ink layer to match dimensions of <img>
+		$imgheight = $("#squiiid-img").height();
+		$imgwidth = $("#squiiid-img").width();
+		$("#squiiid-ink").css({
+			'height':$imgheight,
+			'width':$imgwidth
+		});
+		$(".slide").css("height",$imgheight);
+		$(".slides").css("height",$imgheight);
+	}
+	$(window).resize(function() {
+		resizeactions();
 	});
 	</script>
 </body>
