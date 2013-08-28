@@ -720,9 +720,71 @@ nav {
 }
 .edit-delete:hover {color:@sq-red;}
 
-
-/* INKED IMAGES */
-
+/* Signup Page */
+@loginWidth: 400px;
+.wilkommen-aus-squiiidlandia {
+	width:@loginWidth;
+	height:100%;
+	min-height:640px;
+	background-color: transparent;
+	position: absolute;
+	top:0px;
+	left:50%;
+	margin:0px 0px 0px @loginWidth/(-2);
+	h1 {
+		text-align: center;
+		font-size:30px;
+		margin-bottom:15px;
+		width:100%;
+		height:auto;
+		float:left;
+	}
+	p {
+		width:60%;
+		float:left;
+		height:auto;
+		margin:0px 20% 20px 20%;
+		.cour;
+		text-align: justify;
+	}
+	input[type="text"],
+	input[type="password"] {
+		float:left;
+		width:60%;
+		margin:0px 20% 5px 20%;
+		height:60px;
+		.roundNone;
+		background-color: #f2f2f2;
+		.boxSizing;
+		border:0px;
+		padding:0px 15px 0px 15px;
+		.helv;
+		font-weight:100;
+		font-size:20px;
+	}
+	input[type="submit"] {
+		float:left;
+		width:60%;
+		margin:0px 20% 5px 20%;
+		height:60px;
+		.roundNone;
+		background-color: @white;
+		.trans(color);
+		.boxSizing;
+		border:0px;
+		.helv;
+		font-weight:100;
+		font-size:20px;
+		cursor: pointer;
+	}
+	input[type="submit"]:hover {color:@sq-red;}
+}
+.signup-logo {
+	width:36%;
+	height:auto;
+	float:left;
+	margin:20px 32% 30px 32%;
+}
 
 /* Media Queries 
 
