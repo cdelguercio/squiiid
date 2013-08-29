@@ -47,20 +47,21 @@
 			position: fixed;
 			top:17%;
 		}
-		.squiiid-img,
-		.squiiid-ink {
-			position: absolute;
-			left:50%;
-		}
 		.squiiid-img {z-index:10;}
 		.squiiid-ink {z-index:666;}
 		.squiiid-landscape {
-			width:100%;
+			width:70%;
 			height:auto;
+			margin:0px 15% 0px 15%;
+			position: absolute;
+			top:50%;
+			left:0px;
 		}
 		.squiiid-portrait {
 			height:100%;
 			width:auto;
+			position: absolute;
+			left:50%;
 		}
 		.details {left:52%;width:40%;}
 		.flex-direction-nav,
@@ -264,14 +265,18 @@
 	<script src="/static/js/jquery.flexslider-min.js"></script>
 	<script>
 	$(document).ready(function() {
+	phototype = "default";
 	  if (document.getElementById("squiiid-img").naturalHeight > document.getElementById("squiiid-img").naturalWidth) {
 	  	$('.squiiid-img').addClass("squiiid-portrait");
+	  	phototype = "portrait";
 	  }
 	  else if (document.getElementById("squiiid-img").naturalWidth > document.getElementById("squiiid-img").naturalHeight) {
 	  	$('.squiiid-img').addClass("squiiid-landscape");
+	  	phototype = "landscape";
 	  }
 	  else if (document.getElementById("squiiid-img").naturalWidth == document.getElementById("squiiid-img").naturalHeight) {
 	  	$('.squiiid-img').addClass("squiiid-square");
+	  	phototype = "square";
 	  }
 	  resizeactions();
 	  $('.squiiid-ink').flexslider({
@@ -280,10 +285,17 @@
 	  $('.squiiid-ink').flexslider("stop")
 	});
 	function resizeactions() {
-		// Offest on photo
-		offset = Number(document.getElementById("squiiid-img").width)/-2;
-		document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
-		document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
+		// Depending on photo type, position the photo a few different ways
+		if (phototype == "portrait") {
+			offset = Number(document.getElementById("squiiid-img").width)/-2;
+			document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
+			document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
+		}
+		else if (phototype == "landscape") {
+			offset = Number(document.getElementById("squiiid-img").height)/-2;
+			document.getElementById("squiiid-img").style.marginTop = (String(offset)+"px");
+			document.getElementById("squiiid-ink").style.marginTop = (String(offset)+"px");
+		}
 		// Set ink layer to match dimensions of <img>
 		$imgheight = $("#squiiid-img").height();
 		$imgwidth = $("#squiiid-img").width();
