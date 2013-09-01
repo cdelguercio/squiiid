@@ -31,6 +31,10 @@
       <input class="required" id="id_email" maxlength="75" placeholder="email" name="email" type="text" />
       <input class="required" id="id_password1" name="password1" maxlength="18" placeholder="password" type="password" />
       <input class="required" id="id_password2" name="password2" maxlength="18" placeholder="confirm password" type="password" />
+      {{form.email.errors}}
+      {{form.password1.errors}}
+      {{form.password2.errors}}
+      {{form.non_field_errors.as_text}}
       <input type="submit" value="Create Beta Account" />
   </form>
 </div>

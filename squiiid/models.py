@@ -1,10 +1,12 @@
-from django.db import models
+import uuid
 
+from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from userena.models import UserenaBaseProfile
 
-# Create your models here.
+import logging
+logger = logging.getLogger('squiiid.errors')
 
 class Profile(UserenaBaseProfile):
     user = models.OneToOneField(User,
@@ -16,9 +18,25 @@ class Profile(UserenaBaseProfile):
     def __unicode__(self):
         return unicode('')
 
+def name_file(instance, filename):
+    try:
+        img_ext = filename.split('.')[-1]
+        img_name = str(uuid.uuid4()) + '.' + img_ext
+        logger.info('saving...')
+        logger.info('/'.join(['images', img_name]))
+        logger.info(instance)
+        return '/'.join(['images', img_name])
+    except Exception as e:
+        logger.info(e)
+    #logger.info('/'.join(['images', img_name]))
+    return None
+    
+
 class SquiiidImage(models.Model):
     profile = models.ForeignKey(Profile)
-    image = models.FileField(upload_to='images')
+    image = models.FileField(upload_to=name_file)
+    image_1 = models.FileField(upload_to='images/', null=True, blank=True)
+    image_2 = models.FileField(upload_to='images/', null=True, blank=True)
     likes = models.IntegerField(default=0)
     clicks = models.IntegerField(default=0)
     hovers = models.IntegerField(default=0)
@@ -69,9 +87,7 @@ class SquiiidImage(models.Model):
 
 class Tag(models.Model):
     image = models.ForeignKey(SquiiidImage)
-    url = models.CharField(max_length=10000)
-    x = models.IntegerField()
-    y = models.IntegerField()
+    phrase = models.CharField(max_length=1000)
     date = models.DateTimeField()
 
     def __unicode__(self):

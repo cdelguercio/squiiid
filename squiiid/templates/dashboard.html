@@ -48,12 +48,12 @@
 		<div class="layer" id="uploader">
 			
 			<div class="uploader">
-				<form method="POST" enctype="multipart/form-data" action="/upload/">
+				<form id="upload-form" method="POST" enctype="multipart/form-data" action="/upload/">
 					{% csrf_token %}
-					<input onclick="dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<input onclick="$(this).valid();upload_validate();dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
 					<div class="upload-widget">
 						<div id="dropzone" class="dropzone"></div>
-						<div class="dropzone-previews" id="dropzone-previews"></div>	
+						<div class="dropzone-previews" id="dropzone-previews"></div>
 					</div>
 					<div class="upload-details">
 						<!-- Tags -->
@@ -62,7 +62,7 @@
 							<div class="upload-content">
 								<div class="upload-content-divider"></div>
 								<input id="title" class="upload-full" name="title" placeholder="Title or brief description..." />
-								<input id="tags" class="upload-full" name="tags" placeholder="separate tags by commas..." />
+								<input id="tags" class="upload-full" name="tags" placeholder="separate tags by commas..." required/>
 							</div>
 						</div>
 						<!-- Contributors -->
@@ -195,6 +195,8 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script src="/static/js/jquery.validate.min.js"></script>
+	<script src="/static/js/form_validator.js"></script>
 	<script src="/static/js/dropzone.js"></script>
 	<script type="text/javascript">
 		Dropzone.autoDiscover = false;
@@ -246,6 +248,7 @@
 					  $(".dz-default").animate({'opacity':'0','height':'0'}, 300, function() {
 					  	$(".dz-default").css("display","none");
 					  });
+					  addedfile = true
 					});
 					this.on("sending", function(file, xhr, formData) {
 						formData.append("title", document.getElementById("title").value);

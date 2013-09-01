@@ -16,10 +16,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'squiiid2',                      # Or path to database file if using sqlite3.
+        'NAME': 'squiiid',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'squiiid2',
-        'PASSWORD': 'squiiid2',
+        'USER': 'squiiid',
+        'PASSWORD': 'squiiid',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'south',
     'squiiid',
 )
 
@@ -149,12 +150,36 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file': {
+            'level':
+                'INFO',
+            'class':
+                'logging.FileHandler',
+            'formatter':
+                'verbose',
+            'filename':
+                os.path.join(BASE_ROOT, 'logs/squiiid.log')
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format':
+                '%(levelname)s %(message)s'
+        },
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+        'squiiid.errors': {
+            'handlers': ['file'],
+            'level': 'INFO',
             'propagate': True,
         },
     }

@@ -212,6 +212,7 @@ var myphotos = [
 
 		if (rastaman == "sharing") {
 			$("#photosharing").css("display","block").animate({'opacity':1},300);
+			document.getElementById('share-embed-code').innerHTML = '<object src="http://squiiid.com/image/' + image_id + '/" />'
 		}
 		if (rastaman == "settings") {
 			$("#settings").css("display","block").animate({'opacity':1},300);
@@ -331,12 +332,28 @@ var myphotos = [
 		}
 	});
 // Copy to clipboard
-	function dontcopythatfloppy(imageid) {
-	    if (window.clipboardData && clipboardData.setData) {
-	        clipboardData.setData('text', "<object src='http://squiiid.com/image/"+String(imageid)+"/' width='69' height='69' />");
-	        alert("Copied code to clipboard");
-	    }
-	}
+	// function dontcopythatfloppy(imageid) {
+	//     if (window.clipboardData && clipboardData.setData) {
+	//         clipboardData.setData('text', "<object src='http://squiiid.com/image/"+String(imageid)+"/' width='69' height='69' />");
+	//         alert("Copied code to clipboard");
+	//     }
+	// }
+// Photo sharing: show/hide embed box
+	// Show
+	$("body").delegate("#share-embed", "click", function(){
+		$("#share-embed-box").css("display","block").animate({'opacity':'1'},250);
+		$("#share-embed-code").focus().select();
+	});
+	// Clicks on the textarea auto select all
+	$("body").delegate("#share-embed-code", "click", function(){
+		$("#share-embed-code").focus().select();
+	});
+	// Hide
+	$("body").delegate("#share-embed-x", "click", function(){
+		$("#share-embed-box").animate({'opacity':'0'},250, function(){
+			$("#share-embed-box").css("display","none")
+		});
+	});
 // Fade out handlers
 	// The X button on the photo-sharing menu
 	$("body").delegate("#photo-share-x", "click", function(){

@@ -32,6 +32,9 @@
 					<input type="text" name="identification" placeholder="email" />
 					<input type="password" name="password" placeholder="password" />
 					<input type="hidden" name="remember_me" checked="on" value="on" />
+					{{form.identification.errors}}
+      				{{form.password.errors}}
+					{{form.non_field_errors.as_text}}
 					<button type="submit" class="login-submit" name="submitlogin">siiign in</button>
 				</form>
 			</div>

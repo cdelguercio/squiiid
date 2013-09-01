@@ -212,6 +212,7 @@ var myphotos = [
 
 		if (rastaman == "sharing") {
 			$("#photosharing").css("display","block").animate({'opacity':1},300);
+			document.getElementById('share-embed-code').innerHTML = '<object src="http://squiiid.com/image/' + image_id + '/" />'
 		}
 		if (rastaman == "settings") {
 			$("#settings").css("display","block").animate({'opacity':1},300);

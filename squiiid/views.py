@@ -1,4 +1,14 @@
+from __future__ import division
+import math
+import os
 import datetime
+import uuid
+
+import StringIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
+from PIL import Image
+from PIL.ExifTags import TAGS
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -6,9 +16,13 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.middleware.csrf import get_token
+from django.core.files.base import ContentFile
 
 from squiiid.models import SquiiidImage
 from squiiid.models import Invite
+
+import logging
+logger = logging.getLogger('squiiid.errors')
 
 def index(request):
     if request.user.is_authenticated():
@@ -96,9 +110,36 @@ def settings(request):
     
     return HttpResponse('')
 
-def get_exif(request):
-    pass
+def get_exif(image):
+    """Returns a dictionary from the exif data of an PIL Image item."""
+    tool = ''
+    iso = ''
+    aperture = ''
+    exposure = ''
+    focal_length = ''
+    info = None
+    try:
+        info = image._getexif()
+    except Exception as e:
+        logger.info(e)
+    if info:
+        for tag, value in info.items():
+            
+            decoded = TAGS.get(tag, tag)
+            if decoded == 'Model':
+                tool = value
+            if decoded == 'ISOSpeedRatings':
+                iso = value
+            if decoded == 'ApertureValue':
+                aperture = value
+            if decoded == 'ExposureTime':
+                exposure = value
+            if decoded == 'FocalLength':
+                focal_length = value
 
+    return (tool, iso, aperture, exposure, focal_length)
+
+'''
 def upload_image(request):
     handle_uploaded_file(request.FILES.get('file', None))
     return render_to_response('dashboard.html')
@@ -107,7 +148,7 @@ def handle_uploaded_file(f):
     with open('/home/chris/workspace/squiiid/squiiid_com/media/images/test.png', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
+'''
 def dashboard_upload(request):
     if request.user.is_authenticated():
         upload(request)
@@ -117,8 +158,12 @@ def dashboard_upload(request):
     return HttpResponseRedirect(reverse('squiiid.views.index'))
 
 def upload(request):
+    image = None
+    try:
+        image = request.FILES['file']
+    except Exception as e:
+        return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
     profile = request.user.get_profile()
-    image = request.FILES.get('file', None)
     title = request.POST.get('title', 'Title')
     tags = request.POST.get('tags', '')
     contributor_type_1 = request.POST.get('contributor_type_1', '')
@@ -159,6 +204,26 @@ def upload(request):
     product_url_4 = request.POST.get('product_url_4', '')
     product_url_5 = request.POST.get('product_url_5', '')
     date = datetime.datetime.now()
+    image_1 = None
+    image_2 = None
+    
+    #get EXIF data from image
+    try:
+        _image = Image.open(image)
+        _tool, _iso, _aperture, _exposure, _focal_length = get_exif(_image)
+        
+        if tool == '':
+            tool = _tool
+        if iso == '':
+            iso = _iso
+        if aperture == '':
+            aperture = _aperture
+        if exposure == '':
+            exposure = _exposure
+        if focal_length == '':
+            focal_length = _focal_length
+    except Exception as e:
+        logger.info(e)
 
     new_squiiid_image = SquiiidImage(profile=profile,
                                      image=image,
@@ -204,6 +269,30 @@ def upload(request):
                                      date=date,
                                      )
     new_squiiid_image.save()
+    
+    _image = Image.open(new_squiiid_image.image)
+    width, height = _image.size
+    upper = 0
+    left = 0
+
+    bounding_box_1 = (left, upper, width, int(height / 2))
+    bounding_box_2 = (left, int(height / 2) + 1, width, height)
+    image_1 = _image.crop(bounding_box_1)
+    image_2 = _image.crop(bounding_box_2)
+
+    buffer = StringIO.StringIO()
+    image_1.save(buffer, _image.format)
+    img_ext = image.name.split('.')[-1]
+    img_name = str(uuid.uuid4()) + '.' + img_ext
+    image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+    new_squiiid_image.image_1.save(img_name, image_file)
+    
+    buffer = StringIO.StringIO()
+    image_2.save(buffer, _image.format)
+    img_ext = image.name.split('.')[-1]
+    img_name = str(uuid.uuid4()) + '.' + img_ext
+    image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+    new_squiiid_image.image_2.save(img_name, image_file)
 
 def upload_complete(request):
     return render_to_response('upload_complete.html')
