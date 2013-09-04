@@ -106,8 +106,8 @@ def settings(request):
     request.user.last_name = request.POST.get('last_name', '')
     request.user.get_profile().website = request.POST.get('website', '')
     
-    if request.POST['password1'] == request.POST['password2'] and request.POST['password1'] != '':
-        request.user.set_password(request.POST['password1'])
+    if request.POST.get('password1','') == request.POST.get('password2','') and request.POST.get('password1','') != '':
+        request.user.set_password(request.POST.get('password1',''))
     
     request.user.save()
     request.user.get_profile().save()
