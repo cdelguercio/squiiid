@@ -54,7 +54,6 @@ urlpatterns = patterns('',
     url(r'^dashboard/settings/$', 'squiiid.views.dashboard_settings', name='dashboard_settings'),
     url(r'^get_exif/$', 'squiiid.views.get_exif', name='get_exif'),
     url(r'^upload/$', 'squiiid.views.dashboard_upload', name='dashboard_upload'),
-    #url(r'^upload_image/$', 'squiiid.views.upload_image', name='upload_image'),
     url(r'^upload_complete/$', 'squiiid.views.upload_complete', name='upload_complete'),
     url(r'^image/(?P<image_id>\d+)/$', 'squiiid.views.image', name='image'),
     url(r'^image/details/(?P<image_id>\d+)/$', 'squiiid.views.image_details', name='image_details'),
@@ -67,7 +66,7 @@ urlpatterns = patterns('',
     url(r'^first_intro/$', 'squiiid.views.first_intro', name='first_intro'),
     url(r'^first_upload/$', 'squiiid.views.first_upload', name='first_upload'),
     url(r'^first_settings/$', 'squiiid.views.first_settings', name='first_settings'),
-
+    url(r'^terms_of_use/$', 'squiiid.views.terms_of_use', name='terms_of_use'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

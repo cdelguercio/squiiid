@@ -143,16 +143,6 @@ def get_exif(image):
 
     return (tool, iso, aperture, exposure, focal_length)
 
-'''
-def upload_image(request):
-    handle_uploaded_file(request.FILES.get('file', None))
-    return render_to_response('dashboard.html')
-
-def handle_uploaded_file(f):
-    with open('/home/chris/workspace/squiiid/squiiid_com/media/images/test.png', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-'''
 def dashboard_upload(request):
     if request.user.is_authenticated():
         if request.method == 'POST':
@@ -298,6 +288,55 @@ def upload(request):
     img_name = str(uuid.uuid4()) + '.' + img_ext
     image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
     new_squiiid_image.image_2.save(img_name, image_file)
+    
+    #tags
+    _tags = tags.split(',')
+    for _tag in _tags:
+        new_tag = Tag(image=new_squiiid_image,
+                      phrase=_tag,
+                      date=datetime.datetime.now())
+        new_tag.save()
+    
+    add_to_tags(new_squiiid_image, title)
+    add_to_tags(new_squiiid_image, contributor_name_1)
+    add_to_tags(new_squiiid_image, contributor_name_2)
+    add_to_tags(new_squiiid_image, contributor_name_3)
+    add_to_tags(new_squiiid_image, contributor_name_4)
+    add_to_tags(new_squiiid_image, contributor_name_5)
+    add_to_tags(new_squiiid_image, street_address_1)
+    add_to_tags(new_squiiid_image, street_address_2)
+    add_to_tags(new_squiiid_image, city)
+    add_to_tags(new_squiiid_image, state)
+    add_to_tags(new_squiiid_image, zip_code)
+    add_to_tags(new_squiiid_image, place)
+    add_to_tags(new_squiiid_image, tool)
+    add_to_tags(new_squiiid_image, iso)
+    add_to_tags(new_squiiid_image, aperture)
+    add_to_tags(new_squiiid_image, exposure)
+    add_to_tags(new_squiiid_image, focal_length)
+    add_to_tags(new_squiiid_image, brand_1)
+    add_to_tags(new_squiiid_image, brand_2)
+    add_to_tags(new_squiiid_image, brand_3)
+    add_to_tags(new_squiiid_image, brand_4)
+    add_to_tags(new_squiiid_image, brand_5)
+    add_to_tags(new_squiiid_image, product_1)
+    add_to_tags(new_squiiid_image, product_2)
+    add_to_tags(new_squiiid_image, product_3)
+    add_to_tags(new_squiiid_image, product_4)
+    add_to_tags(new_squiiid_image, product_5)
+
+def add_to_tags(image, phrase):
+    if phrase != '':
+        new_tag = Tag(image=image,
+                      phrase=phrase,
+                      date=datetime.datetime.now())
+        new_tag.save()
+        phrases = phrase.split(' ')
+        for x in phrases:
+            new_tag = Tag(image=image,
+                          phrase=x,
+                          date=datetime.datetime.now())
+            new_tag.save()
 
 def upload_complete(request):
     return render_to_response('upload_complete.html')
@@ -420,3 +459,6 @@ def invite(blog_urlrequest):
     invite.save()
 
     return HttpResponse('')
+
+def terms_of_use(request):
+    return render_to_response('terms_of_use.html')
