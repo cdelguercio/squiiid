@@ -221,7 +221,7 @@ body,html{background-color:#fff;font-family:'Helvetica Neue','Helvetica',Helveti
 .login-form .login-submit{color:#ec5444;font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,Tahoma,Verdana,sans-serif;font-weight:300;cursor:pointer;transition:opacity .25s ease;-moz-transition:opacity .25s ease;-o-transition:opacity .25s ease;-webkit-transition:opacity .25s ease}
 .login-form .login-submit:hover{opacity:.7}
 .login-form input[type="text"],.login-form input[type="password"]{color:#989897;font-weight:100;font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,Tahoma,Verdana,sans-serif}
-.dash-logo{width:66px;height:66px;position:fixed;top:50px;left:45px;z-index:9999;background-size:auto 100%;background-position:center center;background-repeat:no-repeat;background-image:url(/static/assets/images/logo-ltgrey.svg);transition:opacity .25s ease;-moz-transition:opacity .25s ease;-o-transition:opacity .25s ease;-webkit-transition:opacity .25s ease}
+.dash-logo{width:66px;height:66px;position:fixed;top:50px;left:45px;z-index:1002;background-size:auto 100%;background-position:center center;background-repeat:no-repeat;background-image:url(/static/assets/images/logo-ltgrey.svg);transition:opacity .25s ease;-moz-transition:opacity .25s ease;-o-transition:opacity .25s ease;-webkit-transition:opacity .25s ease}
 .dash-logo:hover{cursor:pointer;opacity:.7}
 #omgwhiteeverywhere{width:100%;height:100%;z-index:1000;position:fixed;top:0;left:0;background-color:rgba(255,255,255,0.95);opacity:0;display:none}
 .layer{width:100%;height:100%;position:fixed;top:0;left:0;overflow:auto;z-index:1001}
@@ -307,6 +307,9 @@ nav{width:110px;height:110px;position:fixed;top:40px;right:40px;z-index:666}
 .edit-bottom{width:100%;border-top:1px solid #e6e6e6;padding-top:30px;float:left}
 .edit-delete{border:0;border-radius:0;-moz-border-radius:0;-o-border-radius:0;-webkit-border-radius:0;background-color:transparent;font-family:'Courier New',Courier,sans-serif;float:left;transition:color .25s ease;-moz-transition:color .25s ease;-o-transition:color .25s ease;-webkit-transition:color .25s ease;cursor:pointer}
 .edit-delete:hover{color:#ec5444}
+.error{width:100%;height:100%;z-index:9999;position:fixed;top:0;left:0;background-color:rgba(255,255,255,0.94);display:table;opacity:1;text-align:center}.error p{display:table-cell;vertical-align:middle}
+.error #error-x{opacity:.7;transition:opacity .25s ease;-moz-transition:opacity .25s ease;-o-transition:opacity .25s ease;-webkit-transition:opacity .25s ease;cursor:pointer;display:inline}
+.error #error-x:hover{opacity:1}
 .wilkommen-aus-squiiidlandia{width:400px;height:100%;min-height:640px;background-color:transparent;position:absolute;top:0;left:50%;margin:0 0 0 -200px}.wilkommen-aus-squiiidlandia h1{text-align:center;font-size:30px;margin-bottom:15px;width:100%;height:auto;float:left}
 .wilkommen-aus-squiiidlandia p{width:60%;float:left;height:auto;margin:0 20% 20px 20%;font-family:'Courier New',Courier,sans-serif;text-align:justify}
 .wilkommen-aus-squiiidlandia input[type="text"],.wilkommen-aus-squiiidlandia input[type="password"]{float:left;width:60%;margin:0 20% 5px 20%;height:60px;border-radius:0;-moz-border-radius:0;-o-border-radius:0;-webkit-border-radius:0;background-color:#f2f2f2;box-sizing:border-box;-o-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;border:0;padding:0 15px 0 15px;font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,Tahoma,Verdana,sans-serif;font-weight:100;font-size:20px}
