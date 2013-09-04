@@ -122,7 +122,7 @@
 			height:100%;
 			color:#FFF;
 			margin:0px !important;
-			padding:2% 0px 0px 0px !important;
+			padding:2% 0px 0px 0px;
 			display: block;
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
@@ -308,6 +308,20 @@
 		});
 		$(".slide").css("height",$imgheight);
 		$(".slides").css("height",$imgheight);
+		// Count children in #sq-contributors
+		var total_height = 0
+		children = $('#sq-contributors').children()
+		/*for (var child in children) {
+			alert(child)
+			total_height = total_height + $(child).height()
+		}*/
+		children.each(function(index) {
+			total_height = total_height + $(this).height()
+		});
+		
+		padding_amount = Math.floor(($('#sq-contributors').height() - total_height) / 2.0) + 8
+		//alert(String($('#sq-contributors').height()) + ' - ' + String(total_height + padding_amount * 2))
+		$('#sq-contributors').css('padding-top',String(padding_amount) + 'px')
 	}
 	$(window).resize(function() {
 		resizeactions();

@@ -507,6 +507,25 @@ nav {
 	opacity: 0;
 	display: none;
 }
+.search-box {
+	width:250px;
+	height:250px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin:-125px 0px 0px -125px;
+	.roundAll;
+	background-color: @sq-red;
+	color:@white;
+	text-align: center;
+	.helv;
+	font-weight: 100;
+	text-transform: uppercase;
+	font-size: 60px;
+	line-height: 70px;
+	padding-top: 60;
+	.boxSizing;
+}
 /*------------------------------------------*/
 /*				4. Uploader					*/
 /*------------------------------------------*/
@@ -720,7 +739,38 @@ nav {
 }
 .edit-delete:hover {color:@sq-red;}
 
-/* Signup Page */
+/*------------------------------------------*/
+/*				5. Errors					*/
+/*------------------------------------------*/
+
+.error {
+	width:100%;
+	height:100%;
+	z-index:@z-error;
+	position: fixed;
+	top:0;
+	left:0;
+	background-color: rgba(255,255,255,0.94);
+	display: table;
+	opacity: 1;
+	text-align: center;
+	p {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	#error-x {
+		opacity: 0.7;
+		.trans(opacity);
+		cursor: pointer;
+		display: inline;
+	}
+	#error-x:hover {opacity: 1;}
+}
+
+/*------------------------------------------*/
+/*				6. Signup Page				*/
+/*------------------------------------------*/
+
 @loginWidth: 400px;
 .wilkommen-aus-squiiidlandia {
 	width:@loginWidth;

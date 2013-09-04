@@ -287,6 +287,15 @@ var myphotos = [
 			}
 		});
 	}
+// Error: Fade in & Out Functions
+	function showerror() {
+		$(".error").css("display","table-cell").animate({'opacity':'1'},250);
+	}
+	function hideerror() {
+		$(".error").animate({'opacity':'0'},250,function() {
+			$(".error").css("display","none")
+		}));
+	}
 
 //--------------------------------------------------------
 //
@@ -331,13 +340,10 @@ var myphotos = [
 			$("settings-checkbox-hidden").attr("value","0");
 		}
 	});
-// Copy to clipboard
-	// function dontcopythatfloppy(imageid) {
-	//     if (window.clipboardData && clipboardData.setData) {
-	//         clipboardData.setData('text', "<object src='http://squiiid.com/image/"+String(imageid)+"/' width='69' height='69' />");
-	//         alert("Copied code to clipboard");
-	//     }
-	// }
+// Hide Error Layer when X is clicked
+	$("body").delegate("#error-x", "click", function(){
+		hideerror();
+	});
 // Photo sharing: show/hide embed box
 	// Show
 	$("body").delegate("#share-embed", "click", function(){
