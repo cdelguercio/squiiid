@@ -20,6 +20,7 @@ from django.core.files.base import ContentFile
 
 from squiiid.models import SquiiidImage
 from squiiid.models import Invite
+from squiiid.models import Tag
 
 import logging
 logger = logging.getLogger('squiiid.errors')
@@ -151,9 +152,10 @@ def handle_uploaded_file(f):
 '''
 def dashboard_upload(request):
     if request.user.is_authenticated():
-        upload(request)
+        if request.method == 'POST':
+            upload(request)
 
-        return HttpResponseRedirect(reverse('squiiid.views.upload_complete'))
+            return HttpResponseRedirect(reverse('squiiid.views.upload_complete'))
     
     return HttpResponseRedirect(reverse('squiiid.views.index'))
 

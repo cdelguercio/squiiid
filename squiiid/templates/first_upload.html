@@ -24,7 +24,7 @@
 		<div class="layer" id="uploader" style="display:block;opacity:1;">
 			
 			<div class="uploader">
-				<form id="upload-form" method="POST" enctype="multipart/form-data" action="/upload/">
+				<form id="upload-form" method="POST" enctype="multipart/form-data" action="/first_upload/">
 					{% csrf_token %}
 					<input onclick="$(this).valid();upload_validate();dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
 					<div id="dropzone" class="dropzone"></div>
