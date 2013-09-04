@@ -337,6 +337,19 @@ var myphotos = [
 		if ($("#section-products").attr("rel") == "closed") {switchsection("section-products");}
 		else {}
 	});
+// Uploader: User submits, animation on "iii'm done" button
+	$("body").delegate("#upload-button", "click", function(){
+		$("#upload-button").text("iiinking");
+		window.setTimeout(function(){
+			$("#upload-button").text("iiinking.");
+		}, 800);
+		window.setTimeout(function(){
+			$("#upload-button").text("iiinking..");
+		}, 1600);
+		window.setTimeout(function(){
+			$("#upload-button").text("iiinking...");
+		}, 2400);
+	});
 // Checkbox toggle in settings
 	$("body").delegate("#settings-checkbox", "click", function(){
 		if ($("#settings-checkbox").attr("rel") == "0") {
