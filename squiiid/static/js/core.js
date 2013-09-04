@@ -294,7 +294,7 @@ var myphotos = [
 	function hideerror() {
 		$(".error").animate({'opacity':'0'},250,function() {
 			$(".error").css("display","none")
-		}));
+		});
 	}
 
 //--------------------------------------------------------

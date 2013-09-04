@@ -23,8 +23,8 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('profile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['squiiid.Profile'])),
             ('image', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-            ('image_1', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-            ('image_2', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
+            ('image_1', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
+            ('image_2', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
             ('likes', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('clicks', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('hovers', self.gf('django.db.models.fields.IntegerField')(default=0)),
@@ -76,9 +76,7 @@ class Migration(SchemaMigration):
         db.create_table(u'squiiid_tag', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('image', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['squiiid.SquiiidImage'])),
-            ('url', self.gf('django.db.models.fields.CharField')(max_length=10000)),
-            ('x', self.gf('django.db.models.fields.IntegerField')()),
-            ('y', self.gf('django.db.models.fields.IntegerField')()),
+            ('phrase', self.gf('django.db.models.fields.CharField')(max_length=1000)),
             ('date', self.gf('django.db.models.fields.DateTimeField')()),
         ))
         db.send_create_signal(u'squiiid', ['Tag'])
@@ -183,8 +181,8 @@ class Migration(SchemaMigration):
             'hovers': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'image_1': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'image_2': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+            'image_1': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'image_2': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'likes': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'place': ('django.db.models.fields.CharField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
@@ -214,9 +212,7 @@ class Migration(SchemaMigration):
             'date': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['squiiid.SquiiidImage']"}),
-            'url': ('django.db.models.fields.CharField', [], {'max_length': '10000'}),
-            'x': ('django.db.models.fields.IntegerField', [], {}),
-            'y': ('django.db.models.fields.IntegerField', [], {})
+            'phrase': ('django.db.models.fields.CharField', [], {'max_length': '1000'})
         }
     }
 
