@@ -8,6 +8,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from django.conf import settings
+from django.contrib.auth.forms import AdminPasswordChangeForm
 
 urlpatterns = patterns('',
     url(r'^$', 'squiiid.views.index', name='index'),
