@@ -289,7 +289,7 @@ var myphotos = [
 	}
 // Error: Fade in & Out Functions
 	function showerror() {
-		$(".error").css("display","table-cell").animate({'opacity':'1'},250);
+		$(".error").css("display","block").animate({'opacity':'1'},250);
 	}
 	function hideerror() {
 		$(".error").animate({'opacity':'0'},250,function() {
