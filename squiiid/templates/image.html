@@ -13,9 +13,12 @@
 		.squiiid-object {
 			width:100%;
 			height:auto;
-			float:left;
+			position: absolute;
+			top:0px;
+			left:0px;
 			height:auto;
 			padding:0px;
+			overflow:hidden;
 		}
 		.squiiid-img {
 			float:left;
@@ -52,7 +55,14 @@
 			width:100%;
 			height:100%;
 			z-index:8;
-			position: relative;
+			position: absolute;
+		}
+		.squiiid-links span {
+			width:100%;
+			height:90px;
+			position: absolute;
+			top:50%;
+			margin-top:-45px;
 		}
 		.squiiid-links p {
 			width:100px;
@@ -65,7 +75,7 @@
 			font-size:12px;
 			position: relative;
 			left:50%;
-			margin:0px 0px 20px -50px;
+			margin:0px 0px 15px -50px;
 			clear:both;
 		}
 		.squiiid-links p:hover {text-decoration: underline;}
@@ -119,9 +129,11 @@
 	</style>
 	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}" onhover="hover_ajax();">
 		<div class="squiiid-links" id="squiiid-links-{{image.id}}">
-			<p onclick="liiike()" class="liiike-no" id="squiiid-liiike-{{image.id}}">liiike</p>
-			<p onclick="reblog()">reblog</p>
-			<p><a href="" target="_blank" onclick="click_ajax();return false;">image details</a></p>
+			<span>
+				<p onclick="liiike()" class="liiike-no" id="squiiid-liiike-{{image.id}}">liiike</p>
+				<p onclick="reblog()">reblog</p>
+				<p><a href="" target="_blank" onclick="click_ajax();return false;">image details</a></p>
+			</span>
 		</div>
 		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
 			<label>Embed this code on your website or blog</label>
