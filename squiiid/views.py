@@ -204,7 +204,9 @@ def upload(request):
     
     #get EXIF data from image
     try:
+        logger.info('about to Image.open')
         _image = Image.open(image)
+        logger.info('got past Image.open')
         _tool, _iso, _aperture, _exposure, _focal_length = get_exif(_image)
         
         if tool == '':
