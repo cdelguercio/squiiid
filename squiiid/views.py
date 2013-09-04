@@ -461,4 +461,4 @@ def invite(blog_urlrequest):
     return HttpResponse('')
 
 def terms_of_use(request):
-    return render_to_response('terms_of_use.html')
+    return render_to_response('termsofuse.html')
