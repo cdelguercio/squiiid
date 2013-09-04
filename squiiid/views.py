@@ -326,17 +326,20 @@ def upload(request):
     add_to_tags(new_squiiid_image, product_5)
 
 def add_to_tags(image, phrase):
+    
     if phrase != '':
-        new_tag = Tag(image=image,
-                      phrase=phrase,
-                      date=datetime.datetime.now())
-        new_tag.save()
-        phrases = phrase.split(' ')
-        for x in phrases:
+        if Tag.objects.filter(image=image).filter(phrase=phrase).count() == 0:
             new_tag = Tag(image=image,
-                          phrase=x,
+                          phrase=phrase,
                           date=datetime.datetime.now())
             new_tag.save()
+        phrases = phrase.split(' ')
+        for x in phrases:
+            if Tag.objects.filter(image=image).filter(phrase=x).count() == 0:
+                new_tag = Tag(image=image,
+                              phrase=x,
+                              date=datetime.datetime.now())
+                new_tag.save()
 
 def upload_complete(request):
     return render_to_response('upload_complete.html')
@@ -402,6 +405,34 @@ def edit(request, image_id):
                 image.product_url_4 = request.POST.get('product_url_4', '')
                 image.product_url_5 = request.POST.get('product_url_5', '')
                 image.save()
+                
+                add_to_tags(image, title)
+                add_to_tags(image, contributor_name_1)
+                add_to_tags(image, contributor_name_2)
+                add_to_tags(image, contributor_name_3)
+                add_to_tags(image, contributor_name_4)
+                add_to_tags(image, contributor_name_5)
+                add_to_tags(image, street_address_1)
+                add_to_tags(image, street_address_2)
+                add_to_tags(image, city)
+                add_to_tags(image, state)
+                add_to_tags(image, zip_code)
+                add_to_tags(image, place)
+                add_to_tags(image, tool)
+                add_to_tags(image, iso)
+                add_to_tags(image, aperture)
+                add_to_tags(image, exposure)
+                add_to_tags(image, focal_length)
+                add_to_tags(image, brand_1)
+                add_to_tags(image, brand_2)
+                add_to_tags(image, brand_3)
+                add_to_tags(image, brand_4)
+                add_to_tags(image, brand_5)
+                add_to_tags(image, product_1)
+                add_to_tags(image, product_2)
+                add_to_tags(image, product_3)
+                add_to_tags(image, product_4)
+                add_to_tags(image, product_5)
                 
                 c = RequestContext(request, {
                     'csrf': get_token(request),
