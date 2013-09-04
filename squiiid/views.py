@@ -208,7 +208,7 @@ def upload(request):
         _image = Image.open(image)
         logger.info('got past Image.open')
         _tool, _iso, _aperture, _exposure, _focal_length = get_exif(_image)
-        
+        logger.info('got past get_exif')
         if tool == '':
             tool = _tool
         if iso == '':
@@ -328,7 +328,7 @@ def upload(request):
     add_to_tags(new_squiiid_image, product_5)
 
 def add_to_tags(image, phrase):
-    
+    phrase = str(phrase)
     if phrase != '':
         if Tag.objects.filter(image=image).filter(phrase=phrase).count() == 0:
             new_tag = Tag(image=image,
