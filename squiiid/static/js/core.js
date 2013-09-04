@@ -296,6 +296,14 @@ var myphotos = [
 			$(".error").css("display","none")
 		});
 	}
+// Uploader: Keeps form from submitting on enter
+	$('#upload-form').bind("keyup", function(e) {
+		var code = e.keyCode || e.which; 
+		if (code  == 13) {               
+			e.preventDefault();
+			return false;
+		}
+	});
 
 //--------------------------------------------------------
 //
