@@ -324,6 +324,10 @@ var myphotos = [
 		if ($("#section-products").attr("rel") == "closed") {switchsection("section-products");}
 		else {}
 	});
+// Uploader: User clicks "iii'm done", show loading layer until page is refreshed
+	function showloading() {
+		$("#loading").css("display","block").animate({'opacity':'1'},300);
+	}
 // Checkbox toggle in settings
 	$("body").delegate("#settings-checkbox", "click", function(){
 		if ($("#settings-checkbox").attr("rel") == "0") {
