@@ -228,32 +228,19 @@ var myphotos = [
 		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 	}
 
-// Function for loading in "My Photos"
-	function loadMyPhotos() {
-		/*$.each(myphotos, function (i, photo) {
-			$photo = $("<img />").addClass("a-photo").attr("src",photo.url);
-
-			$photohovertext = $("<p />").addClass("photo-hover-text").html("<b>"+photo.likes+" Likes</b> <i>x</i> <b>"+photo.clicks+" Clicks</b> <i>x</i> <b>"+photo.hovers+" Hovers</b> <i>x</i> <b>"+photo.reblogs+" Reblogs</b><br/><a href='#' class='photo-share-link'>Share</a> <i>/</i> <a href='#' class='photo-edit-link'>Edit</a>");
-			// Calculate whether the photo is Portrait or Landscape, and what the proportions are
-			if (photo.width >= photo.height) {
-				$proportion = (photo.width / photo.height);
-				$phototype = "Landscape";
-			}
-			else {
-				$proportion = (photo.height / photo.width);
-				$phototype = "Portrait";
-			}
-			$photohover = $("<div />").addClass("photo-hover-box").attr("id","photo-hover-"+photo.id).attr("rel",$proportion).attr("value",$phototype).append($photohovertext);
-
-			$photobox = $("<div />").addClass("photo-box").append($photohover).append($photo);
-			$photoholder = $("<div />").addClass("photo-holder").append($photobox);
-
-			$("#my-photos").append($photoholder);
-		});*/
-	}
-
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
+		// $(".a-photo").each(function(index, box){
+		// 	$imgheight = $(box).height();
+		// 	$imgwidth = $(box).width();
+		// 	$imgoffset = Number($imgheight)* -1;
+		// 	$(box).siblings(".photo-hover-box").css({
+		// 		'width': $imgwidth,
+		// 		'height': $imgheight,
+		// 		'margin-bottom': $imgoffset,
+		// 	});
+		// 	$(box).attr("rel",$imgoffset);
+		// });
 		$(".a-photo").each(function(index, box){
 			$imgheight = $(box).height();
 			$imgwidth = $(box).width();
@@ -337,19 +324,6 @@ var myphotos = [
 		if ($("#section-products").attr("rel") == "closed") {switchsection("section-products");}
 		else {}
 	});
-// Uploader: User submits, animation on "iii'm done" button
-	$("body").delegate("#upload-button", "click", function(){
-		$("#upload-button").text("iiinking");
-		window.setTimeout(function(){
-			$("#upload-button").text("iiinking.");
-		}, 800);
-		window.setTimeout(function(){
-			$("#upload-button").text("iiinking..");
-		}, 1600);
-		window.setTimeout(function(){
-			$("#upload-button").text("iiinking...");
-		}, 2400);
-	});
 // Checkbox toggle in settings
 	$("body").delegate("#settings-checkbox", "click", function(){
 		if ($("#settings-checkbox").attr("rel") == "0") {
@@ -395,30 +369,43 @@ var myphotos = [
 		getfaded();
 	});
 // Fade in handlers
-	// 1. Photo Sharing
-	//did onclick instead
-	/*$("body").delegate(".photo-share-link", "click", function(){
-		opensesame('sharing');
-	});*/
-	// 2. Settings
+	// 1. Settings
 	$("body").delegate("#nav-settings", "click", function(){
 		opensesame('settings');
 	});
-	// 3. Search
+	// 2. Search
 	$("body").delegate("#nav-search", "click", function(){
 		opensesame('search');
 	});
-	// 4. Uploader
+	// 3. Uploader
 	$("body").delegate("#nav-upload", "click", function(){
 		opensesame('uploader');
 	});
 
 // On document ready, load photos
 	$(document).ready(function(){
-		if ($("#my-photos") !== "" || $("#my-photos") !== null) {
-			loadMyPhotos();
-		}
-		sizeOverlays();
+		$(".a-photo").each(function(index, box){
+			$imgheight = $(box).height();
+			$imgwidth = $(box).width();
+			$imgoffset = Number($imgheight)* -1;
+			$(box).siblings(".photo-hover-box").css({
+				'width': $imgwidth,
+				'height': $imgheight,
+				'margin-bottom': $imgoffset,
+			});
+			$(box).attr("rel",$imgoffset);
+			$(box).load(function(){
+				$imgheight = $(this).height();
+				$imgwidth = $(this).width();
+				$imgoffset = Number($imgheight)* -1;
+				$(this).siblings(".photo-hover-box").css({
+					'width': $imgwidth,
+					'height': $imgheight,
+					'margin-bottom': $imgoffset,
+				});
+				$(this).attr("rel",$imgoffset);
+			});
+		});
 	});
 
 // On window resize, fix sizing of overlays
