@@ -235,7 +235,7 @@ nav{width:110px;height:110px;position:fixed;top:40px;right:40px;z-index:666}
 #nav-logout{background-image:url(/static/assets/images/nav-logout-off.svg)}
 .my-photos{width:100%;height:auto;float:left}
 .photo-holder{width:100%;height:auto;float:left}
-.photo-box{width:60%;float:left;height:auto;margin-left:20%;margin-right:20%;z-index:6;margin-top:100px;margin-bottom:100px;}.photo-box .a-photo{width:100%;height:auto;border:0;float:left;z-index:5}
+.photo-box{width:40%;float:left;height:auto;margin-left:30%;margin-right:30%;z-index:6;margin-top:100px;margin-bottom:100px;}.photo-box .a-photo{width:100%;height:auto;border:0;float:left;z-index:5}
 .photo-hover-box{float:left;width:100%;background-color:rgba(236,84,68,0.7);position:relative;z-index:9;opacity:0;transition:opacity .25s ease;-moz-transition:opacity .25s ease;-o-transition:opacity .25s ease;-webkit-transition:opacity .25s ease;overflow:hidden}
 .photo-box:hover .photo-hover-box{opacity:1}
 .photo-hover-text{width:80%;height:60px;float:left;position:relative;top:50%;margin:-30px 10% 0 10%;font-family:'Courier New',Courier,sans-serif;font-size:16px;text-align:center;font-weight:700}.photo-hover-text b{font-weight:inherit;color:#fff}
