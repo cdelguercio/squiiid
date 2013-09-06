@@ -30,7 +30,7 @@
 			<div class="uploader">
 				<form id="upload-form" method="POST" enctype="multipart/form-data" action="/first_upload/">
 					{% csrf_token %}
-					<input onclick="$(this).valid();upload_validate();dropzone.processQueue();showloading();return false;" type="submit" value="iii'm done" class="upload-button"/>
+					<input onclick="$(this).valid();upload_validate();dropzone.processQueue();return false;" type="submit" value="iii'm done" class="upload-button"/>
 					<div id="dropzone" class="dropzone"></div>
 					<div class="upload-details">
 						<!-- Tags -->
@@ -164,6 +164,7 @@
 					  addedfile = true
 					});
 					this.on("sending", function(file, xhr, formData) {
+						showloading();
 						formData.append("title", document.getElementById("title").value);
 						formData.append("tags", document.getElementById("tags").value);
 						formData.append("contributor_type_1", document.getElementById("contributor_type_1").value);
