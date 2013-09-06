@@ -10,7 +10,8 @@
 		.squiiid-ink,
 		.squiiid-links,
 		.squiiid-reblog,
-		.squiiid-reblog textarea {
+		.squiiid-reblog textarea,
+		.squiiid-reblog label {
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
@@ -106,19 +107,18 @@
 			-webkit-transition:opacity 0.25s ease;
 			-moz-transition:opacity 0.25s ease;
 		}
-		.squiiid-reblog label,
-		.squiiid-reblog textarea {
-			width:50%;
-			max-width:50%;
-			margin-left:25%;
-			margin-right:25%;
+		.squiiid-reblog p {
+			width:80%;
+			max-width:80%;
+			margin-left:10%;
+			margin-right:10%;
 			float:left;
 			display: block;
 		}
-		.squiiid-reblog label {
-			height:5%;
-			margin-top:7%;
-			margin-bottom:10%;
+		.squiiid-reblog p {
+			height:auto;
+			margin-top:5%;
+			margin-bottom:5%;
 			text-align: center;
 			font-family: 'Courier New', Courier, sans-serif;
 			color:#ec5444;
@@ -126,14 +126,39 @@
 			font-weight:300;
 		}
 		.squiiid-reblog textarea {
-			height:36%;
+			width:60%;
+			max-width:60%;
+			margin-left:0%;
+			margin-right:10%;
+			float:left;
+			display: block;
+			height:17%;
 			max-height:36%;
 			border:0px;
 			background-color: #000;
 			color:#FFF;
 			z-index:inherit;
 			padding:15px;
+			overflow: hidden;
 		}
+		.squiiid-reblog label {
+			width:20%;
+			height:17%;
+			float:left;
+			margin-left:10%;
+			display: block;
+			color:#FFF;
+			font-family: 'Courier New', Courier, sans-serif;
+			text-align: center;
+			background-color: #111;
+			padding-top: 5.2%;
+		}
+		.squiiid-reblog textarea:nth-child(3),
+		.squiiid-reblog label:nth-child(2) {background-color: #000;}
+		.squiiid-reblog textarea:nth-child(5),
+		.squiiid-reblog label:nth-child(4) {background-color: #111;}
+		.squiiid-reblog textarea:nth-child(7),
+		.squiiid-reblog label:nth-child(6) {background-color: #222;}
 	</style>
 	<div class="squiiid-ink" id="squiiid-ink-{{image.id}}">
 		<div class="squiiid-links" id="squiiid-links-{{image.id}}">
@@ -144,8 +169,10 @@
 			</span>
 		</div>
 		<div class="squiiid-reblog" id="squiiid-reblog-{{image.id}}" onclick="closereblog()">
-			<label>Embed this code on your website or blog</label>
-			<textarea onmouseover="javascript:this.focus();this.select();"><object data="http://squiiid.com/image/{{image.id}}/" /></textarea>
+			<p>Squiiid photos are available in three sizes<br/>To embed it in your website or blog, copy<br/>and make sure to click "edit HMTL" before pasting</p>
+			<label>200px</label><textarea onmouseover="javascript:this.focus();this.select();"><object data="http://squiiid.com/image/{{image.id}}/" width="200" height="{{image.heights}}"/></textarea>
+			<label>500px</label><textarea onmouseover="javascript:this.focus();this.select();"><object data="http://squiiid.com/image/{{image.id}}/" width="500" height="{{image.heightm}}"/></textarea>
+			<label>900px</label><textarea onmouseover="javascript:this.focus();this.select();"><object data="http://squiiid.com/image/{{image.id}}/" width="900" height="{{image.heightl}}"/></textarea>
 		</div>
 	</div>
 	<img src="{{MEDIA_URL}}{{image.image_1}}" id="squiiid-img-{{image.id}}-1" class="squiiid-img"/>
