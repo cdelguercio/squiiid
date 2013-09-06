@@ -383,7 +383,7 @@ var myphotos = [
 	});
 
 // On document ready, load photos
-	$(document).ready(function(){
+	$(window).ready(function(){
 		$(".a-photo").each(function(index, box){
 			$imgheight = $(box).height();
 			$imgwidth = $(box).width();
