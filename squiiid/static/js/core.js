@@ -123,51 +123,12 @@ $("#inviteconfirm").on("click",function(){
 
 //--------------------------------------------------------
 //
-//					Dummy Photo Content
-//
-//--------------------------------------------------------
-
-var myphotos = [
-	{
-		"id" : 0,
-		"width" : 1280,
-		"height" : 1920,
-		"likes" : 177,
-		"clicks" : 891,
-		"hovers" : 677,
-		"reblogs" : 1208,
-		"url" : "/static/assets/images/bg-dash1.jpg"
-	},
-	{
-		"id" : 1,
-		"width" : 1920,
-		"height" : 1080,
-		"likes" : 22,
-		"clicks" : 344,
-		"hovers" : 514,
-		"reblogs" : 770,
-		"url" : "/static/assets/images/bg-dash2.jpg"
-	},
-	{
-		"id" : 2,
-		"width" : 1100,
-		"height" : 1650,
-		"likes" : 816,
-		"clicks" : 1480,
-		"hovers" : 6760,
-		"reblogs" : 666,
-		"url" : "/static/assets/images/bg-dash3.jpg"
-	}
-]
-
-//--------------------------------------------------------
-//
 //						Operations
 //
 //--------------------------------------------------------
 
 // Function for fading out layers
-	function getfaded() {
+	function hidelayers() {
 		// Looks at all the "layers" and determines if they are visible or not
 		// If visible, fades them out
 
@@ -200,32 +161,6 @@ var myphotos = [
 		$("#omgwhiteeverywhere").animate({'opacity':0},300, function(){
 			$("#omgwhiteeverywhere").css("display","none");
 		});
-	}
-
-// Function for fading in layers
-	function opensesame(rastaman) {
-		// rastaman determines which layer gets shown
-		// 		sharing = The photo sharing modal from dashboard photo's "Share" link
-		// 		settings = The settings panel
-		// 		search = The search layer
-		// 		uploader = The photo uploading tool
-
-		if (rastaman == "sharing") {
-			$("#photosharing").css("display","block").animate({'opacity':1},300);
-			document.getElementById('share-embed-code').innerHTML = '<object src="http://squiiid.com/image/' + image_id + '/" />'
-		}
-		if (rastaman == "settings") {
-			$("#settings").css("display","block").animate({'opacity':1},300);
-		}
-		if (rastaman == "search") {
-			$("#search").css("display","block").animate({'opacity':1},300);
-		}
-		if (rastaman == "uploader") {
-			$("#uploader").css("display","block").animate({'opacity':1},300);
-		}
-
-		// Always fade in the white overlay
-		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 	}
 
 // Function for sizing overlays on "My Photos"
@@ -350,8 +285,8 @@ var myphotos = [
 		$("#share-embed-code").focus().select();
 	});
 	// Clicks on the textarea auto select all
-	$("body").delegate("#share-embed-code", "click", function(){
-		$("#share-embed-code").focus().select();
+	$("body").delegate(".share-embed-code", "click", function(){
+		$(this).focus().select();
 	});
 	// Hide
 	$("body").delegate("#share-embed-x", "click", function(){
@@ -362,29 +297,37 @@ var myphotos = [
 // Fade out handlers
 	// The X button on the photo-sharing menu
 	$("body").delegate("#photo-share-x", "click", function(){
-		getfaded();
+		hidelayers();
 	});
 	// Clicking the Squiiid logo
 	$("body").delegate("#squiiid-logo", "click", function(){
-		getfaded();
+		hidelayers();
 	});
 	// The "save" popsicle in settings
 	$("body").delegate("#settings-save", "click", function(){
-		getfaded();
+		hidelayers();
 	});
 // Fade in handlers
 	// 1. Settings
 	$("body").delegate("#nav-settings", "click", function(){
-		opensesame('settings');
+		$("#settings").css("display","block").animate({'opacity':1},300);
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 	});
 	// 2. Search
 	$("body").delegate("#nav-search", "click", function(){
-		opensesame('search');
+		$("#search").css("display","block").animate({'opacity':1},300);
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 	});
 	// 3. Uploader
 	$("body").delegate("#nav-upload", "click", function(){
-		opensesame('uploader');
+		$("#uploader").css("display","block").animate({'opacity':1},300);
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 	});
+	// 4. Photo Sharing
+	function showphotoshare() {
+		$("#photosharing").css("display","block").animate({'opacity':1},300);
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+	}
 
 // On document ready, load photos
 	$(window).ready(function(){
