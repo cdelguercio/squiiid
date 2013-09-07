@@ -512,7 +512,7 @@ def invite(request):
         invite = Invite(email=email,blog_url=blog_url,name=name)
         invite.save()
 
-        return HttpResponse('/')
+        return HttpResponse(reverse('squiiid.views.landing'))
 
     c = RequestContext(request, {
             'csrf': get_token(request),
