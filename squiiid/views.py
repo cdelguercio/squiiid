@@ -37,6 +37,18 @@ def index(request):
         })
         return render_to_response('index.html', c)
 
+def landing(request):
+    if request.user.is_authenticated():
+        c = RequestContext(request, {
+            'csrf': get_token(request),
+        })
+        return render_to_response('landing.html', c)
+    else:
+        c = RequestContext(request, {
+            'csrf': get_token(request),
+        })
+        return render_to_response('landing.html', c)
+
 def dashboard(request):
     if request.user.is_authenticated():
         images = SquiiidImage.objects.filter(profile_id=request.user.get_profile().id)
@@ -491,14 +503,22 @@ def reblog(request, image_id):
     
     return HttpResponse('')
 
-def invite(blog_urlrequest):
-    email = request.POST['email']
-    blog_url = request.POST['blog_url']
-    
-    invite = Invite(email=email,blog_url=blog_url)
-    invite.save()
+def invite(request):
+    if request.method == 'POST':
+        email = request.POST.get('email','')
+        blog_url = request.POST.get('blog_url','')
+        name = request.POST.get('name','')
+        
+        invite = Invite(email=email,blog_url=blog_url,name=name)
+        invite.save()
 
-    return HttpResponse('')
+        return HttpResponse('/')
+
+    c = RequestContext(request, {
+            'csrf': get_token(request),
+        })
+
+    return render_to_response('request_invite.html')
 
 def terms_of_use(request):
     return render_to_response('termsofuse.html')

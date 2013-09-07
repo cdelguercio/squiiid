@@ -67,6 +67,8 @@ urlpatterns = patterns('',
     url(r'^first_upload/$', 'squiiid.views.first_upload', name='first_upload'),
     url(r'^first_settings/$', 'squiiid.views.first_settings', name='first_settings'),
     url(r'^terms_of_use/$', 'squiiid.views.terms_of_use', name='terms_of_use'),
+    url(r'^landing/$', 'squiiid.views.landing', name='landing'),
+    url(r'^request_invite/$', 'squiiid.views.invite', name='invite'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

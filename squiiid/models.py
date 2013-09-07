@@ -94,8 +94,9 @@ class Tag(models.Model):
         return unicode('')
     
 class Invite(models.Model):
-    email = models.CharField(max_length=10000)
-    blog_url = models.CharField(max_length=10000)
+    email = models.CharField(max_length=1000)
+    blog_url = models.CharField(max_length=1000)
+    name = models.CharField(max_length=1000)
 
     def __unicode__(self):
         return unicode('')

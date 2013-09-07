@@ -84,8 +84,9 @@ class Migration(SchemaMigration):
         # Adding model 'Invite'
         db.create_table(u'squiiid_invite', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('email', self.gf('django.db.models.fields.CharField')(max_length=10000)),
-            ('blog_url', self.gf('django.db.models.fields.CharField')(max_length=10000)),
+            ('email', self.gf('django.db.models.fields.CharField')(max_length=1000)),
+            ('blog_url', self.gf('django.db.models.fields.CharField')(max_length=1000)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=1000)),
         ))
         db.send_create_signal(u'squiiid', ['Invite'])
 
@@ -143,9 +144,10 @@ class Migration(SchemaMigration):
         },
         u'squiiid.invite': {
             'Meta': {'object_name': 'Invite'},
-            'blog_url': ('django.db.models.fields.CharField', [], {'max_length': '10000'}),
-            'email': ('django.db.models.fields.CharField', [], {'max_length': '10000'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            'blog_url': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
+            'email': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '1000'})
         },
         u'squiiid.profile': {
             'Meta': {'object_name': 'Profile'},

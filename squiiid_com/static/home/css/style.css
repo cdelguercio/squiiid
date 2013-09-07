@@ -1,0 +1,381 @@
+html
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body
+{
+  margin: 0;
+  padding: 0 0 0 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: #fff;
+ 
+}
+
+
+*
+{
+  margin: 0;
+  padding: 0;
+  outline: none;
+ 
+}
+
+  body,
+  div,
+  dl,dt,dd,
+  ul,ol,li,
+  h1,h2,h3,h4,h5,h6,
+  pre,
+  form,fieldset,
+  input,textarea,
+  a,
+  p,blockquote,
+  th,td 
+  { 
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+  }
+    
+  img 
+  {
+   border: 0
+  }
+    
+  address,
+  caption,
+  cite,
+  code,
+  dfn,
+  em,
+  strong,
+  th,
+  var 
+  {
+    font-style: normal;
+    font-weight: normal;
+  }
+    
+  ol,ul 
+  {
+    list-style: none;
+  }
+    
+  h1,h2,h3,h4,h5,h6 
+  {
+    font-size: 100%;
+    font-weight: normal;
+  }
+
+/* ---------------------------------- */
+
+/* @HTML5 */
+
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary, mark {  
+  display:block;
+}
+
+
+/* ---------------------------------- */
+
+/* @FONT-FACE */
+
+
+/* ---------------------------------- */
+
+/* @Global */
+
+* 
+{
+  line-height: 14px;
+  font-size: 11px;
+  font-family: Courier,Monaco,Helvetica, Arial, Verdana, sans-serif ;
+  font-style: normal;
+  
+  font-weight: normal !important;
+
+}
+
+  p
+  {
+    margin: 0 0 20px 0;
+    color: #4d4d4d;
+    font-size: 11px;
+    line-height: 18px;
+  }
+  
+    p * {
+      font-size: 11px;
+    }
+  
+  a
+  {
+    color: #444;
+    text-decoration: none;
+    font-size: 11px;
+  }
+ 
+  a:hover {
+    color: #000;
+  }
+  
+  
+  h1,h2 {
+    font-weight: bold;
+
+  }
+  
+  h1 em, h2 em {
+    font-weight: normal;
+
+  }
+
+
+/* ---------------------------------- */
+
+/* @Layout */
+
+
+div#wrapper {
+  min-height: 1000px;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 50px 0;
+}
+
+header {
+  margin: 0
+}
+
+
+
+article { 
+  background: #fff; 
+  position: fixed; 
+  top: 0 ; 
+  left: 0; 
+  width: 100%; 
+  min-height: 100%;  
+  -moz-box-shadow: 0 0 12px #666; 
+  -webkit-box-shadow: 0 0 12px #666; 
+  z-index:99999;
+}
+
+  article figure { 
+    background: transparent;
+    position: fixed; 
+    top: 250px; 
+    min-height: 400px;  
+    left: 500px; 
+    margin: 0; 
+    padding: 0;
+  }
+   
+  article header {
+    position: absolute; 
+    margin: 50px 0 0 0;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    top: 0;
+    padding: 0 0 0 10px;
+  }
+
+
+  article h1 {
+    width: 200px;    
+    margin: 0 0 0 0;
+    font-size:90pt;
+    line-height:90pt;
+    letter-spacing: -3.2px;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    color: #b3b3b3;
+  }
+
+    article p {
+      font-family: Courier;
+      font-style: normal;
+      line-height: 18px;
+      color: #777;
+      font-size: 11px;
+    }
+    
+   
+        
+/* ---------------------------------- */
+
+/* Media */
+
+    figure img {
+      display: block;
+      
+    }
+    
+
+  .title-page h1, .title-page p, .title-page span, .credit h1, .credit span {
+    text-align: center;
+    font-size:90pt;
+    line-height:90pt;
+    letter-spacing: -3.2px;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    color: #b3b3b3;
+    text-align:left;
+  }
+  .title-page span {
+      color: #ec5444;
+  }
+  .title-page h1 {
+    width: 100%;
+  }
+  .title-page header {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px 0 0 -623px !important;
+    width: 996px;
+    height: 350px;
+    padding: 0;
+  }
+
+  .credit {
+    background-color: #ec5444;
+  }
+  .credit header {
+    width: 1256px;
+    height: 400px;
+    margin: 50px 0 0 20px;
+  }
+  .credit h1 {
+    width: 100%;
+    margin-top: 100px;
+  }
+  .credit span {
+    color: #fff;
+  }
+
+
+#screen1,#screen2, #screen3, #screen4 {
+  background: url("/static/home/screen.png") no-repeat #fff;
+  margin-left: 300px;
+
+}
+#screen1 figure img, #screen2 figure img{
+  margin: 73px auto;
+}
+#screen3 figure img {
+  margin:0;
+}
+#screen1 figure, #screen2 figure{
+  margin-left:178px;
+  left:auto;
+}
+#screen3 figure {
+  margin-left: -156px;
+}
+.overlay
+    {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    opacity: 0.9;
+    height:282px;
+    width:100%;
+    text-align:center;
+
+    }
+.overlay2 {
+  width: 690px;
+  position:absolute;
+  display:none;
+  z-index: 5000;
+  margin-top: 100px;
+  margin-left: 45px;
+  background-color:#fff;
+  opacity: 0.9;
+  height: 282px;
+  text-align:center;
+}
+.overlay2 a {
+  color:#3fa9f5;
+  border-bottom: 1px #b3b3b3 dotted;
+}
+.overlay2 a:active {
+  border-bottom: none;
+}
+.overlay h3, .overlay2 h3, .overlay3 h3 {
+  font-family: "Times New Roman";
+  color: #404040;
+  font-size: 8.85pt;
+  line-height: 10.62pt;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+  margin-top: 100px;
+  text-transform: uppercase;
+}
+.overlay p, .overlay2 p {
+  font-family: "Courier";
+  font-size:8.85pt;
+  line-height:19.47pt;
+  color: #9f9f9f;
+}
+.overlay3 {
+  display:none;
+  background-color:#fff;width:700px;opacity:0.9;height:340px;z-index:999;position:absolute;text-align:center;margin-left:34px;padding-top:150px;padding-right:20px;
+
+}
+
+video {
+  min-height: 100%;
+  min-width: 100%;
+}
+.signin {
+  bottom:50px;
+  position:fixed;
+  left:50px;
+  text-align:center;
+}
+.signin a.bot_link {
+  font-size:15pt;
+  font-family: "Helvetica";
+  color:#ec5444;
+  margin-left: 50px;
+}
+
+.figure_special {
+  margin-left: 34px !important;
+}
+article #last {
+  font-family: "Courier";
+  font-size: 11pt;
+
+}
+#last a {
+  border-bottom: 1px #b3b3b3 dotted;
+}
+#last a:active {
+  border-bottom: none;
+}
+.orange {
+  color: #ec5444;
+}
+.lgray {
+  color:#b3b3b3;
+}
+.pager {
+  position:absolute;
+  margin-top:450px;
+  margin-left:380px;
+}
+
+#play {
+  position:fixed;
+  top:40px;
+  right: 50px;
+}
+
