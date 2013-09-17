@@ -365,9 +365,13 @@ def upload_complete(request):
 
 def image(request, image_id):
     image = SquiiidImage.objects.get(pk=image_id)
+    ratio = image.image.height / image.image.width
     c = RequestContext(request, {
             'csrf': get_token(request),
             'image': image,
+            'small_height':math.floor(200.0 * ratio) + 1,
+            'medium_height':math.floor(500.0 * ratio) + 1,
+            'large_height':math.floor(900.0 * ratio) + 1,
         })
     return render_to_response('image.html', c)
 

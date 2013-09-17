@@ -34,7 +34,7 @@ def name_file(instance, filename):
 
 class SquiiidImage(models.Model):
     profile = models.ForeignKey(Profile)
-    image = models.FileField(upload_to=name_file)
+    image = models.ImageField(upload_to=name_file)
     image_1 = models.FileField(upload_to='images/', null=True, blank=True)
     image_2 = models.FileField(upload_to='images/', null=True, blank=True)
     likes = models.IntegerField(default=0)
