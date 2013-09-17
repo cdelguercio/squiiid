@@ -241,15 +241,14 @@ nav {
 	width:100%;
 	height:auto;
 	float:left;
+	padding-bottom:120px;
 }
-@slideheight: 860px;
 .photo-holder {
 	width:100%;
-	/*height:@slideheight;*/
 	height:auto;
 	float:left;
+	padding-top:120px;
 }
-@slidemargin: 200px;
 .photo-box {
 	width:40%;
 	position: relative;
@@ -257,12 +256,6 @@ nav {
 	margin-left:30%;
 	margin-right:30%;
 	z-index:6;
-	/*height:@slideheight - @slidemargin;*/
-	margin-top:@slidemargin/2;
-	margin-bottom:@slidemargin/2;
-	/*background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;*/
 	.a-photo {
 		width:100%;
 		height:auto;
@@ -282,7 +275,6 @@ nav {
 	.trans(opacity);
 	overflow: hidden;
 }
-.photo-box:hover .photo-hover-box{opacity: 1;}
 .photo-hover-text {
 	width:80%;
 	height:60px;
@@ -522,24 +514,22 @@ nav {
 	opacity: 0;
 	display: none;
 }
-.search-box {
-	width:250px;
-	height:250px;
+.search-field {
+	width:80%;
+	height:120px;
 	position: absolute;
 	top:50%;
-	left:50%;
-	margin:-125px 0px 0px -125px;
-	.round50;
-	background-color: @sq-red;
-	color:@white;
+	left:10%;
+	margin-top:-70px !important;
+	border:0px !important;
+	padding:0px !important;
+	.roundNone;
+	background-color: transparent;
+	color:#555;
+	font-size:90px;
+	font-weight: 100;
 	text-align: center;
 	.helv;
-	font-weight: 100;
-	text-transform: uppercase;
-	font-size: 40px;
-	line-height: 50px;
-	padding-top: 78px;
-	.boxSizing;
 }
 /*------------------------------------------*/
 /*				4. Uploader					*/

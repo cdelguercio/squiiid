@@ -245,6 +245,24 @@ $("#inviteconfirm").on("click",function(){
 //
 //--------------------------------------------------------
 
+
+// Dashboard: Image hover actions
+	// Mouse over
+	function dashphotomouseenter(imageid) {
+		$("#photo-hover-box-"+imageid).css("opacity","1");
+	}
+	$(".photo-box").on("mouseenter",function(){
+		$imageid = $(this).attr("value");
+		dashphotomouseenter($imageid);
+	});
+	// Mouse leave
+	function dashphotomouseleave(imageid) {
+		$("#photo-hover-box-"+imageid).css("opacity","0");
+	}
+	$(".photo-box").on("mouseleave",function(){
+		$imageid = $(this).attr("value");
+		dashphotomouseleave($imageid);
+	});
 // Uploader: User clicks on the icon for a section
 	// Uploader: Tags section
 	$("body").delegate("#upload-tags", "click", function(){
@@ -319,6 +337,12 @@ $("#inviteconfirm").on("click",function(){
 	$("body").delegate("#settings-save", "click", function(){
 		hidelayers();
 	});
+	// Hitting escape has the same effect as clicking the Squiiid Logo
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) {
+	  	hidelayers();
+	  }
+	});
 // Fade in handlers
 	// 1. Settings
 	$("body").delegate("#nav-settings", "click", function(){
@@ -329,6 +353,10 @@ $("#inviteconfirm").on("click",function(){
 	$("body").delegate("#nav-search", "click", function(){
 		$("#search").css("display","block").animate({'opacity':1},300);
 		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+		$("#search-field").select();
+	});
+	$("body").delegate("#search", "click", function(){
+		$("#search-field").select();
 	});
 	// 3. Uploader
 	$("body").delegate("#nav-upload", "click", function(){
