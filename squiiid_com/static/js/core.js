@@ -21,7 +21,6 @@ var image_id = 0;
 function prepphotoshare(_image_id) {
 	image_id = _image_id
 	var ratio = parseFloat(document.getElementById("a-photo-"+String(image_id)).clientHeight) / parseFloat(document.getElementById("a-photo-"+String(image_id)).clientWidth)
-	alert(document.getElementById("a-photo-"+String(image_id)).clientHeight)
 	var small_height = Math.floor(200.0 * ratio) + 1
 	var medium_height = Math.floor(500.0 * ratio) + 1
 	var large_height = Math.floor(900.0 * ratio) + 1

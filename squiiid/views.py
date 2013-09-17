@@ -307,7 +307,7 @@ def upload(request):
     _tags = tags.split(',')
     for _tag in _tags:
         new_tag = Tag(image=new_squiiid_image,
-                      phrase=_tag,
+                      phrase=_tag.strip(),
                       date=datetime.datetime.now())
         new_tag.save()
     
@@ -340,7 +340,7 @@ def upload(request):
     add_to_tags(new_squiiid_image, product_5)
 
 def add_to_tags(image, phrase):
-    phrase = str(phrase)
+    phrase = str(phrase).strip()
     if phrase != '':
         if Tag.objects.filter(image=image).filter(phrase=phrase).count() == 0:
             new_tag = Tag(image=image,
@@ -431,6 +431,14 @@ def edit(request, image_id):
                 
                 delete_tags(image)
                 
+                #tags
+                _tags = image.tags.split(',')
+                for _tag in _tags:
+                    new_tag = Tag(image=image,
+                                  phrase=_tag.strip(),
+                                  date=datetime.datetime.now())
+                    new_tag.save()
+                
                 add_to_tags(image, image.title)
                 add_to_tags(image, image.contributor_name_1)
                 add_to_tags(image, image.contributor_name_2)
@@ -458,6 +466,7 @@ def edit(request, image_id):
                 add_to_tags(image, image.product_3)
                 add_to_tags(image, image.product_4)
                 add_to_tags(image, image.product_5)
+                #add_to_tags(image, request.user.get_profile()) #TODO add username?
                 
                 c = RequestContext(request, {
                     'csrf': get_token(request),
@@ -526,3 +535,21 @@ def invite(request):
 
 def terms_of_use(request):
     return render_to_response('termsofuse.html')
+
+def search_form(request):
+    if request.POST.get('tag'):
+        return HttpResponseRedirect('/search/' + request.POST.get('tag') + '/')
+    return HttpResponseRedirect(reverse('squiiid.views.dashboard'))
+
+def search(request, tag):
+    tags = Tag.objects.filter(phrase=tag)
+    images = []
+
+    for tag in tags:
+        images.append(tag.image)
+
+    c = RequestContext(request, {
+            'csrf': get_token(request),
+            'images': images,
+        })
+    return render_to_response('search.html', c)

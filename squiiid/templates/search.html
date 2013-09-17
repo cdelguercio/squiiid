@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<meta name="description" content="Dashboard">
+<meta name="keywords" content="">
+<meta name="author" content="Squiiid">
+<head>
+	<title>Dashboard | Squiiid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- CSS -->
+	<link href='/static/css/squiiid.css' rel='stylesheet' type='text/css'>
+	<!-- Icons -->
+	<link rel="icon" href="/static/assets/images/favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 326dpi)" href="/static/assets/images/apple-touch-icon-114.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 163dpi)" href="/static/assets/images/apple-touch-icon-57.png">
+	<link rel="apple-touch-icon-precomposed" media="(resolution: 132dpi)" href="/static/assets/images/apple-touch-icon-72.png">
+</head>
+<body id="body">
+	<!-- Dashboard Elements -->
+	<div class="dashboard">
+		<!-- Logo -->
+		<div class="dash-logo" id="squiiid-logo"></div>
+		<!-- Etra Layers (Errors, first time uses, notifications, modals dialogs) -->
+		<div id="error" class="error">
+			<p><b>Oh no!</b></br>You forgot to do x, y, and z. Oxford comma.<br/><img id="error-x" src="/static/assets/images/icon-x-red.svg" /></p>
+		</div>
+		<div id="loading" class="loading"></div>
+		<!-- Navigation -->
+		<nav>
+			<div class="nav-item" id="nav-search"></div>
+		</nav>
+		<!-- Layer 2: Photo Sharing -->
+		<div class="layer" id="photosharing">
+			<div class="photo-share">
+				<a class="share-tumblr" href="#">tumblr</a>
+				<a class="share-wp" href="#">wordpress</a>
+				<a class="share-blogger" href="#">blogger</a>
+				<a class="share-embed" id="share-embed">&#60;&#47;&#62;</a>
+				<img id="photo-share-x" src="/static/assets/images/icon-x-red.svg" />
+				<div class="share-embed-box" id="share-embed-box">
+					<p>Squiiid photos are available in three sizes<br/>To embed it in your website or blog, copy<br/>and make sure to click "edit HMTL" before pasting</p>
+					<label>200px</label>
+					<label>500px</label>
+					<label>900px</label>
+					<textarea class="share-embed-code" id="share-embed-small">Dynamically insert embed code here</textarea>
+					<textarea class="share-embed-code" id="share-embed-medium">Dynamically insert embed code here</textarea>
+					<textarea class="share-embed-code" id="share-embed-large">Dynamically insert embed code here</textarea>
+					<img id="share-embed-x" src="/static/assets/images/icon-check-black.svg" />
+				</div>
+			</div>
+		</div>
+		<!-- Layer 3: Search -->
+		<div class="layer" id="search">
+			<form method="POST" action="/search_form/">
+				<input placeholder="start typing" class="search-field" name="tag" id="search-field" type="text"/>
+			</form>
+		</div>
+		<!-- Overlay -->
+		<div id="omgwhiteeverywhere"></div>
+		<!-- My Photos -->
+		<div class="my-photos" id="my-photos">
+			{% for image in images %}
+			<div class="photo-holder">
+				<div class="photo-box" value="{{image.id}}">
+					<div class="photo-hover-box" id="photo-hover-box-{{image.id}}">
+						<p class="photo-hover-text">
+						<b>{{image.likes}} Like{% if image.likes > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.clicks}} Click{% if image.clicks > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.hovers}} Hover{% if image.hovers > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.reblogs}} Reblog{% if image.reblogs > 1 %}s{% endif %}</b><br><a href="/image/details/{{image.id}}/" class="photo-edit-link">Details</a> <i>/</i> <a href="#" class="photo-share-link" onclick="prepphotoshare({{image.id}});showphotoshare();">Share</a>
+						</p>
+					</div>
+					<img id="a-photo-{{image.id}}" class="a-photo" src="/media/{{image.image}}" />
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script src="/static/js/jquery.validate.min.js"></script>
+	<script src="/static/js/form_validator.js"></script>
+	<script src="/static/js/core.js"></script>
+</body>
+</html>
