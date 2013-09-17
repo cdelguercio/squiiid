@@ -140,7 +140,9 @@
 		</div>
 		<!-- Layer 3: Search -->
 		<div class="layer" id="search">
-			<div class="search-box">Coming<br/>soon</div>
+			<form>
+				<input placeholder="start typing" class="search-field" id="search-field" type="text"/>
+			</form>
 		</div>
 		<!-- Layer 4: Settings -->
 		<div class="layer" id="settings">
@@ -175,8 +177,8 @@
 		<div class="my-photos" id="my-photos">
 			{% for image in images %}
 			<div class="photo-holder">
-				<div class="photo-box">
-					<div class="photo-hover-box">
+				<div class="photo-box" value="{{image.id}}">
+					<div class="photo-hover-box" id="photo-hover-box-{{image.id}}">
 						<p class="photo-hover-text">
 						<b>{{image.likes}} Like{% if image.likes > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.clicks}} Click{% if image.clicks > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.hovers}} Hover{% if image.hovers > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.reblogs}} Reblog{% if image.reblogs > 1 %}s{% endif %}</b><br><a href="/edit/{{image.id}}/" class="photo-edit-link">Edit</a> <i>/</i> <a href="#" class="photo-share-link" onclick="image_id={{image.id}};showphotoshare();">Share</a>
 						</p>
