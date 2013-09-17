@@ -297,10 +297,14 @@ $("#inviteconfirm").on("click",function(){
 		if ($("#settings-checkbox").attr("rel") == "0") {
 			$("#settings-checkbox").attr("rel","1");
 			$("settings-checkbox-hidden").attr("value","1");
+			$("#first-settings-save").css("display","block").animate({'opacity':'1'},250);
 		}
 		else {
 			$("#settings-checkbox").attr("rel","0");
 			$("settings-checkbox-hidden").attr("value","0");
+			$("#first-settings-save").animate({'opacity':'0'},250,function(){
+				$("#first-settings-save").css("display","none");
+			});
 		}
 	});
 // Hide Error Layer when X is clicked
