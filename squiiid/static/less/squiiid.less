@@ -473,6 +473,7 @@ nav {
 .settings-label-light {
 	color:@sq-grey2;
 }
+.first-settings-save,
 .settings-save {
 	width:20%;
 	height:auto;
@@ -487,8 +488,10 @@ nav {
 	}
 	margin:30px 40% 0px 40%;
 	cursor: pointer;
-	.trans(opacity);
 }
+.settings-save {.trans(opacity);}
+.first-settings-save {opacity: 0;display: none;float:left;}
+.first-settings-save:hover,
 .settings-save:hover {
 	opacity: 0.6;
 }
@@ -499,7 +502,10 @@ nav {
 	background-color: @white;
 	cursor: pointer;
 	.trans(background-color);
+	.boxSizing;
+	border:2px solid #f6f6f6;
 }
+.settings-checkbox[rel="0"]:hover {background-color: #f6f6f6;}
 .settings-checkbox[rel="1"] {
 	background-color: @sq-red;
 	background-image: url(/static/assets/images/settings-check.svg);
