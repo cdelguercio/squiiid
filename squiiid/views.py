@@ -279,6 +279,7 @@ def upload(request):
                                      )
     new_squiiid_image.save()
     
+    #uncompressed
     _image = Image.open(new_squiiid_image.image)
     width, height = _image.size
     upper = 0
@@ -302,6 +303,42 @@ def upload(request):
     img_name = str(uuid.uuid4()) + '.' + img_ext
     image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
     new_squiiid_image.image_2.save(img_name, image_file)
+    
+    #compressed
+    compressed_ext = "jpeg"
+    _image_compressed = _image
+    buffer = StringIO.StringIO()
+    _image_compressed.save(buffer, "JPEG", quality=120)
+    img_ext = compressed_ext
+    img_name = str(uuid.uuid4()) + '.' + img_ext
+    image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+    new_squiiid_image.image_compressed.save(img_name, image_file)
+
+    width, height = _image.size
+    upper = 0
+    left = 0
+    try:
+        bounding_box_1 = (left, upper, width, int(height / 2))
+        bounding_box_2 = (left, int(height / 2) + 1, width, height)
+        image_1_compressed = _image.crop(bounding_box_1)
+        image_2_compressed = _image.crop(bounding_box_2)
+        
+        buffer = StringIO.StringIO()
+        image_1_compressed.save(buffer, "JPEG", quality=120)
+        img_ext = compressed_ext
+        img_name = str(uuid.uuid4()) + '.' + img_ext
+        image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+        new_squiiid_image.image_1_compressed.save(img_name, image_file)
+        
+        buffer = StringIO.StringIO()
+        image_2_compressed.save(buffer, "JPEG", quality=120)
+        img_ext = compressed_ext
+        img_name = str(uuid.uuid4()) + '.' + img_ext
+        image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+        new_squiiid_image.image_2_compressed.save(img_name, image_file)
+    except Exception as e:
+        logger.info("2")
+        logger.info(e)
     
     #tags
     _tags = tags.split(',')
