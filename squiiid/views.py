@@ -308,7 +308,7 @@ def upload(request):
     compressed_ext = "jpeg"
     _image_compressed = _image
     buffer = StringIO.StringIO()
-    _image_compressed.save(buffer, "JPEG", quality=120)
+    _image_compressed.save(buffer, "JPEG", quality=85)
     img_ext = compressed_ext
     img_name = str(uuid.uuid4()) + '.' + img_ext
     image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
@@ -324,14 +324,14 @@ def upload(request):
         image_2_compressed = _image.crop(bounding_box_2)
         
         buffer = StringIO.StringIO()
-        image_1_compressed.save(buffer, "JPEG", quality=120)
+        image_1_compressed.save(buffer, "JPEG", quality=85)
         img_ext = compressed_ext
         img_name = str(uuid.uuid4()) + '.' + img_ext
         image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
         new_squiiid_image.image_1_compressed.save(img_name, image_file)
         
         buffer = StringIO.StringIO()
-        image_2_compressed.save(buffer, "JPEG", quality=120)
+        image_2_compressed.save(buffer, "JPEG", quality=85)
         img_ext = compressed_ext
         img_name = str(uuid.uuid4()) + '.' + img_ext
         image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
