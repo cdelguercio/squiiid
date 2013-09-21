@@ -305,23 +305,34 @@ def upload(request):
     new_squiiid_image.image_2.save(img_name, image_file)
     
     #compressed
-    compressed_ext = "jpeg"
-    _image_compressed = _image
-    buffer = StringIO.StringIO()
-    _image_compressed.save(buffer, "JPEG", quality=85)
-    img_ext = compressed_ext
-    img_name = str(uuid.uuid4()) + '.' + img_ext
-    image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
-    new_squiiid_image.image_compressed.save(img_name, image_file)
-
-    width, height = _image.size
-    upper = 0
-    left = 0
+    try:
+        compressed_ext = "jpeg"
+        _image_compressed = _image
+        buffer = StringIO.StringIO()
+        width, height = _image_compressed.size
+        max_width = 1200
+        max_height = 1200
+        if width > max_width or height > max_height:
+            ratio = min(maxwidth/width, maxheight/height)
+            size = _image_compressed.size * ratio
+            _image_compressed.thumbnail(size, Image.ANTIALIAS)
+        _image_compressed.save(buffer, "JPEG", quality=85)
+        img_ext = compressed_ext
+        img_name = str(uuid.uuid4()) + '.' + img_ext
+        image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
+        new_squiiid_image.image_compressed.save(img_name, image_file)
+    
+        width, height = _image_compressed.size
+        upper = 0
+        left = 0
+    except Exception as e:
+        logger.info("compressed error")
+        logger.info(e)
     try:
         bounding_box_1 = (left, upper, width, int(height / 2))
         bounding_box_2 = (left, int(height / 2) + 1, width, height)
-        image_1_compressed = _image.crop(bounding_box_1)
-        image_2_compressed = _image.crop(bounding_box_2)
+        image_1_compressed = _image_compressed.crop(bounding_box_1)
+        image_2_compressed = _image_compressed.crop(bounding_box_2)
         
         buffer = StringIO.StringIO()
         image_1_compressed.save(buffer, "JPEG", quality=85)
@@ -337,6 +348,7 @@ def upload(request):
         image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
         new_squiiid_image.image_2_compressed.save(img_name, image_file)
     except Exception as e:
+        logger.info("compressed split error")
         logger.info(e)
     
     #tags
