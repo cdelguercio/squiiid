@@ -175,8 +175,8 @@
 			<label>900px</label><textarea onmouseover="javascript:this.focus();this.select();"><object data="http://squiiid.com/image/{{image.id}}/" width="900px" height="{{large_height}}"/></textarea>
 		</div>
 	</div>
-	<img src="{{MEDIA_URL}}{{image.image_1}}" id="squiiid-img-{{image.id}}-1" class="squiiid-img"/>
-	<img src="{{MEDIA_URL}}{{image.image_2}}" id="squiiid-img-{{image.id}}-2" class="squiiid-img" onload="getinky()"/>
+	<img src="{{MEDIA_URL}}{{image.image_1_compressed}}" id="squiiid-img-{{image.id}}-1" class="squiiid-img"/>
+	<img src="{{MEDIA_URL}}{{image.image_2_compressed}}" id="squiiid-img-{{image.id}}-2" class="squiiid-img" onload="getinky()"/>
 	<script>
 	function getinky() {
 		document.getElementById("squiiid-ink-{{image.id}}").style.height = (document.getElementById("squiiid-img-{{image.id}}-1").height + document.getElementById("squiiid-img-{{image.id}}-2").height);
