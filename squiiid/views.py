@@ -337,7 +337,6 @@ def upload(request):
         image_file = InMemoryUploadedFile(buffer, None, img_name, image.content_type, buffer.len, None)
         new_squiiid_image.image_2_compressed.save(img_name, image_file)
     except Exception as e:
-        logger.info("2")
         logger.info(e)
     
     #tags
