@@ -316,6 +316,7 @@ def upload(request):
             ratio = min(maxwidth/width, maxheight/height)
             size = _image_compressed.size * ratio
             _image_compressed.thumbnail(size, Image.ANTIALIAS)
+            logger.info("create thumbnail")
         _image_compressed.save(buffer, "JPEG", quality=85)
         img_ext = compressed_ext
         img_name = str(uuid.uuid4()) + '.' + img_ext
