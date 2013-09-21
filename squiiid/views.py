@@ -313,7 +313,7 @@ def upload(request):
         max_width = 1200
         max_height = 1200
         if width > max_width or height > max_height:
-            ratio = min(maxwidth/width, maxheight/height)
+            ratio = min(max_width/width, max_height/height)
             size = _image_compressed.size * ratio
             _image_compressed.thumbnail(size, Image.ANTIALIAS)
             logger.info("create thumbnail")
