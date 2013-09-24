@@ -9,14 +9,10 @@
     <link rel="apple-touch-startup-image" href="/static/home/splash_screen.png" />
     <link rel="stylesheet" media="all" href="/static/home/css/style.css" />
     <link rel="stylesheet" media="all" href="/static/home/css/colorbox.css" />
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/home/js/jquery.cycle.all.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="/static/home/js/jquery.colorbox-min.js"></script>
-
-
-
 
     <script src="/static/home/js/main.js"></script>
   </head>
@@ -325,11 +321,13 @@
       </div> 
 
     </div>
-    <!-- Layer 3: Search -->
-	<div class="layer" id="search">
-		<form method="POST" action="/search_form/">
-			<input placeholder="start typing" class="search-field" name="tag" id="search-field" type="text"/>
-		</form>
+    <div class="dashboard">
+   		<!-- Layer 3: Search -->
+		<div class="layer" id="search">
+			<form method="POST" action="/search_form/">
+				<input placeholder="start typing" class="search-field" name="tag" id="search-field" type="text"/>
+			</form>
+		</div>
 	</div>
 	<script src="/static/js/core.js"></script>
     <script type="text/javascript">
