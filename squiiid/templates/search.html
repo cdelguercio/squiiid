@@ -72,6 +72,8 @@
 					<img id="a-photo-{{image.id}}" class="a-photo" src="/media/{{image.image}}" />
 				</div>
 			</div>
+			{% empty %}
+			<!-- put stuff for no search results here -->
 			{% endfor %}
 		</div>
 	</div>
