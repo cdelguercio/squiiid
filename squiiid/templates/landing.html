@@ -325,7 +325,13 @@
       </div> 
 
     </div>
-    
+    <!-- Layer 3: Search -->
+	<div class="layer" id="search">
+		<form method="POST" action="/search_form/">
+			<input placeholder="start typing" class="search-field" name="tag" id="search-field" type="text"/>
+		</form>
+	</div>
+	<script src="/static/js/core.js"></script>
     <script type="text/javascript">
     var continueVar = true;
     var continueVar2 = true;
@@ -363,14 +369,7 @@
           $("#slider5,#slider6,#slider7,#slider8").show("slide", { direction: "left" }, 1000);
           $("#slider9,#slider10,#slider11,#slider12").show("slide", { direction: "up" }, 1000);
           $("#slider13,#slider14,#slider15,#slider16").show("slide", { direction: "down" }, 1000);
-
       }
- 
-
-
-      
-
-
     })
       $("#screen1 figure").mouseover(function(){
         $(".overlay").show();
@@ -390,7 +389,6 @@
         } 
       }); 
               
-
       $("#screen2").mouseover(function(){
         $(".overlay2").show();
       }).mouseout(function(){
@@ -420,9 +418,6 @@
       });
 
       $(".vimeo").colorbox({iframe:true, innerWidth:800, innerHeight:600});
-
-
-
     </script>
   </body>
  
