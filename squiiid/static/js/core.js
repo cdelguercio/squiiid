@@ -1,23 +1,6 @@
-// Javascript for Squiiid
-
-
-//--------------------------------------------------------
-//
-//						Home Page
-//
-//--------------------------------------------------------
-
-//	Keycodes:
-//		37: Left Arrow
-//		38: Up Arrow
-//		39: Right Arrow
-//		40: Down Arrow
-//		13: Enter
-
 var layerlogin = false;
 var layerinvite = false;
 var image_id = 0;
-
 function prepphotoshare(_image_id) {
 	image_id = _image_id
 	var ratio = parseFloat(document.getElementById("a-photo-"+String(image_id)).clientHeight) / parseFloat(document.getElementById("a-photo-"+String(image_id)).clientWidth)
@@ -30,110 +13,6 @@ function prepphotoshare(_image_id) {
 	var large_width = Math.floor(492.0 / ratio)
 	document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"" + large_width + "px\" height=\"492px\"></object>"
 }
-
-function loginShow() {
-	// Fade out INVITE slide whether open or not
-	$("#requestinvite").animate({opacity:0},300, function(){
-		$("#requestinvite").css("display","none");
-	});
-	layerinvite = false;
-	// Fade out LOGIN BUTTON
-	$("#button-login").animate({opacity:0},300, function(){
-		$("#button-login").css("display","none");
-	});
-	// Fade in LOGIN slide
-	$("#login").css("display","block").animate({opacity:1},300);
-	layerlogin = true;
-	// Fade in BACK BUTTON
-	$("#button-back").css("display","block").animate({opacity:1},300);
-}
-
-function inviteShow() {
-	// Fade out LOGIN slide whether open or not
-	$("#login").animate({opacity:0},300, function(){
-		$("#login").css("display","none");
-	});
-	layerinvite = true;
-	// Fade out LOGIN BUTTON
-	$("#button-login").animate({opacity:0},300, function(){
-		$("#button-login").css("display","none");
-	});
-	// Fade in INVITE slide
-	$("#requestinvite").css("display","block").animate({opacity:1},300);
-	layerlogin = false;
-	// Fade in BACK BUTTON
-	$("#button-back").css("display","block").animate({opacity:1},300);
-}
-function loginInviteHide() {
-	// Fade in LOGIN BUTTON
-	$("#button-login").css("display","block").animate({opacity:1},300);
-	// Fade out INVITE slide
-	$("#requestinvite").animate({opacity:0},300, function(){
-		$("#requestinvite").css("display","none");
-	});
-	layerinvite = false;
-	// Fade out LOGIN slide
-	$("#login").animate({opacity:0},300, function(){
-		$("#login").css("display","none");
-	});
-	layerlogin = false;
-	// Fade out BACK BUTTON
-	$("#button-back").animate({opacity:0},300, function(){
-		$("#button-back").css("display","none");
-	});
-}
-
-// User clicks "back arrow" button 
-$("#button-back").on("click",function(){
-	loginInviteHide();
-});
-// User clicks "sunshine" login button at the top
-$("#button-login").on("click",function(){
-	// If already displaying login view, hide it
-	if (layerlogin == true) {
-		loginInviteHide();
-	}
-	else {
-		loginShow();
-	}
-});
-
-// User clicks big squid button on home page
-$("#squid-button").on("click",function(){
-	// If already displaying login view, hide it
-	if (layerinvite == false) {
-		inviteShow();
-	}
-});
-// Request invite link at bottom of page
-$("#requestinvite2").on("click",function(){
-	// If already displaying login view, hide it
-	if (layerinvite == false) {
-		inviteShow();
-	}
-});
-
-
-var requestform = document.forms['requestinvite'];
-// Submit form
-function submitInviteRequest() {
-		requestform.submit();
-}
-// From request invite screen, user clicks submit
-$("#requestinvitebutton").on("click",function(){
-	submitInviteRequest();
-	// Hide Invite View
-	loginInviteHide();
-	// Show confirmation page
-	$("#inviteconfirm").css("display","block");
-});
-
-// User clicks anywhere on confirmation page
-$("#inviteconfirm").on("click",function(){
-	// Hide confirmation page
-	$("#inviteconfirm").css("display","none");
-});
-
 //--------------------------------------------------------
 //
 //						Operations
@@ -149,7 +28,7 @@ $("#inviteconfirm").on("click",function(){
 		if ($("#photosharing").css("display") == "block") {
 			$("#photosharing").animate({'opacity':0},300, function(){
 				$("#photosharing").css("display","none");
-			});
+			});	
 		}
 		// 2. Settings
 		if ($("#settings").css("display") == "block") {
@@ -162,6 +41,7 @@ $("#inviteconfirm").on("click",function(){
 			$("#search").animate({'opacity':0},300, function(){
 				$("#search").css("display","none");
 			});
+			searchlayer = false;
 		}
 		// 4. Uploader
 		if ($("#uploader").css("display") == "block") {
@@ -175,7 +55,6 @@ $("#inviteconfirm").on("click",function(){
 			$("#omgwhiteeverywhere").css("display","none");
 		});
 	}
-
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
 		// $(".a-photo").each(function(index, box){
@@ -329,6 +208,10 @@ $("#inviteconfirm").on("click",function(){
 			$("#share-embed-box").css("display","none")
 		});
 	});
+// Search Results : Clicking squiiid logo goes back
+	$("body").delegate("#squiiid-gohome", "click", function(){
+		window.history.back();
+	});
 // Fade out handlers
 	// The X button on the photo-sharing menu
 	$("body").delegate("#photo-share-x", "click", function(){
@@ -347,6 +230,18 @@ $("#inviteconfirm").on("click",function(){
 	  if (e.keyCode == 27) {
 	  	hidelayers();
 	  }
+	});
+// Show search layer when user starts typing
+	searchlayer = false; // Search layer is closed by default
+	$(document).keyup(function(e) {
+		if ((e.keyCode >= 48 && e.keyCode <= 90 && searchlayer == false) || (e.keyCode == 32 && searchlayer == false)) {
+	  		$("#search").css("display","block").animate({'opacity':1},300);
+			$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+			$("#search-field").select();
+			$("#search-field").val(String.fromCharCode(e.keyCode));
+			
+			searchlayer = true;
+		}
 	});
 // Fade in handlers
 	// 1. Settings
