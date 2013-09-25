@@ -182,7 +182,7 @@
 <body>
 	<a href="//squiiid.com"><img src="/static/assets/images/logo-black.svg" class="logo"/></a>
 	<div class="squiiid-details">
-		<img id="squiiid-img" class="squiiid-img" src="{{MEDIA_URL}}{{image.image}}" border="0" />
+		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
 		<div id="squiiid-ink" class="squiiid-ink">
 			<ul class="slides">
 				<li class="slide" id="sq-cover">
