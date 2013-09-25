@@ -274,24 +274,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/static/js/jquery.flexslider-min.js"></script>
 	<script>
-	$(document).ready(function() {
-	phototype = "default";
-	  if (document.getElementById("squiiid-img").naturalHeight > document.getElementById("squiiid-img").naturalWidth) {
-	  	$('.squiiid-img').addClass("squiiid-portrait");
-	  	$('.squiiid-ink').addClass("squiiid-ink-p");
-	  	phototype = "portrait";
-	  }
-	  else {
-	  	$('.squiiid-img').addClass("squiiid-landscape");
-	  	$('.squiiid-ink').addClass("squiiid-ink-l");
-	  	phototype = "landscape";
-	  }
-	  resizeactions();
-	  $('.squiiid-ink').flexslider({
-	    animation: "slide"
-	  });
-	  $('.squiiid-ink').flexslider("stop")
-	});
 	function resizeactions() {
 		// Depending on photo type, position the photo a few different ways
 		if (phototype == "portrait") {
@@ -328,6 +310,24 @@
 		// //alert(String($('#sq-contributors').height()) + ' - ' + String(total_height + padding_amount * 2))
 		// $('#sq-contributors').css('padding-top',String(padding_amount) + 'px')
 	}
+	$(document).ready(function() {
+		phototype = "default";
+		/*if (document.getElementById("squiiid-img").naturalHeight >= document.getElementById("squiiid-img").naturalWidth) {
+			$('.squiiid-img').addClass("squiiid-portrait");
+	  		$('.squiiid-ink').addClass("squiiid-ink-p");
+	  		phototype = "portrait";
+	  	}
+	  	else {
+	  		$('.squiiid-img').addClass("squiiid-landscape");
+	  		$('.squiiid-ink').addClass("squiiid-ink-l");
+	  		phototype = "landscape";
+	  	}*/
+		resizeactions();
+		$('.squiiid-ink').flexslider({
+	    	animation: "slide"
+	  	});
+	  	$('.squiiid-ink').flexslider("stop");
+	});
 	$(window).resize(function() {
 		resizeactions();
 	});
