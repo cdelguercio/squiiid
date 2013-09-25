@@ -69,7 +69,7 @@ urlpatterns = patterns('',
     url(r'^terms_of_use/$', 'squiiid.views.terms_of_use', name='terms_of_use'),
     url(r'^landing/$', 'squiiid.views.landing', name='landing'),
     url(r'^request_invite/$', 'squiiid.views.invite', name='invite'),
-    url(r'^search/(?P<tag>\w+)/$', 'squiiid.views.search', name='search'),
+    url(r'^search/(?P<tag>.*)/$', 'squiiid.views.search', name='search'),
     url(r'^search_form/$', 'squiiid.views.search_form', name='search_form'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
