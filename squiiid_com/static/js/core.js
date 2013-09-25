@@ -41,7 +41,6 @@ function prepphotoshare(_image_id) {
 			$("#search").animate({'opacity':0},300, function(){
 				$("#search").css("display","none");
 			});
-			searchlayer = false;
 		}
 		// 4. Uploader
 		if ($("#uploader").css("display") == "block") {
@@ -54,6 +53,8 @@ function prepphotoshare(_image_id) {
 		$("#omgwhiteeverywhere").animate({'opacity':0},300, function(){
 			$("#omgwhiteeverywhere").css("display","none");
 		});
+
+		searchlayer = false;
 	}
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
@@ -234,12 +235,11 @@ function prepphotoshare(_image_id) {
 // Show search layer when user starts typing
 	searchlayer = false; // Search layer is closed by default
 	$(document).keyup(function(e) {
-		if ((e.keyCode >= 48 && e.keyCode <= 90 && searchlayer == false) || (e.keyCode == 32 && searchlayer == false)) {
+		if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (searchlayer == false)) {
 	  		$("#search").css("display","block").animate({'opacity':1},300);
 			$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
 			$("#search-field").select();
 			$("#search-field").val(String.fromCharCode(e.keyCode));
-			
 			searchlayer = true;
 		}
 	});
@@ -267,6 +267,7 @@ function prepphotoshare(_image_id) {
 	function showphotoshare() {
 		$("#photosharing").css("display","block").animate({'opacity':1},300);
 		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+		searchlayer = true;
 	}
 
 // On document ready, load photos
