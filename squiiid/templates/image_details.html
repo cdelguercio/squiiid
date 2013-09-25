@@ -274,28 +274,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/static/js/jquery.flexslider-min.js"></script>
 	<script>
-	$(document).ready(function() {
-	phototype = "default";
-	  if (document.getElementById("squiiid-img").naturalHeight > document.getElementById("squiiid-img").naturalWidth) {
-	  	$('.squiiid-img').addClass("squiiid-portrait");
-	  	$('.squiiid-ink').addClass("squiiid-ink-p");
-	  	phototype = "portrait";
-	  }
-	  else if (document.getElementById("squiiid-img").naturalWidth > document.getElementById("squiiid-img").naturalHeight) {
-	  	$('.squiiid-img').addClass("squiiid-landscape");
-	  	$('.squiiid-ink').addClass("squiiid-ink-l");
-	  	phototype = "landscape";
-	  }
-	  else if (document.getElementById("squiiid-img").naturalWidth == document.getElementById("squiiid-img").naturalHeight) {
-	  	$('.squiiid-img').addClass("squiiid-square");
-	  	phototype = "square";
-	  }
-	  resizeactions();
-	  $('.squiiid-ink').flexslider({
-	    animation: "slide"
-	  });
-	  $('.squiiid-ink').flexslider("stop")
-	});
 	function resizeactions() {
 		// Depending on photo type, position the photo a few different ways
 		if (phototype == "portrait") {
@@ -303,7 +281,7 @@
 			document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
 			document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
 		}
-		else if (phototype == "landscape") {
+		else {
 			offset = Number(document.getElementById("squiiid-img").height)/-2;
 			document.getElementById("squiiid-img").style.marginTop = (String(offset)+"px");
 			document.getElementById("squiiid-ink").style.marginTop = (String(offset)+"px");
@@ -332,6 +310,24 @@
 		// //alert(String($('#sq-contributors').height()) + ' - ' + String(total_height + padding_amount * 2))
 		// $('#sq-contributors').css('padding-top',String(padding_amount) + 'px')
 	}
+	$(document).ready(function() {
+		phototype = "default";
+		/*if (document.getElementById("squiiid-img").naturalHeight >= document.getElementById("squiiid-img").naturalWidth) {
+			$('.squiiid-img').addClass("squiiid-portrait");
+	  		$('.squiiid-ink').addClass("squiiid-ink-p");
+	  		phototype = "portrait";
+	  	}
+	  	else {
+	  		$('.squiiid-img').addClass("squiiid-landscape");
+	  		$('.squiiid-ink').addClass("squiiid-ink-l");
+	  		phototype = "landscape";
+	  	}*/
+		resizeactions();
+		$('.squiiid-ink').flexslider({
+	    	animation: "slide"
+	  	});
+	  	$('.squiiid-ink').flexslider("stop");
+	});
 	$(window).resize(function() {
 		resizeactions();
 	});

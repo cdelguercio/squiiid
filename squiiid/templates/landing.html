@@ -325,15 +325,70 @@
       </div> 
 
     </div>
-    <div class="dashboard">
-   		<!-- Layer 3: Search -->
-		<div class="layer" id="search">
+ 		<!-- Search Layer -->
+    <style>
+      #searchoverlay {
+        width:100%;
+        height:100%;
+        position:fixed;
+        top:0px;
+        left:0px;
+        z-index:9999;
+        opacity:0;
+        display:none;
+        background-color: rgba(255,255,255,0.92);
+      }
+      .search-field {
+        width:80%;
+        height:120px;
+        position: absolute;
+        top:50%;
+        left:10%;
+        margin:-70px 0px 0px 0px !important;
+        border:0px !important;
+        padding:0px !important;
+        border-radius:0px;
+        -moz-border-radius:0px;
+        -o-border-radius:0px;
+        -webkit-border-radius:0px;
+        background-color: transparent;
+        color:#555;
+        font-size:90px;
+        font-weight: 100 !important;
+        text-align: center;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, Tahoma, Verdana, sans-serif;
+        box-sizing:border-box;
+        -o-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+      }
+    </style>
+		<div id="searchoverlay">
 			<form method="POST" action="/search_form/">
-				<input placeholder="start typing" class="search-field" name="tag" id="search-field" type="text"/>
+				<input class="search-field" name="tag" id="search-field" type="text"/>
 			</form>
 		</div>
-	</div>
     <script type="text/javascript">
+    // Search overlay functions
+    searchlayer = false; // Search layer is closed by default
+    $(document).keyup(function(e) {
+      if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (searchlayer == false)) {
+        $("#searchoverlay").css("display","block").animate({'opacity':1},300);
+        $("#search-field").select();
+        $("#search-field").val(String.fromCharCode(e.keyCode));
+        searchlayer = true;
+      }
+      else if (e.keyCode == 27) {
+        $("#searchoverlay").animate({'opacity':0},300, function(){
+          $("#searchoverlay").css("display","none")
+        });
+        searchlayer = false;
+      }
+    });
+    $("body").delegate("#searchoverlay", "click", function(){
+      $("#search-field").select();
+    });
+    // End search overlay functions
     var continueVar = true;
     var continueVar2 = true;
     $(window).scroll(function(){
