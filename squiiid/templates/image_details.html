@@ -281,14 +281,10 @@
 	  	$('.squiiid-ink').addClass("squiiid-ink-p");
 	  	phototype = "portrait";
 	  }
-	  else if (document.getElementById("squiiid-img").naturalWidth > document.getElementById("squiiid-img").naturalHeight) {
+	  else {
 	  	$('.squiiid-img').addClass("squiiid-landscape");
 	  	$('.squiiid-ink').addClass("squiiid-ink-l");
 	  	phototype = "landscape";
-	  }
-	  else if (document.getElementById("squiiid-img").naturalWidth == document.getElementById("squiiid-img").naturalHeight) {
-	  	$('.squiiid-img').addClass("squiiid-square");
-	  	phototype = "square";
 	  }
 	  resizeactions();
 	  $('.squiiid-ink').flexslider({
@@ -303,7 +299,7 @@
 			document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
 			document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
 		}
-		else if (phototype == "landscape") {
+		else {
 			offset = Number(document.getElementById("squiiid-img").height)/-2;
 			document.getElementById("squiiid-img").style.marginTop = (String(offset)+"px");
 			document.getElementById("squiiid-ink").style.marginTop = (String(offset)+"px");
