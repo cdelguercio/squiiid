@@ -182,7 +182,7 @@
 <body>
 	<a href="//squiiid.com"><img src="/static/assets/images/logo-black.svg" class="logo"/></a>
 	<div class="squiiid-details">
-		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
+		<img id="squiiid-img" class="squiiid-img {% if image.height >= image.width %}squiiid-portrait{% else %}squiiid-landscape{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
 		<div id="squiiid-ink" class="squiiid-ink">
 			<ul class="slides">
 				<li class="slide" id="sq-cover">
@@ -276,7 +276,7 @@
 	<script>
 	function resizeactions() {
 		// Depending on photo type, position the photo a few different ways
-		if (phototype == "portrait") {
+		if ($("#squiiid-img").hasClass("squiiid-portrait")) {
 			offset = Number(document.getElementById("squiiid-img").width)/-2;
 			document.getElementById("squiiid-img").style.marginLeft = (String(offset)+"px");
 			document.getElementById("squiiid-ink").style.marginLeft = (String(offset)+"px");
