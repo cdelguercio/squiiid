@@ -310,7 +310,7 @@
 		// //alert(String($('#sq-contributors').height()) + ' - ' + String(total_height + padding_amount * 2))
 		// $('#sq-contributors').css('padding-top',String(padding_amount) + 'px')
 	}
-	$(document).ready(function() {
+	window.onload=function() {
 		phototype = "default";
 		/*if (document.getElementById("squiiid-img").naturalHeight >= document.getElementById("squiiid-img").naturalWidth) {
 			$('.squiiid-img').addClass("squiiid-portrait");
@@ -328,7 +328,7 @@
 	  	});
 	  	$('.squiiid-ink').flexslider("stop");
 	  	resizeactions();
-	});
+	}
 	$(window).resize(function() {
 		resizeactions();
 	});
