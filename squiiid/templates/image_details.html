@@ -38,6 +38,7 @@
 			-o-box-sizing:border-box;
 			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
+			opacity: 0;
 		}
 		.image,
 		.details,
@@ -181,7 +182,7 @@
 </head>
 <body>
 	<a href="//squiiid.com"><img src="/static/assets/images/logo-black.svg" class="logo"/></a>
-	<div class="squiiid-details">
+	<div class="squiiid-details" id="squiiid-details">
 		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
 		<div id="squiiid-ink" class="squiiid-ink {% if image.width > image.height %}squiiid-ink-l{% else %}squiiid-ink-p{% endif %}">
 			<ul class="slides">
@@ -328,6 +329,7 @@
 	  	});
 	  	$('.squiiid-ink').flexslider("stop");
 	  	resizeactions();
+	  	$("#squiiid-details").animate({'opacity':1},350);
 	}
 	$(window).resize(function() {
 		resizeactions();
