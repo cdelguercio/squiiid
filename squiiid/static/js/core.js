@@ -248,6 +248,7 @@ function prepphotoshare(_image_id) {
 	$("body").delegate("#nav-settings", "click", function(){
 		$("#settings").css("display","block").animate({'opacity':1},300);
 		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+		searchlayer = true;
 	});
 	// 2. Search
 	$("body").delegate("#nav-search", "click", function(){
@@ -262,6 +263,7 @@ function prepphotoshare(_image_id) {
 	$("body").delegate("#nav-upload", "click", function(){
 		$("#uploader").css("display","block").animate({'opacity':1},300);
 		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+		searchlayer = true;
 	});
 	// 4. Photo Sharing
 	function showphotoshare() {
