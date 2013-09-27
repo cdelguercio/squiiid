@@ -161,6 +161,12 @@
 		#sq-products p {width:100%;float:left;height:auto;margin: 0px 0px 15px 0px;text-align: center;display: block;}
 		#sq-products b {width:100%;float:left;display: block;}
 		#sq-products i {width:100%;float:left;display: block;}
+		#sq-products p a:link,
+		#sq-products p a:active,
+		#sq-products p a:visited,
+		#sq-products p a:hover {text-decoration: none;}
+		#sq-products p a:hover i {text-decoration: underline !important;}
+		#sq-products a:hover p i {text-decoration: underline !important;}
 		#sq-title-location {background-color: rgba(255,255,255,0.91);color:#666;}
 		#sq-title-location p {width:80%;float:left;height:auto;margin: 0px 10% 15px 10%;text-align: center;display: block;}
 		#sq-title-location p:last-child i {color:#999 !important;}
@@ -186,10 +192,53 @@
 		.slide a:hover {
 			border-bottom: 1px solid #f00;
 		}
+		#search-again {
+	        width:100%;
+	        height:100%;
+	        position:fixed;
+	        top:0px;
+	        left:0px;
+	        z-index:9999;
+	        opacity:0;
+	        display:none;
+	    	background-color: rgba(255,255,255,0.92);
+	    }
+	    #search-again input:focus {
+	    	outline: none;
+	    }
+	    .search-field {
+	        width:80%;
+	        height:120px;
+	        position: absolute;
+	        top:50%;
+	        left:10%;
+	        margin:-70px 0px 0px 0px !important;
+	        border:0px !important;
+	        padding:0px !important;
+	        border-radius:0px;
+	        -moz-border-radius:0px;
+	        -o-border-radius:0px;
+	        -webkit-border-radius:0px;
+	        background-color: transparent;
+	        color:#555;
+	        font-size:90px;
+	        font-weight: 100 !important;
+	        text-align: center;
+	        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, Tahoma, Verdana, sans-serif;
+	        box-sizing:border-box;
+	        -o-box-sizing:border-box;
+	        -moz-box-sizing:border-box;
+	        -webkit-box-sizing:border-box;
+	      }
 	</style>
 </head>
 <body>
 	<a href="//squiiid.com"><img src="/static/assets/images/logo-black.svg" class="logo"/></a>
+	<div id="search-again">
+		<form method="POST" action="/search_form/">
+			<input placeholder="start typing" class="search-field" autocomplete="off" name="tag" id="search-field" type="text"/>
+		</form>
+	</div>
 	<div class="loading"><img src="/static/assets/images/loading-ring.gif"/></div>
 	<div class="squiiid-details" id="squiiid-details">
 		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
@@ -333,16 +382,37 @@
 	  		phototype = "landscape";
 	  	}*/
 		resizeactions();
-		$('.squiiid-ink').flexslider({
+		$('#squiiid-ink').flexslider({
 	    	animation: "slide"
 	  	});
-	  	$('.squiiid-ink').flexslider("stop");
+	  	$('#squiiid-ink').flexslider("stop");
 	  	resizeactions();
 	  	$("#squiiid-details").animate({'opacity':1},888);
 	}
 	$(window).resize(function() {
 		resizeactions();
 	});
+	// Search overlay functions
+    searchlayer = false; // Search layer is closed by default
+    $(document).keyup(function(e) {
+      if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (searchlayer == false)) {
+        $("#search-again").css("display","block").animate({'opacity':1},300);
+        $("#search-field").select();
+        $("#search-field").val(String.fromCharCode(e.keyCode));
+        searchlayer = true;
+      }
+      else if (e.keyCode == 27) {
+        $("#search-again").animate({'opacity':0},300, function(){
+          $("#search-again").css("display","none")
+        });
+        searchlayer = false;
+        $('#squiiid-ink').flexslider(0) 
+      }
+    });
+    $("body").delegate("#search-again", "click", function(){
+      $("#search-field").select();
+    });
+    // End search overlay functions
 	</script>
 </body>
 </html>
