@@ -138,13 +138,15 @@
 			height:100%;
 			color:#FFF;
 			margin:0px !important;
-			padding:45px 0px 0px 0px;
+			/*padding:45px 0px 0px 0px;*/
 			display: block;
 			box-sizing:border-box;
 			-o-box-sizing:border-box;
 			-moz-box-sizing:border-box;
 			-webkit-box-sizing:border-box;
 			overflow: hidden;
+			display: table;
+			position: relative;
 		}
 		ol {display: none;}
 		.flex-viewport {
@@ -161,6 +163,12 @@
 		#sq-products p {width:100%;float:left;height:auto;margin: 0px 0px 15px 0px;text-align: center;display: block;}
 		#sq-products b {width:100%;float:left;display: block;}
 		#sq-products i {width:100%;float:left;display: block;}
+		#sq-products p a:link,
+		#sq-products p a:active,
+		#sq-products p a:visited,
+		#sq-products p a:hover {text-decoration: none;}
+		#sq-products p a:hover i {text-decoration: underline !important;}
+		#sq-products a:hover p i {text-decoration: underline !important;}
 		#sq-title-location {background-color: rgba(255,255,255,0.91);color:#666;}
 		#sq-title-location p {width:80%;float:left;height:auto;margin: 0px 10% 15px 10%;text-align: center;display: block;}
 		#sq-title-location p:last-child i {color:#999 !important;}
@@ -186,10 +194,53 @@
 		.slide a:hover {
 			border-bottom: 1px solid #f00;
 		}
+		#search-again {
+	        width:100%;
+	        height:100%;
+	        position:fixed;
+	        top:0px;
+	        left:0px;
+	        z-index:9999;
+	        opacity:0;
+	        display:none;
+	    	background-color: rgba(255,255,255,0.92);
+	    }
+	    #search-again input:focus {
+	    	outline: none;
+	    }
+	    .search-field {
+	        width:80%;
+	        height:120px;
+	        position: absolute;
+	        top:50%;
+	        left:10%;
+	        margin:-70px 0px 0px 0px !important;
+	        border:0px !important;
+	        padding:0px !important;
+	        border-radius:0px;
+	        -moz-border-radius:0px;
+	        -o-border-radius:0px;
+	        -webkit-border-radius:0px;
+	        background-color: transparent;
+	        color:#555;
+	        font-size:90px;
+	        font-weight: 100 !important;
+	        text-align: center;
+	        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, Tahoma, Verdana, sans-serif;
+	        box-sizing:border-box;
+	        -o-box-sizing:border-box;
+	        -moz-box-sizing:border-box;
+	        -webkit-box-sizing:border-box;
+	      }
 	</style>
 </head>
 <body>
 	<a href="//squiiid.com"><img src="/static/assets/images/logo-black.svg" class="logo"/></a>
+	<div id="search-again">
+		<form method="POST" action="/search_form/">
+			<input placeholder="start typing" class="search-field" autocomplete="off" name="tag" id="search-field" type="text"/>
+		</form>
+	</div>
 	<div class="loading"><img src="/static/assets/images/loading-ring.gif"/></div>
 	<div class="squiiid-details" id="squiiid-details">
 		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
@@ -200,7 +251,8 @@
 
 				{% if image.contributor_name_1 != '' or  image.contributor_name_2 != '' or image.contributor_name_3 != '' or image.contributor_name_4 != '' or image.contributor_name_5 != '' %}
 				<li class="slide" id="sq-contributors">
-					<!-- Make one of these for each entry -->
+					<span style="display:table-cell;vertical-align:middle;position:absolute;top:50%;width:100%;">
+					<span id="sq-contributors-center" style="position:relative;width:100%;float:left;">
 					{% if image.contributor_name_1 != '' %}
 					<p><b>{{image.contributor_type_1}}</b><i>{{image.contributor_name_1}}</i></p>
 					{% endif %}
@@ -216,12 +268,15 @@
 					{% if image.contributor_name_5 != '' %}
 					<p><b>{{image.contributor_type_5}}</b><i>{{image.contributor_name_5}}</i></p>
 					{% endif %}
+					</span>
+					</span>
 				</li>
 				{% endif %}
 
 				{% if image.product_1 != '' or  image.product_2 != '' or image.product_3 != '' or image.product_4 != '' or image.product_5 != '' %}
 				<li class="slide" id="sq-products">
-					<!-- Make one of these for each entry -->
+					<span style="display:table-cell;vertical-align:middle;position:absolute;top:50%;width:100%;">
+					<span id="sq-products-center" style="position:relative;width:100%;float:left;">
 					{% if image.product_1 != '' %}
 					<a href="{{image.product_url_1}}" target="_blank"><p><b>{{image.brand_1}}</b><i>{{image.product_1}}</i></p></a>
 					{% endif %}
@@ -237,16 +292,18 @@
 					{% if image.product_5 != '' %}
 					<p><a href="{{image.product_url_5}}" target="_blank"><b>{{image.brand_5}}</b><i>{{image.product_5}}</i></a></p>
 					{% endif %}
+					</span>
+					</span>
 				</li>
 				{% endif %}
 
 				{% if image.title != '' or  image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
 				<li class="slide" id="sq-title-location">
-					<!-- Only show if has a title-->
+					<span style="display:table-cell;vertical-align:middle;position:absolute;top:50%;width:100%;">
+					<span id="sq-title-center" style="position:relative;width:100%;float:left;">
 					{% if image.title != '' %}
 					<p><i>{{image.title}}</i></p>
 					{% endif %}
-					<!-- Only show each variable if it is not blank -->
 					{% if image.street_address_1 != '' or image.city != '' or image.state != '' or image.zip_code != '' or image.place != '' %}
 					<div class="divider"></div>
 					<p><i>
@@ -255,13 +312,16 @@
 						{% endif %}
 						{{image.street_address_1}} {{image.street_address_2}}<br/>{{image.city}} {{image.state}}, {{image.zip_code}}</i></p>
 					{% endif %}
+					</span>
+					</span>
 				</li>
 				{% endif %}
 
 				{% if image.tool != '' or  image.iso != '' or image.aperture != '' or image.exposure != '' or image.focal_length != '' %}
 				{% if not image.private %}
 				<li class="slide" id="sq-exif">
-					<!-- make one of these for each set of exif data -->
+					<span style="display:table-cell;vertical-align:middle;position:absolute;top:50%;width:100%;">
+					<span id="sq-camera-center" class="sq-camera-center" style="position:relative;width:100%;float:left;">
 					{% if image.tool != '' %}
 					<p><b>Camera:</b><i>{{image.tool}}</i></p>
 					{% endif %}
@@ -277,6 +337,8 @@
 					{% if image.focal_length != '' %}
 					<p><b>Focal Length:</b><i>{{image.focal_length}}</i></p>
 					{% endif %}
+					</span>
+					</span>
 				</li>
 				{% endif %}
 				{% endif %}
@@ -307,44 +369,53 @@
 		});
 		$(".slide").css("height",$imgheight);
 		$(".slides").css("height",$imgheight);
-		// Count children in #sq-contributors
-		// var total_height = 0
-		// children = $('#sq-contributors').children()
-		// /*for (var child in children) {
-		// 	alert(child)
-		// 	total_height = total_height + $(child).height()
-		// }*/
-		// children.each(function(index) {
-		// 	total_height = total_height + $(this).height()
-		// });
-		
-		// padding_amount = Math.floor(($('#sq-contributors').height() - total_height) / 2.0) + 8
-		// //alert(String($('#sq-contributors').height()) + ' - ' + String(total_height + padding_amount * 2))
-		// $('#sq-contributors').css('padding-top',String(padding_amount) + 'px')
 	}
 	window.onload=function() {
 		phototype = "default";
-		/*if (document.getElementById("squiiid-img").naturalHeight >= document.getElementById("squiiid-img").naturalWidth) {
-			$('.squiiid-img').addClass("squiiid-portrait");
-	  		$('.squiiid-ink').addClass("squiiid-ink-p");
-	  		phototype = "portrait";
-	  	}
-	  	else {
-	  		$('.squiiid-img').addClass("squiiid-landscape");
-	  		$('.squiiid-ink').addClass("squiiid-ink-l");
-	  		phototype = "landscape";
-	  	}*/
 		resizeactions();
-		$('.squiiid-ink').flexslider({
+		$('#squiiid-ink').flexslider({
 	    	animation: "slide"
 	  	});
-	  	$('.squiiid-ink').flexslider("stop");
+	  	$('#squiiid-ink').flexslider("stop");
 	  	resizeactions();
+	  	// Center text content
+	  	centerContributors = Number($("#sq-contributors-center").height())/-2;
+	  	$("#sq-contributors-center").css("top",centerContributors);
+	  	centerProducts = Number($("#sq-products-center").height())/-2;
+	  	$("#sq-products-center").css("top",centerProducts);
+	  	centerTitle = Number($("#sq-title-center").height())/-2;
+	  	$("#sq-title-center").css("top",centerTitle);
+	  	centerCamera = Number($("#sq-camera-center").height())/-2;
+	  	// document.getElementById('sq-exifdata-center').style.top = centerExif;
+	  	$('.sq-camera-center').css("top",centerCamera);
+
+	  	// Fade in once loaded
 	  	$("#squiiid-details").animate({'opacity':1},888);
 	}
 	$(window).resize(function() {
 		resizeactions();
 	});
+	// Search overlay functions
+    searchlayer = false; // Search layer is closed by default
+    $(document).keyup(function(e) {
+      if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (searchlayer == false)) {
+        $("#search-again").css("display","block").animate({'opacity':1},300);
+        $("#search-field").select();
+        $("#search-field").val(String.fromCharCode(e.keyCode));
+        searchlayer = true;
+      }
+      else if (e.keyCode == 27) {
+        $("#search-again").animate({'opacity':0},300, function(){
+          $("#search-again").css("display","none")
+        });
+        searchlayer = false;
+        $('#squiiid-ink').flexslider(0)
+      }
+    });
+    $("body").delegate("#search-again", "click", function(){
+      $("#search-field").select();
+    });
+    // End search overlay functions
 	</script>
 </body>
 </html>
