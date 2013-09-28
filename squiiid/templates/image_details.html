@@ -259,6 +259,7 @@
 				{% endif %}
 
 				{% if image.tool != '' or  image.iso != '' or image.aperture != '' or image.exposure != '' or image.focal_length != '' %}
+				{% if not image.private %}
 				<li class="slide" id="sq-exif">
 					<!-- make one of these for each set of exif data -->
 					{% if image.tool != '' %}
@@ -277,6 +278,7 @@
 					<p><b>Focal Length:</b><i>{{image.focal_length}}</i></p>
 					{% endif %}
 				</li>
+				{% endif %}
 				{% endif %}
 			</ul>
 		</div>
