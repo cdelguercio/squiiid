@@ -232,6 +232,8 @@ article {
   }
   .title-page h1 {
     width: 100%;
+    color: #ffffff;
+
   }
   .title-page header {
     position: absolute;
