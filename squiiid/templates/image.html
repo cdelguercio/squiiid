@@ -188,8 +188,8 @@
 		document.getElementById("squiiid-ink-{{image.id}}").style.width = document.getElementById("squiiid-img-{{image.id}}-1").width;
 		document.getElementById("squiiid-ink-{{image.id}}").style.marginBottom = Number(document.getElementById("squiiid-img-{{image.id}}-1").width + document.getElementById("squiiid-img-{{image.id}}-2").width) *(-1);
 	}
-
-	window.onresize = getinky;
+	window.onload=getinky();
+	window.onresize = getinky();
 	function reblog() {
 		document.getElementById("squiiid-reblog-{{image.id}}").setAttribute("style","z-index:10;");
 		document.getElementById("squiiid-reblog-{{image.id}}").style.opacity = '1';
