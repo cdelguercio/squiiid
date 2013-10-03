@@ -232,6 +232,8 @@ article {
   }
   .title-page h1 {
     width: 100%;
+    color: #ffffff;
+
   }
   .title-page header {
     position: absolute;
@@ -318,7 +320,7 @@ article {
   margin-top: 100px;
   text-transform: uppercase;
 }
-.overlay p, .overlay2 p {
+.overlay p, .overlay2 p, .overlay3 p {
   font-family: "Courier";
   font-size:8.85pt;
   line-height:19.47pt;
@@ -326,7 +328,7 @@ article {
 }
 .overlay3 {
   display:none;
-  background-color:#fff;width:700px;opacity:0.9;height:340px;z-index:999;position:absolute;text-align:center;margin-left:34px;padding-top:150px;padding-right:20px;
+  background-color:#fff;width:700px;opacity:0.9;height:340px;z-index:999;position:absolute;text-align:center;margin-left:34px;padding-top:95px;padding-right:20px;
 
 }
 

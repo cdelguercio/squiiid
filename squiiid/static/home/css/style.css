@@ -194,8 +194,9 @@ article {
     font-size:90pt;
     line-height:90pt;
     letter-spacing: -3.2px;
-    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: #b3b3b3;
+    font-weight: 900 !important;
   }
 
     article p {
@@ -217,13 +218,15 @@ article {
       
     }
     
-
+  header span {
+        font-weight: 900 !important;
+  }
   .title-page h1, .title-page p, .title-page span, .credit h1, .credit span {
     text-align: center;
     font-size:90pt;
     line-height:90pt;
     letter-spacing: -3.2px;
-    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: #b3b3b3;
     text-align:left;
   }
@@ -232,6 +235,8 @@ article {
   }
   .title-page h1 {
     width: 100%;
+    color: #ffffff;
+
   }
   .title-page header {
     position: absolute;
@@ -318,7 +323,7 @@ article {
   margin-top: 100px;
   text-transform: uppercase;
 }
-.overlay p, .overlay2 p {
+.overlay p, .overlay2 p, .overlay3 p {
   font-family: "Courier";
   font-size:8.85pt;
   line-height:19.47pt;
@@ -326,7 +331,7 @@ article {
 }
 .overlay3 {
   display:none;
-  background-color:#fff;width:700px;opacity:0.9;height:340px;z-index:999;position:absolute;text-align:center;margin-left:34px;padding-top:150px;padding-right:20px;
+  background-color:#fff;width:700px;opacity:0.9;height:340px;z-index:999;position:absolute;text-align:center;margin-left:34px;padding-top:95px;padding-right:20px;
 
 }
 
