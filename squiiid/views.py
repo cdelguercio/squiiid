@@ -51,7 +51,7 @@ def landing(request):
 
 def dashboard(request):
     if request.user.is_authenticated():
-        images = SquiiidImage.objects.filter(profile_id=request.user.get_profile().id)
+        images = SquiiidImage.objects.filter(profile_id=request.user.get_profile().id).order_by('-date')
         
         if images.count() == 0:
             return HttpResponseRedirect(reverse('squiiid.views.first_intro'))
