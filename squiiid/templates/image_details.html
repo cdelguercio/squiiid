@@ -243,7 +243,7 @@
 	</div>
 	<div class="loading"><img src="/static/assets/images/loading-ring.gif"/></div>
 	<div class="squiiid-details" id="squiiid-details">
-		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image}}" border="0" />
+		<img id="squiiid-img" class="squiiid-img {% if image.width > image.height %}squiiid-landscape{% else %}squiiid-portrait{% endif %}" src="{{MEDIA_URL}}{{image.image_compressed}}" border="0" />
 		<div id="squiiid-ink" class="squiiid-ink {% if image.width > image.height %}squiiid-ink-l{% else %}squiiid-ink-p{% endif %}">
 			<ul class="slides">
 				<li class="slide" id="sq-cover">
