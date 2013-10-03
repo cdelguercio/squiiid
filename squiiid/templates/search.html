@@ -29,7 +29,7 @@
 		<div id="loading" class="loading"></div>
 		<!-- Navigation -->
 		<nav>
-			<div class="nav-item" id="nav-search"></div>
+			<div class="nav-item" id="nav-search" style="margin-top:28px;margin-left:28px;"></div>
 		</nav>
 		<!-- Layer 2: Photo Sharing -->
 		<div class="layer" id="photosharing">
@@ -73,7 +73,11 @@
 				</div>
 			</div>
 			{% empty %}
-			<h1 class="no-search-results">No Search Results</h1>
+			<div class="no-search-table">
+				<div class="no-search-table-cell">
+					<h1 class="no-search-results">No Search Results</h1>
+				</div>
+			</div>
 			{% endfor %}
 		</div>
 	</div>
