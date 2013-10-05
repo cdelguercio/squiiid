@@ -27,10 +27,10 @@
       <div id="content" data-script="Articles">
               
         <article id="cover" class="title-page"  data-google="Cover">
-        
-        <header>
           <div id="play">
-            <a class='vimeo' href="http://player.vimeo.com/video/73983675"><img src="/static/home/assets/1/play_button.png" /></a></div>
+            <a class='vimeo'><img src="/static/home/assets/1/play_button.png" /></a></div>        
+        <header>
+
           <h1><span>squiiid</span> is you and your work. linked.</h1>
           <div class="signin">
             <img src="/static/home/assets/1/X.png" /><a href="/request_invite/"><img src="/static/home/assets/1/request_inviiiite_with_line.png" style="margin-left:30px;" /></a><br />
@@ -38,10 +38,12 @@
           
          
         </header> 
-        <video autoplay="autoplay" id="spot" loop="loop" style="display:block;">
-            <source src="/static/home/assets/AKP_LOOP.m4v" />
-            <source src="/static/home/assets/AKP_LOOP_720p.ogv" />
+        <div id="home_video">
+          <video autoplay="autoplay" id="spot" loop="loop" style="display:block;">
+              <source src="/static/home/assets/AKP_LOOP.m4v" />
+              <source src="/static/home/assets/AKP_LOOP_720p.ogv" />
           </video>
+        </div>
          
         
 
@@ -169,7 +171,7 @@
           <div id="screen2" style="height:800px;margin:0 auto; width:800px;">
              <div id="slidebottom" class="slide">
   <div class="inner">
-  <div class="overlay3"><h3>seo optimize every photo on every platform you share to.</h3>
+  <div class="overlay3" style="padding-top:151px;"><h3 style="margin-top:80px;">seo optimize every photo on every platform you share to.</h3>
   <p>Get more eyes on your photos if you upload to Squiiid first.<br />
   Every photo can be made searchable by location, photographer, lens, <br />
   aperture, product detail, even color...shhh.</p>
@@ -399,7 +401,7 @@
       if(in_view == "slideset5" && continueVar == true) {
         $('.cycle_2').cycle({
           fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-          speed: 300, 
+          speed: 200, 
            pager: "#pager2",
           pagerAnchorBuilder: function(index, el) {
             return '<a href="#">&bull;</a>';
@@ -410,7 +412,7 @@
       if(in_view == "slideset9" && continueVar2 == true) {
         $('.cycle_3').cycle({
           fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-          speed: 300, 
+          speed: 200, 
            pager: "#pager3",
           pagerAnchorBuilder: function(index, el) {
             return '<a href="#">&bull;</a>';
@@ -438,7 +440,7 @@
 
       $('.cycle_1').cycle({
         fx: 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-        speed: 300,
+        speed: 200,
         pager: "#pager1",
         pagerAnchorBuilder: function(index, el) {
           return '<a href="#">&bull;</a>';
@@ -473,7 +475,28 @@
         $("#overlay5").hide();
       });
 
-      $(".vimeo").colorbox({iframe:true, innerWidth:800, innerHeight:600});
+      //$(".vimeo").colorbox({iframe:true, innerWidth:800, innerHeight:600});
+      $(".vimeo").click(function(){
+        var videoFile1 = "/static/home/assets/squiiid_full.mp4";  
+        var videoFile2 = "/static/home/assets/AKP_LOOP.m4v";
+        var vidStatus = $("#play").attr("playing");
+        if(vidStatus == "true") {
+          $("#play img").attr("src","/static/home/assets/1/play_button.png");
+          $("#play").attr("playing",false);
+          $("#cover header").show();
+          $("#home_video video source").attr('src',videoFile2);
+          $("#home_video video").css("height","659px")
+          $("#home_video video")[0].load();
+
+        } else {
+          $("#play img").attr("src","/static/home/assets/1/close.png");
+          $("#play").attr("playing",true);
+          $("#cover header").hide();
+          $("#home_video video source").attr('src',videoFile1);
+          $("#home_video video").css("height","659px")
+          $("#home_video video")[0].load();
+        }
+      })
     </script>
   </body>
  
