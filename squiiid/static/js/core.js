@@ -54,7 +54,7 @@ function prepphotoshare(_image_id) {
 			$("#omgwhiteeverywhere").css("display","none");
 		});
 
-		searchlayer = false;
+		layeropen = false;
 	}
 // Function for sizing overlays on "My Photos"
 	function sizeOverlays() {
@@ -226,6 +226,28 @@ function prepphotoshare(_image_id) {
 	$("body").delegate("#settings-save", "click", function(){
 		hidelayers();
 	});
+	// Clicking modal bg fades it out
+	$(document).mouseup(function (e)
+	{
+	    var container = $(".uploader");
+	    var container2 = $(".settings-box");
+	    var container3 = $(".search-field");
+	    var container4 = $(".share-embed-box");
+	    var container5 = $(".photo-share")
+
+	    if (!container.is(e.target) // if the target of the click isn't the container...
+	        && container.has(e.target).length === 0 // ... nor a descendant of the container
+	        && !container2.is(e.target)
+	        && container2.has(e.target).length === 0
+	        && !container3.is(e.target)
+	        && container3.has(e.target).length === 0
+	        && !container4.is(e.target)
+	        && container4.has(e.target).length === 0
+	        && !container5.is(e.target)
+	        && container5.has(e.target).length === 0
+	        && layeropen == true) // Don't do anything if no modals are currently open
+	    {hidelayers();}
+	});
 	// Hitting escape has the same effect as clicking the Squiiid Logo
 	$(document).keyup(function(e) {
 	  if (e.keyCode == 27) {
@@ -233,43 +255,48 @@ function prepphotoshare(_image_id) {
 	  }
 	});
 // Show search layer when user starts typing
-	searchlayer = false; // Search layer is closed by default
+	layeropen = false; // Search layer is closed by default
 	$(document).keyup(function(e) {
-		if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (searchlayer == false)) {
+		if (((e.keyCode >= 48 && e.keyCode <= 90) || (e.keyCode == 32)) && (layeropen == false)) {
 	  		$("#search").css("display","block").animate({'opacity':1},300);
-			$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
+			$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300,function(){
+				layeropen = true;
+			});
 			$("#search-field").select();
 			$("#search-field").val(String.fromCharCode(e.keyCode));
-			searchlayer = true;
+			
 		}
 	});
 // Fade in handlers
 	// 1. Settings
 	$("body").delegate("#nav-settings", "click", function(){
 		$("#settings").css("display","block").animate({'opacity':1},300);
-		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
-		searchlayer = true;
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300, function(){
+			layeropen = true;
+		});
 	});
 	// 2. Search
 	$("body").delegate("#nav-search", "click", function(){
 		$("#search").css("display","block").animate({'opacity':1},300);
-		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
-		$("#search-field").select();
-	});
-	$("body").delegate("#search", "click", function(){
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300, function(){
+			layeropen = true;
+		});
 		$("#search-field").select();
 	});
 	// 3. Uploader
 	$("body").delegate("#nav-upload", "click", function(){
 		$("#uploader").css("display","block").animate({'opacity':1},300);
-		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
-		searchlayer = true;
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300, function(){
+			layeropen = true;
+		});
+		
 	});
 	// 4. Photo Sharing
 	function showphotoshare() {
 		$("#photosharing").css("display","block").animate({'opacity':1},300);
-		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1},300);
-		searchlayer = true;
+		$("#omgwhiteeverywhere").css("display","block").animate({'opacity':1}, function(){
+			layeropen = true;
+		});
 	}
 
 // On document ready, load photos

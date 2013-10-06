@@ -239,9 +239,9 @@ nav {
 /* Photos and stuff */
 .my-photos {
 	width:100%;
-	height:auto;
+	min-height:100%;
 	float:left;
-	padding-bottom:120px;
+	/*padding-bottom:120px;*/
 }
 .photo-holder {
 	width:100%;
@@ -543,17 +543,25 @@ nav {
 	text-align: center;
 	.helv;
 }
-.no-search-results {
+.no-search-table {
 	width:100%;
-	height:auto;
-	float:left;
+	height:100%;
+	position: absolute;
+	top:0px;
+	left:0px;
+	display: table;
+}
+.no-search-table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+.no-search-results {
 	text-align:center;
 	.cour;
 	font-size:11px;
 	font-weight:100;
 	color:#777;
 	text-transform:lowercase;
-	margin-top:100px;
 }
 /*------------------------------------------*/
 /*				4. Uploader					*/
