@@ -9,9 +9,9 @@ function prepphotoshare(_image_id) {
 	//var large_height = Math.floor(900.0 * ratio) + 1
 	document.getElementById("share-embed-small").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"200px\" height=\"" + small_height + "px\"></object>"
 	document.getElementById("share-embed-medium").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"500px\" height=\"" + medium_height + "px\"></object>"
-	//document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"900px\" height=\"" + large_height + "px\"></object>"
-	var large_width = Math.floor(492.0 / ratio)
-	document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"" + large_width + "px\" height=\"492px\"></object>"
+	document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"900px\" height=\"" + large_height + "px\"></object>"
+	//var large_width = Math.floor(492.0 / ratio)
+	//document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"" + large_width + "px\" height=\"492px\"></object>"
 }
 //--------------------------------------------------------
 //
