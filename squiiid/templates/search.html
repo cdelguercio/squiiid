@@ -69,7 +69,7 @@
 						<b>{{image.likes}} Like{% if image.likes > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.clicks}} Click{% if image.clicks > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.hovers}} Hover{% if image.hovers > 1 %}s{% endif %}</b> <i>x</i> <b>{{image.reblogs}} Reblog{% if image.reblogs > 1 %}s{% endif %}</b><br><a href="/image/details/{{image.id}}/" class="photo-edit-link">Details</a> <i>/</i> <a href="#" class="photo-share-link" onclick="prepphotoshare({{image.id}});showphotoshare();">Share</a>
 						</p>
 					</div>
-					<img id="a-photo-{{image.id}}" class="a-photo" src="/media/{{image.image}}" />
+					<img id="a-photo-{{image.id}}" class="a-photo" src="/media/{{image.image_compressed}}" />
 				</div>
 			</div>
 			{% empty %}
