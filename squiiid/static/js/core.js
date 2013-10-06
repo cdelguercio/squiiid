@@ -6,7 +6,7 @@ function prepphotoshare(_image_id) {
 	var ratio = parseFloat(document.getElementById("a-photo-"+String(image_id)).clientHeight) / parseFloat(document.getElementById("a-photo-"+String(image_id)).clientWidth)
 	var small_height = Math.floor(200.0 * ratio) + 1
 	var medium_height = Math.floor(500.0 * ratio) + 1
-	//var large_height = Math.floor(900.0 * ratio) + 1
+	var large_height = Math.floor(900.0 * ratio) + 1
 	document.getElementById("share-embed-small").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"200px\" height=\"" + small_height + "px\"></object>"
 	document.getElementById("share-embed-medium").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"500px\" height=\"" + medium_height + "px\"></object>"
 	document.getElementById("share-embed-large").innerHTML = "<object data=\"http://squiiid.com/image/" + _image_id + "/\" width=\"900px\" height=\"" + large_height + "px\"></object>"
