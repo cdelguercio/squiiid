@@ -86,7 +86,7 @@ class SquiiidImage(models.Model):
     date = models.DateTimeField()
 
     def __unicode__(self):
-        return unicode('')
+        return unicode(self.title)
 
 class Tag(models.Model):
     image = models.ForeignKey(SquiiidImage)
@@ -94,7 +94,7 @@ class Tag(models.Model):
     date = models.DateTimeField()
 
     def __unicode__(self):
-        return unicode('')
+        return unicode(self.phrase)
     
 class Invite(models.Model):
     email = models.CharField(max_length=1000)
@@ -102,4 +102,4 @@ class Invite(models.Model):
     name = models.CharField(max_length=1000)
 
     def __unicode__(self):
-        return unicode('')
+        return unicode(self.email)
