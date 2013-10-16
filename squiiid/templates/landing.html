@@ -57,7 +57,7 @@
         <div id="home_video">
           <video autoplay="autoplay" id="spot" loop="loop" style="display:block;">
               <source src="/static/home/assets/AKP_LOOP_1080p_NOCROP.mp4" />
-              <source src="/static/home/assets/AKP_LOOP_720p.ogv" />
+              <source src="/static/home/assets/AKP_LOOP_1080p_NOCROP.webm" />
           </video>
         </div>
          
@@ -493,8 +493,8 @@
 
       //$(".vimeo").colorbox({iframe:true, innerWidth:800, innerHeight:600});
       $(".vimeo").click(function(){
-        var videoFile1 = "/static/home/assets/squiiid_full.mp4";  
-        var videoFile2 = "/static/home/assets/AKP_LOOP.m4v";
+        var videoFile1 = "/static/home/assets/squiiid_full.webm";  
+        var videoFile2 = "/static/home/assets/AKP_LOOP_1080p_NOCROP.webm";
         var vidStatus = $("#play").attr("playing");
         if(vidStatus == "true") {
           $("#play img").attr("src","/static/home/assets/1/play_button.png");

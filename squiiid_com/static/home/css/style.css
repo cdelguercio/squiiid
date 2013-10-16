@@ -194,8 +194,9 @@ article {
     font-size:90pt;
     line-height:90pt;
     letter-spacing: -3.2px;
-    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: #b3b3b3;
+    font-weight: 900 !important;
   }
 
     article p {
@@ -217,13 +218,15 @@ article {
       
     }
     
-
+  header span {
+        font-weight: 900 !important;
+  }
   .title-page h1, .title-page p, .title-page span, .credit h1, .credit span {
     text-align: center;
     font-size:90pt;
     line-height:90pt;
     letter-spacing: -3.2px;
-    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: #b3b3b3;
     text-align:left;
   }
